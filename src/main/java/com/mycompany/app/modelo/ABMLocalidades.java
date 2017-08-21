@@ -22,11 +22,7 @@ public class ABMLocalidades
 		Localidad.insert(nuevaLocalidad);
 	}
 
-	public void editarLocalidad(LocalidadDTO nuevaLocalidad)
-	{
-		borrarLocalidad(nuevaLocalidad);
-		agregarLocalidad(nuevaLocalidad);
-	}
+
 
 	public void borrarLocalidad(LocalidadDTO Localidad_a_eliminar)
 	{

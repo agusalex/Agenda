@@ -8,15 +8,39 @@ import java.util.Properties;
 public class Conexion
 {
 	private static Conexion instancia;
-	private Connection conexion;
+	private static Connection conexion;
 	private static String initDB=
-			"CREATE TABLE `personas` \n" +
-			"(\n" +
-			"  `idPersona` int(11) NOT NULL AUTO_INCREMENT,\n" +
-			"  `Nombre` varchar(45) NOT NULL,\n" +
-			"  `Telefono` varchar(20) NOT NULL,\n" +
-			"  PRIMARY KEY (`idPersona`)\n" +
-			");\n";
+			"DROP TABLE LOCALIDADES;DROP TABLE Etiquetas;DROP TABLE Personas; CREATE TABLE Localidades\n" +
+					"(  idLocalidad int(11) NOT NULL AUTO_INCREMENT,\n" +
+					"   Nombre varchar(45) NOT NULL,\n" +
+					"   PRIMARY KEY (idLocalidad)\n" +
+					");\n" +
+					"CREATE TABLE Etiquetas\n" +
+					"(\n" +
+					"    idEtiqueta int(11) NOT NULL AUTO_INCREMENT,\n" +
+					"\tNombre varchar(15) NOT NULL,\n" +
+					"    PRIMARY KEY (idEtiqueta)\n" +
+					");\n" +
+					"\n" +
+					"CREATE TABLE Personas\n" +
+					"(\n" +
+					"  idPersona int(11) NOT NULL AUTO_INCREMENT,\n" +
+					"  Nombre varchar(45) NOT NULL,\n" +
+					"  Telefono varchar(20) NOT NULL,\n" +
+					"  Calle varchar(45) NOT NULL,\n" +
+					"  Altura int(11) NOT NULL,\n" +
+					"  Piso int(11) NOT NULL,\n" +
+					"  Departamento varchar(45) NOT NULL,\n" +
+					"  Email varchar(45) NOT NULL,\n" +
+					"  fechaNacimiento Date NOT NULL,\n" +
+					"  idLocalidad int(11)NOT NULL,\n" +
+					"  idEtiqueta int(11) NOT NULL,\n" +
+					"\n" +
+					"  PRIMARY KEY (idPersona),\n" +
+					"  FOREIGN KEY (idLocalidad) REFERENCES Localidades(idLocalidad),\n" +
+					"  FOREIGN KEY (idEtiqueta) REFERENCES Etiquetas(idEtiqueta)\n" +
+					"\n" +
+					");";
 	static private String username;
 	static private String password;
 	static private String url;
@@ -233,6 +257,7 @@ public class Conexion
 	
 	public void cerrarConexion()
 	{
+
 		instancia = null;
 	}
 }

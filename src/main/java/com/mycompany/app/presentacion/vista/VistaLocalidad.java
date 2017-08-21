@@ -2,6 +2,7 @@ package com.mycompany.app.presentacion.vista;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 public class VistaLocalidad
 {
@@ -94,4 +95,6 @@ public class VistaLocalidad
 	{
 		return nombreColumnas;
 	}
+
+
 }

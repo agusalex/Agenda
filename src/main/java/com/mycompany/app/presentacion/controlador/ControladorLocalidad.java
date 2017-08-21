@@ -1,6 +1,7 @@
 package com.mycompany.app.presentacion.controlador;
 
 import com.mycompany.app.dto.LocalidadDTO;
+import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.modelo.ABMLocalidades;
 import com.mycompany.app.presentacion.vista.VentanaLocalidad;
 import com.mycompany.app.presentacion.vista.VistaLocalidad;
@@ -12,7 +13,9 @@ import java.util.List;
 
 public class ControladorLocalidad implements ActionListener
 {
-	
+
+
+	private LocalidadDTO BKP;
 
 	public List<LocalidadDTO> getLocalidades_en_tabla() {
 		return Localidades_en_tabla;
@@ -41,6 +44,8 @@ public class ControladorLocalidad implements ActionListener
 			this.vista = vista;
 			this.vista.getBtnAgregarLocalidad().addActionListener(this);
 			this.vista.getBtnBorrar().addActionListener(this);
+			this.vista.getBtnEditar().addActionListener(this);
+
 
 			this.ABMLocalidades = ABMLocalidades;
 			this.Localidades_en_tabla = null;
@@ -69,6 +74,7 @@ public class ControladorLocalidad implements ActionListener
 		
 		public void actionPerformed(ActionEvent e) 
 		{
+
 			if(e.getSource() == this.vista.getBtnAgregarLocalidad())
 			{
 				this.ventanaLocalidad = new VentanaLocalidad(this);
@@ -77,17 +83,16 @@ public class ControladorLocalidad implements ActionListener
 			else if(e.getSource() == this.vista.getBtnEditar())
 			{
 
-				this.ventanaLocalidad = new VentanaLocalidad(this);
-
-
 
 				int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
 				for (int fila:filas_seleccionadas)
 				{
-					this.ABMLocalidades.editarLocalidad(this.Localidades_en_tabla.get(fila));
+					BKP=this.Localidades_en_tabla.get(fila);
+					this.ventanaLocalidad = new VentanaLocalidad(this,this.Localidades_en_tabla.get(fila));
+
 				}
 
-				this.llenarTabla();
+
 
 			}
 
@@ -108,12 +113,27 @@ public class ControladorLocalidad implements ActionListener
 				LocalidadDTO Localidad = new LocalidadDTO(0,this.ventanaLocalidad.getTxtNombre().getText());
 
 
-				//FIXME ARREGLAR COMO HACER PARA CARGAR Localidad
 
 				this.ABMLocalidades.agregarLocalidad(Localidad);
 				this.llenarTabla();
 				this.ventanaLocalidad.dispose();
 			}
+
+
+			
+			
+			else if(e.getSource() == this.ventanaLocalidad.getBtnGuardarLocalidad())
+
+			{
+
+				this.ABMLocalidades.borrarLocalidad(BKP);
+				this.ABMLocalidades.agregarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(),ventanaLocalidad.getTxtNombre().getText()));
+				this.llenarTabla();
+				this.ventanaLocalidad.dispose();
+			}
+
+
+
 		}
 
 

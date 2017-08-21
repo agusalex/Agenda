@@ -22,6 +22,7 @@ public class Controlador implements ActionListener
 		private List<PersonaDTO> personas_en_tabla;
 		private VentanaPersona ventanaPersona;
 		private Agenda agenda;
+		private PersonaDTO BKP;
 
 
 
@@ -89,14 +90,14 @@ public class Controlador implements ActionListener
 
 			else if(e.getSource() == this.vista.getBtnEditar())
 			{
-				System.out.println("click editar");
+
 
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 				for (int fila:filas_seleccionadas)
 				{
-					this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
+					BKP=this.personas_en_tabla.get(fila);
 					this.ventanaPersona = new VentanaPersona(this,this.personas_en_tabla.get(fila));
-					System.out.println("FIla Seleccionada");
+
 				}
 
 
@@ -134,7 +135,10 @@ public class Controlador implements ActionListener
 			{
 				PersonaDTO persona = new PersonaDTO();
 				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+
+				this.agenda.borrarPersona(BKP);
 				//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				nuevaPersona.setIdPersona(BKP.getIdPersona());
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
