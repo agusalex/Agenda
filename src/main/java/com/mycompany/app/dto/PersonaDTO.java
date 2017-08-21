@@ -14,8 +14,8 @@ public class PersonaDTO
 	private String departamento;
 	private String email;
 	private Date fechaNacimmiento;
-	private LocalidadDTO idLocalidad;
-	private EtiquetaDTO idEtiqueta;
+	private LocalidadDTO localidad;
+	private EtiquetaDTO etiqueta;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono)
 	{
@@ -34,8 +34,8 @@ public class PersonaDTO
 		this.departamento="A";
 		this.email = "email@ejemplo.org";
 		this.fechaNacimmiento =  Date.from(Instant.now());
-		this.idEtiqueta=new EtiquetaDTO(999,"Sin Localidad");
-		this.idLocalidad=new LocalidadDTO(999,"Sin Etiqueta");
+		this.etiqueta =new EtiquetaDTO(999,"Sin Localidad");
+		this.localidad =new LocalidadDTO(999,"Sin Etiqueta");
 	}
 	
 	public int getIdPersona() 
@@ -101,21 +101,21 @@ public class PersonaDTO
 		this.fechaNacimmiento = fechaNacimmiento;
 	}
 
-	public LocalidadDTO getIdLocalidad() {
-		return idLocalidad;
+	public LocalidadDTO getLocalidad() {
+		return localidad;
 	}
 
-	public void setIdLocalidad(LocalidadDTO idLocalidad) {
+	public void setLocalidad(LocalidadDTO localidad) {
 
-		this.idLocalidad = idLocalidad;
+		this.localidad = localidad;
 	}
 
-	public EtiquetaDTO getIdEtiqueta() {
-		return idEtiqueta;
+	public EtiquetaDTO getEtiqueta() {
+		return etiqueta;
 	}
 
-	public void setIdEtiqueta(EtiquetaDTO idEtiqueta) {
-		this.idEtiqueta = idEtiqueta;
+	public void setEtiqueta(EtiquetaDTO etiqueta) {
+		this.etiqueta = etiqueta;
 	}
 
 	public void setNombre(String nombre)

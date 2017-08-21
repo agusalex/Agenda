@@ -3,9 +3,7 @@ package com.mycompany.app.presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.dto.LocalidadDTO;
@@ -33,6 +31,7 @@ public class Controlador implements ActionListener
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(this);
 			this.vista.getBtnBorrar().addActionListener(this);
+			this.vista.getBtnEditar().addActionListener(this);
 			this.vista.getBtnReporte().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
@@ -88,6 +87,22 @@ public class Controlador implements ActionListener
 
 			}
 
+			else if(e.getSource() == this.vista.getBtnEditar())
+			{
+				System.out.println("click editar");
+
+				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+				for (int fila:filas_seleccionadas)
+				{
+					this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
+					this.ventanaPersona = new VentanaPersona(this,this.personas_en_tabla.get(fila));
+					System.out.println("FIla Seleccionada");
+				}
+
+
+
+			}
+
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
@@ -114,6 +129,19 @@ public class Controlador implements ActionListener
 				this.ventanaPersona.dispose();
 
 			}
+
+			else if(e.getSource() == this.ventanaPersona.getBtnGuardarPersona())
+			{
+				PersonaDTO persona = new PersonaDTO();
+				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+				//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+				this.agenda.agregarPersona(nuevaPersona);
+				this.llenarTabla();
+				this.ventanaPersona.dispose();
+
+			}
+
+
 		}
 
 
@@ -136,9 +164,13 @@ public class Controlador implements ActionListener
 		ArrayList<EtiquetaDTO> etiquetasDTOS=cargarEtiquetas();
 		for (EtiquetaDTO et: etiquetasDTOS
 				) {
+
+			System.out.print(et.getNombre()+ " es igual a : " +etiqueta+" ? ");
 			if (et.getNombre().equals(etiqueta)){
+				System.out.println("SI");
 				return et;
 			}
+			System.out.println("NO");
 
 
 		}
@@ -164,11 +196,11 @@ public class Controlador implements ActionListener
 
 
 			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
-			String indiceEtiqueta=(String)ventanaPersona.getLocalidad().getSelectedItem();
+			String Etiqueta=(String)ventanaPersona.getEtiqueta().getSelectedItem();
 
 
-			nuevaPersona.setIdLocalidad((LocalidadDTO) ventanaPersona.getLocalidad().getSelectedItem());
-			nuevaPersona.setIdEtiqueta((EtiquetaDTO)ventanaPersona.getEtiqueta().getSelectedItem());
+			nuevaPersona.setLocalidad(deStringaLocalidadDTO(Localidad));
+			nuevaPersona.setEtiqueta(deStringaEtiquetaDTO(Etiqueta));
 
 			return nuevaPersona;
 
