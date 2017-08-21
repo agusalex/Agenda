@@ -1,0 +1,7 @@
+##Defaults:
+#Sun Aug 20 23:18:08 ART 2017
+#Sun Aug 20 23:18:08 ART 2017
+jdbc.url=jdbc\:h2\:~//agenda
+jdbc.username=root
+jdbc.driver=org.h2.Driver
+jdbc.password=root
