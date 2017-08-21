@@ -128,6 +128,7 @@ public class ControladorLocalidad implements ActionListener
 
 				this.ABMLocalidades.borrarLocalidad(BKP);
 				this.ABMLocalidades.agregarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(),ventanaLocalidad.getTxtNombre().getText()));
+				BKP=null;
 				this.llenarTabla();
 				this.ventanaLocalidad.dispose();
 			}

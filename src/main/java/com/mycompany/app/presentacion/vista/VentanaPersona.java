@@ -354,7 +354,7 @@ public class VentanaPersona extends JFrame
 		fechaNacimiento=calendario.getDayChooser();
 		fechaNacimiento.setBounds(0, 0, 200, 200);
 		panelFecha.add(fechaNacimiento);
-		System.out.println(personaDTO.getFechaNacimmiento());
+
 		if(personaDTO.getFechaNacimmiento()!=null)
 			calendario.setDate(personaDTO.getFechaNacimmiento());
 

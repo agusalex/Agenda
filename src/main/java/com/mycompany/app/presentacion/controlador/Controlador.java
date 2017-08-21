@@ -169,7 +169,6 @@ public class Controlador implements ActionListener
 		for (EtiquetaDTO et: etiquetasDTOS
 				) {
 
-			System.out.print(et.getNombre()+ " es igual a : " +etiqueta+" ? ");
 			if (et.getNombre().equals(etiqueta)){
 				System.out.println("SI");
 				return et;

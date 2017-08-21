@@ -41,8 +41,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
 			statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
-			System.out.println(persona.getLocalidad().getIdLocalidad());
-			System.out.println(persona.getEtiqueta().getIdEtiqueta());
+
 			statement.setInt(10,persona.getLocalidad().getIdLocalidad());
 			statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
 

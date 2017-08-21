@@ -112,7 +112,7 @@ public class ControladorEtiqueta implements ActionListener
 
 
 
-				this.ABMEtiquetas.borrarEtiqueta(BKP);
+
 				this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
 				this.llenarTabla();
 				this.ventanaEtiqueta.dispose();
@@ -124,7 +124,9 @@ public class ControladorEtiqueta implements ActionListener
 
 
 				this.ABMEtiquetas.borrarEtiqueta(BKP);
+
 				this.ABMEtiquetas.agregarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(),ventanaEtiqueta.getTxtNombre().getText()));
+				BKP=null;
 				this.llenarTabla();
 				this.ventanaEtiqueta.dispose();
 			}
