@@ -10,8 +10,7 @@ CREATE TABLE Etiquetas
 (
     idEtiqueta int(11) NOT NULL AUTO_INCREMENT,
 	Nombre varchar(15) NOT NULL,
-
-  idLocalidad int(11) NOT NULL,PRIMARY KEY (idEtiqueta)
+    PRIMARY KEY (idEtiqueta)
 );
 
 CREATE TABLE Personas

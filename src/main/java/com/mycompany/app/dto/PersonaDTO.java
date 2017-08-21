@@ -1,6 +1,7 @@
 package com.mycompany.app.dto;
 
-import java.sql.Date;
+import java.time.Instant;
+import java.util.Date;
 
 public class PersonaDTO
 {
@@ -21,6 +22,20 @@ public class PersonaDTO
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
+	}
+	public PersonaDTO()
+	{
+		this.idPersona = 0;
+		this.nombre = "Ejemplo";
+		this.telefono = "13245678";
+		this.calle = "Calle";
+		this.altura =1234;
+		this.piso=1;
+		this.departamento="A";
+		this.email = "email@ejemplo.org";
+		this.fechaNacimmiento =  Date.from(Instant.now());
+		this.idEtiqueta=1;
+		this.idLocalidad=1;
 	}
 	
 	public int getIdPersona() 
