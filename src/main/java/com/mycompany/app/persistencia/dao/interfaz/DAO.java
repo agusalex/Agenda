@@ -6,12 +6,12 @@ import java.util.List;
 
 
 
-public interface DAO
+public interface DAO<T>
 {
 	
-	public boolean insert(PersonaDTO persona);
+	public boolean insert(T objeto);
 
-	public boolean delete(PersonaDTO persona_a_eliminar);
+	public boolean delete(T objeto_a_eliminar);
 	
-	public List<PersonaDTO> readAll();
+	public List<T> readAll();
 }

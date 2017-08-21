@@ -15,9 +15,9 @@ public class VentanaLocalidad extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JTextField txtTelefono;
-	private JButton btnAgregarPersona;
+	private JTextField txtlocalidad;
+	
+	private JButton btnAgregarLocalidad;
 	private Controlador controlador;
 
 	public VentanaLocalidad(Controlador controlador)
@@ -37,45 +37,35 @@ public class VentanaLocalidad extends JFrame
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
-		lblNombreYApellido.setBounds(10, 11, 113, 14);
-		panel.add(lblNombreYApellido);
+		JLabel lbllocalidad = new JLabel("localidad");
+		lbllocalidad.setBounds(10, 11, 113, 14);
+		panel.add(lbllocalidad);
 		
-		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(10, 52, 113, 14);
-		panel.add(lblTelfono);
 		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(133, 8, 164, 20);
-		panel.add(txtNombre);
-		txtNombre.setColumns(10);
+		txtlocalidad = new JTextField();
+		txtlocalidad.setBounds(133, 8, 164, 20);
+		panel.add(txtlocalidad);
+		txtlocalidad.setColumns(10);
 		
-		txtTelefono = new JTextField();
-		txtTelefono.setBounds(133, 49, 164, 20);
-		panel.add(txtTelefono);
-		txtTelefono.setColumns(10);
 		
-		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.addActionListener(this.controlador);
-		btnAgregarPersona.setBounds(208, 92, 89, 23);
-		panel.add(btnAgregarPersona);
+		btnAgregarLocalidad = new JButton("Agregar");
+		btnAgregarLocalidad.addActionListener(this.controlador);
+		btnAgregarLocalidad.setBounds(208, 92, 89, 23);
+		panel.add(btnAgregarLocalidad);
 		
 		this.setVisible(true);
 	}
 	
-	public JTextField getTxtNombre() 
+	public JTextField getTxtlocalidad() 
 	{
-		return txtNombre;
+		return txtlocalidad;
 	}
 
-	public JTextField getTxtTelefono() 
-	{
-		return txtTelefono;
-	}
 
-	public JButton getBtnAgregarPersona() 
+
+	public JButton getBtnAgregarLocalidad() 
 	{
-		return btnAgregarPersona;
+		return btnAgregarLocalidad;
 	}
 	
 }

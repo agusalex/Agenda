@@ -15,7 +15,7 @@ import java.util.List;
 
 
 
-public class PersonaDAOImpl implements DAO
+public class PersonaDAOImpl implements DAO<PersonaDTO>
 {
 	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,?)";
 	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";

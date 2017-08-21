@@ -73,12 +73,46 @@ public class Controlador implements ActionListener
 			}
 			else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
-				PersonaDTO nuevaPersona = new PersonaDTO();
-				//FIXME PersonaDTO nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText()); aGREGAR BOTONES UI
+				PersonaDTO persona = new PersonaDTO();
+				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+
+
+
+
+			//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
 			}
+		}
+
+		private PersonaDTO cargarDatosPersona(PersonaDTO persona){
+			PersonaDTO nuevaPersona = new PersonaDTO();
+			nuevaPersona.setNombre(ventanaPersona.getTxtNombre().getText());
+			nuevaPersona.setTelefono(ventanaPersona.getTxtTelefono().getText());
+
+			nuevaPersona.setCalle(ventanaPersona.getTxtCalle().getText());
+
+	
+			nuevaPersona.setAltura(Integer.valueOf(ventanaPersona.getTxtAltura().getText()));
+			nuevaPersona.setPiso(Integer.valueOf(ventanaPersona.getTxtPiso().getText()));
+			nuevaPersona.setDepartamento(ventanaPersona.getTxtDepartamento().getText());
+			nuevaPersona.setEmail(ventanaPersona.getTxtEmail().getText());
+			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate());
+
+
+
+			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
+			String indiceEtiqueta=(String)ventanaPersona.getLocalidad().getSelectedItem();
+
+
+			nuevaPersona.setIdLocalidad(ventanaPersona.getLocalidad().getSelectedIndex()+1);
+			nuevaPersona.setIdEtiqueta(ventanaPersona.getEtiqueta().getSelectedIndex()+1);
+
+			return nuevaPersona;
+
+
+
 		}
 
 }
