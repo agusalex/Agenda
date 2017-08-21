@@ -87,17 +87,7 @@ public class Controlador implements ActionListener
 
 
 			}
-			else if(e.getSource() == this.vista.getBtnEditar())
-			{
 
-				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-				for (int fila:filas_seleccionadas)
-				{
-					this.ventanaPersona = new VentanaPersona(this,this.personas_en_tabla.get(fila));
-				}
-				this.llenarTabla();
-
-			}
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
@@ -127,7 +117,34 @@ public class Controlador implements ActionListener
 		}
 
 
+		public LocalidadDTO deStringaLocalidadDTO(String localidad){
 
+			ArrayList<LocalidadDTO> localidadDTOS=cargarLocalidades();
+			for (LocalidadDTO loc: localidadDTOS
+				 ) {
+				if (loc.getNombre().equals(localidad)){
+					return loc;
+				}
+
+
+			}
+			return null;
+
+		}
+	public EtiquetaDTO deStringaEtiquetaDTO(String etiqueta){
+
+		ArrayList<EtiquetaDTO> etiquetasDTOS=cargarEtiquetas();
+		for (EtiquetaDTO et: etiquetasDTOS
+				) {
+			if (et.getNombre().equals(etiqueta)){
+				return et;
+			}
+
+
+		}
+		return null;
+
+	}
 
 
 		private PersonaDTO cargarDatosPersona(PersonaDTO persona){
