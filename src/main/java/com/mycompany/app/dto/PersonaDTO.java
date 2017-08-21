@@ -1,10 +1,20 @@
 package com.mycompany.app.dto;
 
-public class PersonaDTO 
+import java.sql.Date;
+
+public class PersonaDTO
 {
 	private int idPersona;
 	private String nombre;
 	private String telefono;
+	private String calle;
+	private int altura;
+	private int piso;
+	private String departamento;
+	private String email;
+	private Date fechaNacimmiento;
+	private int idLocalidad;
+	private int idEtiqueta;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono)
 	{
@@ -28,7 +38,72 @@ public class PersonaDTO
 		return this.nombre;
 	}
 
-	public void setNombre(String nombre) 
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+	public int getPiso() {
+		return piso;
+	}
+
+	public void setPiso(int piso) {
+		this.piso = piso;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getFechaNacimmiento() {
+		return fechaNacimmiento;
+	}
+
+	public void setFechaNacimmiento(Date fechaNacimmiento) {
+		this.fechaNacimmiento = fechaNacimmiento;
+	}
+
+	public int getIdLocalidad() {
+		return idLocalidad;
+	}
+
+	public void setIdLocalidad(int idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
+
+	public int getIdEtiqueta() {
+		return idEtiqueta;
+	}
+
+	public void setIdEtiqueta(int idEtiqueta) {
+		this.idEtiqueta = idEtiqueta;
+	}
+
+	public void setNombre(String nombre)
+
 	{
 		this.nombre = nombre;
 	}

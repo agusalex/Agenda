@@ -221,8 +221,7 @@ public class Conexion
 			instancia.crear();
 			if(defaultDB)
 				initH2DB();
-			//instancia.crearH2();
-			//instancia.crearmySql();
+
 		}
 		return instancia;
 	}

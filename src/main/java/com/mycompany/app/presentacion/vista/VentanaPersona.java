@@ -41,7 +41,7 @@ public class VentanaPersona extends JFrame
 		lblNombreYApellido.setBounds(10, 11, 113, 14);
 		panel.add(lblNombreYApellido);
 		
-		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
+		JLabel lblTelfono = new JLabel("Teléfono");
 		lblTelfono.setBounds(10, 52, 113, 14);
 		panel.add(lblTelfono);
 		

@@ -2,14 +2,14 @@ package com.mycompany.app.modelo;
 
 
 import com.mycompany.app.dto.PersonaDTO;
-import com.mycompany.app.persistencia.dao.interfaz.PersonaDAO;
+import com.mycompany.app.persistencia.dao.interfaz.DAO;
 import com.mycompany.app.persistencia.dao.mysql.PersonaDAOImpl;
 
 import java.util.List;
 
 public class Agenda
 {
-	private PersonaDAO persona;
+	private DAO persona;
 	
 	public Agenda()
 	{

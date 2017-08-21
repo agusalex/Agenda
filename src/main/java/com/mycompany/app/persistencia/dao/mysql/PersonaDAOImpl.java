@@ -2,7 +2,7 @@ package com.mycompany.app.persistencia.dao.mysql;
 
 import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.persistencia.conexion.Conexion;
-import com.mycompany.app.persistencia.dao.interfaz.PersonaDAO;
+import com.mycompany.app.persistencia.dao.interfaz.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +12,13 @@ import java.util.List;
 
 
 
-public class PersonaDAOImpl implements PersonaDAO
+public class PersonaDAOImpl implements DAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
-	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String readall = "SELECT * FROM personas";
+	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,?)";
+	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";
+	private static final String readall = "SELECT * FROM Personas";
+
+
 	private static final Conexion conexion = Conexion.getConexion();
 	
 	public boolean insert(PersonaDTO persona)
@@ -28,6 +30,16 @@ public class PersonaDAOImpl implements PersonaDAO
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
+			statement.setString(4,persona.getCalle());
+			statement.setInt(5,persona.getAltura());
+			statement.setInt(6,persona.getPiso());
+			statement.setString(7,persona.getDepartamento());
+			statement.setString(8,persona.getEmail());
+			statement.setDate(9,persona.getFechaNacimmiento());
+			statement.setInt(10,persona.getIdLocalidad());
+			statement.setInt(11,persona.getIdEtiqueta());
+
+
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		} 
