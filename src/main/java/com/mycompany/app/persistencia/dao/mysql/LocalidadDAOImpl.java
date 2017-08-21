@@ -52,6 +52,8 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 
 
 
+
+
 	public boolean delete(LocalidadDTO localidad_a_eliminar)
 	{
 		PreparedStatement statement;
@@ -87,7 +89,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 			
 			while(resultSet.next())
 			{
-				localidads.add(new LocalidadDTO(resultSet.getInt("idlocalidad"), resultSet.getString("Nombre")));
+				localidads.add(new LocalidadDTO(resultSet.getInt("idlocalidad"), resultSet.getString("nombre_localidad")));
 			}
 		} 
 		catch (SQLException e) 

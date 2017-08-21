@@ -9,7 +9,7 @@ public class VistaEtiqueta
 	private JTable tablaEtiquetas;
 	private JButton btnAgregarEtiqueta;
 	private JButton btnBorrar;
-	private JButton btnReporte;
+	private JButton btnEditar;
 	private DefaultTableModel modelEtiquetas;
 	private  String[] nombreColumnas = {"id","Nombre"};
 
@@ -20,9 +20,13 @@ public class VistaEtiqueta
 	}
 
 
-	private void initialize() 
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	private void initialize()
 	{
-		frame = new JFrame();
+		frame = new JFrame("Etiquetas");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -51,7 +55,7 @@ public class VistaEtiqueta
 		btnAgregarEtiqueta.setBounds(10, 228, 89, 23);
 		panel.add(btnAgregarEtiqueta);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.setBounds(109, 228, 89, 23);
 		panel.add(btnEditar);
 		
@@ -75,11 +79,7 @@ public class VistaEtiqueta
 	{
 		return btnBorrar;
 	}
-	
-	public JButton getBtnReporte() 
-	{
-		return btnReporte;
-	}
+
 	
 	public DefaultTableModel getModelEtiquetas()
 	{

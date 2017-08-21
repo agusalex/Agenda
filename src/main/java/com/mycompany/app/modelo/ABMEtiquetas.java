@@ -22,6 +22,13 @@ public class ABMEtiquetas
 		etiqueta.insert(nuevaEtiqueta);
 	}
 
+	public void editarEtiqueta(EtiquetaDTO nuevaEtiqueta)
+
+	{
+		borrarEtiqueta(nuevaEtiqueta);
+		agregarEtiqueta(nuevaEtiqueta);
+	}
+
 	public void borrarEtiqueta(EtiquetaDTO etiqueta_a_eliminar)
 	{
 		etiqueta.delete(etiqueta_a_eliminar);

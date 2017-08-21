@@ -6,14 +6,14 @@ import javax.swing.table.DefaultTableModel;
 public class VistaLocalidad
 {
 	private JFrame frame;
-	private JTable tablaPersonas;
-	private JButton btnAgregar;
+	private JTable tablaLocalidades;
+	private JButton btnAgregarLocalidad;
 	private JButton btnBorrar;
-	private JButton btnReporte;
-	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono"};
+	private JButton btnEditar;
+	private DefaultTableModel modelLocalidades;
+	private  String[] nombreColumnas = {"id","Nombre"};
 
-	public VistaLocalidad()
+	public VistaLocalidad() 
 	{
 		super();
 		initialize();
@@ -22,7 +22,7 @@ public class VistaLocalidad
 
 	private void initialize() 
 	{
-		frame = new JFrame();
+		frame = new JFrame("Localidades");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -32,35 +32,33 @@ public class VistaLocalidad
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 414, 182);
-		panel.add(spPersonas);
+		JScrollPane spLocalidades = new JScrollPane();
+		spLocalidades.setBounds(10, 11, 414, 182);
+		panel.add(spLocalidades);
 		
-		modelPersonas = new DefaultTableModel(null,nombreColumnas);
-		tablaPersonas = new JTable(modelPersonas);
+		modelLocalidades = new DefaultTableModel(null,nombreColumnas);
+		tablaLocalidades = new JTable(modelLocalidades);
 		
-		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
-		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
-		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
+		tablaLocalidades.getColumnModel().getColumn(0).setPreferredWidth(103);
+		tablaLocalidades.getColumnModel().getColumn(0).setResizable(false);
+		tablaLocalidades.getColumnModel().getColumn(1).setPreferredWidth(103);
+		tablaLocalidades.getColumnModel().getColumn(1).setResizable(false);
+
 		
-		spPersonas.setViewportView(tablaPersonas);
+		spLocalidades.setViewportView(tablaLocalidades);
 		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(10, 228, 89, 23);
-		panel.add(btnAgregar);
+		btnAgregarLocalidad = new JButton("Agregar");
+		btnAgregarLocalidad.setBounds(10, 228, 89, 23);
+		panel.add(btnAgregarLocalidad);
 		
-		JButton btnEditar = new JButton("Editar");
+		 btnEditar = new JButton("Editar");
 		btnEditar.setBounds(109, 228, 89, 23);
 		panel.add(btnEditar);
 		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(208, 228, 89, 23);
 		panel.add(btnBorrar);
-		
-		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, 228, 89, 23);
-		panel.add(btnReporte);
+
 	}
 	
 	public void show()
@@ -68,29 +66,28 @@ public class VistaLocalidad
 		this.frame.setVisible(true);
 	}
 	
-	public JButton getBtnAgregar() 
+	public JButton getBtnAgregarLocalidad()
 	{
-		return btnAgregar;
+		return btnAgregarLocalidad;
 	}
 
 	public JButton getBtnBorrar() 
 	{
 		return btnBorrar;
 	}
-	
-	public JButton getBtnReporte() 
+
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	public DefaultTableModel getModelLocalidades()
 	{
-		return btnReporte;
+		return modelLocalidades;
 	}
 	
-	public DefaultTableModel getModelPersonas() 
+	public JTable getTablaLocalidades()
 	{
-		return modelPersonas;
-	}
-	
-	public JTable getTablaPersonas()
-	{
-		return tablaPersonas;
+		return tablaLocalidades;
 	}
 
 	public String[] getNombreColumnas() 

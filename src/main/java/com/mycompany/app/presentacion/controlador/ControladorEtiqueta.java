@@ -75,6 +75,18 @@ public class ControladorEtiqueta implements ActionListener
 			{
 				this.ventanaEtiqueta = new VentanaEtiqueta(this);
 			}
+
+			else if(e.getSource() == this.vista.getBtnEditar())
+			{
+				int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
+				for (int fila:filas_seleccionadas)
+				{
+					this.ABMEtiquetas.editarEtiqueta(this.Etiquetas_en_tabla.get(fila));
+				}
+
+				this.llenarTabla();
+
+			}
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();

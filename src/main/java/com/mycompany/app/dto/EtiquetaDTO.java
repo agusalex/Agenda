@@ -38,6 +38,8 @@ public class EtiquetaDTO {
         this.nombre = nombre;
     }
 
- 
-    
+
+    @Override
+    public String toString()
+    {return this.nombre;}
 }

@@ -1,6 +1,7 @@
 package com.mycompany.app.persistencia.dao.mysql;
 
 import com.mycompany.app.dto.EtiquetaDTO;
+import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.persistencia.conexion.Conexion;
 import com.mycompany.app.persistencia.dao.interfaz.DAO;
 
@@ -52,6 +53,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 		}
 		return false;
 	}
+
 
 
 

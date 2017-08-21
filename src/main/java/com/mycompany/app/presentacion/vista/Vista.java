@@ -12,6 +12,7 @@ public class Vista
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
+	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
@@ -24,9 +25,13 @@ public class Vista
 	}
 
 
-	private void initialize() 
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	private void initialize()
 	{
-		frame = new JFrame();
+		frame = new JFrame("Agenda");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -54,7 +59,7 @@ public class Vista
 		btnAgregar.setBounds(10, 228, 89, 23);
 		panel.add(btnAgregar);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.setBounds(109, 228, 89, 23);
 		panel.add(btnEditar);
 		

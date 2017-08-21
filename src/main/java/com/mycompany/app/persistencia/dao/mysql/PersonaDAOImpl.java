@@ -1,5 +1,6 @@
 package com.mycompany.app.persistencia.dao.mysql;
 
+import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.persistencia.conexion.Conexion;
 import com.mycompany.app.persistencia.dao.interfaz.DAO;
@@ -41,8 +42,8 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
 			statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
-			statement.setInt(10,persona.getIdLocalidad());
-			statement.setInt(11,persona.getIdEtiqueta());
+			statement.setInt(10,persona.getIdLocalidad().getIdLocalidad());
+			statement.setInt(11,persona.getIdEtiqueta().getIdEtiqueta());
 
 
 
@@ -61,7 +62,6 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		}
 		return false;
 	}
-
 
 
 	public boolean delete(PersonaDTO persona_a_eliminar)

@@ -15,6 +15,13 @@ public class Agenda
 	{
 		persona = new PersonaDAOImpl();
 	}
+
+	public void editarPersona(PersonaDTO nuevaPersona)
+	{
+
+		borrarPersona(nuevaPersona);
+		agregarPersona(nuevaPersona);
+	}
 	
 	public void agregarPersona(PersonaDTO nuevaPersona)
 	{

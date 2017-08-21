@@ -2,9 +2,16 @@ package com.mycompany.app.presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.mycompany.app.dto.EtiquetaDTO;
+import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.dto.PersonaDTO;
+import com.mycompany.app.modelo.ABMEtiquetas;
+import com.mycompany.app.modelo.ABMLocalidades;
 import com.mycompany.app.modelo.Agenda;
 import com.mycompany.app.presentacion.reportes.ReporteAgenda;
 import com.mycompany.app.presentacion.vista.VentanaPersona;
@@ -17,8 +24,11 @@ public class Controlador implements ActionListener
 		private List<PersonaDTO> personas_en_tabla;
 		private VentanaPersona ventanaPersona;
 		private Agenda agenda;
-		
-		public Controlador(Vista vista, Agenda agenda)
+
+
+
+
+	public Controlador(Vista vista, Agenda agenda)
 		{
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(this);
@@ -29,6 +39,23 @@ public class Controlador implements ActionListener
 		}
 
 
+
+	public ArrayList<LocalidadDTO> cargarLocalidades(){
+		ABMLocalidades ABML=new ABMLocalidades();
+		ArrayList<LocalidadDTO> listaLocalidades=(ArrayList)ABML.obtenerLocalidades();
+
+		return  listaLocalidades;
+	}
+
+
+	
+	
+	public ArrayList<EtiquetaDTO> cargarEtiquetas() {
+		ABMEtiquetas ABML=new ABMEtiquetas();
+		ArrayList<EtiquetaDTO> listaEtiquetas=(ArrayList)ABML.obtenerEtiquetas();
+
+		return listaEtiquetas;
+	}
 	public void inicializar()
 		{
 			this.llenarTabla();
@@ -48,12 +75,28 @@ public class Controlador implements ActionListener
 			}
 			this.vista.show();
 		}
-		
-		public void actionPerformed(ActionEvent e) 
+
+
+
+
+	public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == this.vista.getBtnAgregar())
 			{
 				this.ventanaPersona = new VentanaPersona(this);
+
+
+			}
+			else if(e.getSource() == this.vista.getBtnEditar())
+			{
+
+				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+				for (int fila:filas_seleccionadas)
+				{
+					this.ventanaPersona = new VentanaPersona(this,this.personas_en_tabla.get(fila));
+				}
+				this.llenarTabla();
+
 			}
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
@@ -75,16 +118,17 @@ public class Controlador implements ActionListener
 			{
 				PersonaDTO persona = new PersonaDTO();
 				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
-
-
-
-
 			//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
 				this.agenda.agregarPersona(nuevaPersona);
 				this.llenarTabla();
 				this.ventanaPersona.dispose();
+
 			}
 		}
+
+
+
+
 
 		private PersonaDTO cargarDatosPersona(PersonaDTO persona){
 			PersonaDTO nuevaPersona = new PersonaDTO();
@@ -106,13 +150,14 @@ public class Controlador implements ActionListener
 			String indiceEtiqueta=(String)ventanaPersona.getLocalidad().getSelectedItem();
 
 
-			nuevaPersona.setIdLocalidad(ventanaPersona.getLocalidad().getSelectedIndex()+1);
-			nuevaPersona.setIdEtiqueta(ventanaPersona.getEtiqueta().getSelectedIndex()+1);
+			nuevaPersona.setIdLocalidad((LocalidadDTO) ventanaPersona.getLocalidad().getSelectedItem());
+			nuevaPersona.setIdEtiqueta((EtiquetaDTO)ventanaPersona.getEtiqueta().getSelectedItem());
 
 			return nuevaPersona;
 
 
 
 		}
+
 
 }
