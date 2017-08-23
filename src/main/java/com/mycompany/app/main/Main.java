@@ -17,6 +17,7 @@ public class Main
 
 	public static void main(String[] args) 
 	{
+		/*
 		VistaEtiqueta VistaEtiqueta = new VistaEtiqueta();
 		ABMEtiquetas modeloet = new ABMEtiquetas();
 		ControladorEtiqueta controladoret = new ControladorEtiqueta(VistaEtiqueta, modeloet);
@@ -26,7 +27,7 @@ public class Main
 		ABMLocalidades modeloLo = new ABMLocalidades();
 		ControladorLocalidad controladorLo = new ControladorLocalidad(VistaLocalidad, modeloLo);
 		controladorLo.inicializar();
-
+*/
 		Vista vista = new Vista();
 		Agenda modelo = new Agenda();
 		Controlador controlador = new Controlador(vista, modelo);
