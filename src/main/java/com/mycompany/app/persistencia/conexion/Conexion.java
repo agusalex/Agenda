@@ -10,7 +10,8 @@ public class Conexion
 	private static Conexion instancia;
 	private static Connection conexion;
 	private static String initDB=
-			"DROP TABLE LOCALIDADES;DROP TABLE Etiquetas;DROP TABLE Personas; CREATE TABLE Localidades\n" +
+			"DROP TABLE IF EXISTS Localidades;DROP TABLE IF EXISTS Etiquetas;DROP TABLE IF EXISTS Personas; " +
+					"CREATE TABLE Localidades\n" +
 					"(  idLocalidad int(11) NOT NULL AUTO_INCREMENT,\n" +
 					"   Nombre varchar(45) NOT NULL,\n" +
 					"   PRIMARY KEY (idLocalidad)\n" +
@@ -70,6 +71,7 @@ public class Conexion
 			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("error desconocido");
 		}
 
         driver = props.getProperty("jdbc.driver");
@@ -82,8 +84,8 @@ public class Conexion
 	}
 
 	public Conexion crear(){
-			if((driver==null)||(url==null)||(username==null)||(password==null))
-				return null;
+		if((driver==null)||(url==null)||(username==null)||(password==null))
+			return null;
 
 
 		try {
@@ -93,10 +95,11 @@ public class Conexion
 		}
 
 
-				conexion = null;
+		conexion = null;
 
 		try {
 			conexion = DriverManager.getConnection(url, username, password);
+			//conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda","root","root");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +176,6 @@ public class Conexion
 		}
 
 	}
-
 
 
 	public Conexion crearmySql()

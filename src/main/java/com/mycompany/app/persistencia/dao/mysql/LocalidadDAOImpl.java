@@ -13,7 +13,7 @@ import java.util.List;
 
 public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 {
-	private static final String insert = "INSERT INTO Localidades(idLocalidad,nombre_Localidad) VALUES(? ,?)";
+	private static final String insert = "INSERT INTO Localidades(idLocalidad, nombre_localidad) VALUES(? ,?)";
 	private static final String delete = "DELETE FROM Localidades WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM Localidades";
 
@@ -89,7 +89,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 			
 			while(resultSet.next())
 			{
-				localidads.add(new LocalidadDTO(resultSet.getInt("idlocalidad"), resultSet.getString("nombre_Localidad")));
+				localidads.add(new LocalidadDTO(resultSet.getInt("idlocalidad"), resultSet.getString("nombre_localidad")));
 			}
 		} 
 		catch (SQLException e) 

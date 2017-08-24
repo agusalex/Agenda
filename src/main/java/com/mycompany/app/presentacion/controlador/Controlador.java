@@ -17,6 +17,8 @@ import com.mycompany.app.presentacion.vista.Vista;
 import com.mycompany.app.presentacion.vista.VistaEtiqueta;
 import com.mycompany.app.presentacion.vista.VistaLocalidad;
 
+import javax.swing.*;
+
 
 public class Controlador implements ActionListener
 {
@@ -139,27 +141,88 @@ public class Controlador implements ActionListener
 			}
 		    else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
-				PersonaDTO persona = new PersonaDTO();
-				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
-			//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
-				this.agenda.agregarPersona(nuevaPersona);
-				this.llenarTabla();
-				this.ventanaPersona.dispose();
+				boolean passed = true;
+				String [] fieldValues = this.ventanaPersona.getFieldValues();
+				JTextField [] fields = this.ventanaPersona.getFields();
+				String [] regexPatterns = this.ventanaPersona.regex();
+				String [] errorMessages = this.ventanaPersona.errorMessages();
 
+				if (!Utils.isValidName(fieldValues[0])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,0);
+					System.out.println(fieldValues[0]+ " es invalido");
+				}
+
+				if (!Utils.isCellphone(fieldValues[1])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,1);
+					System.out.println(fieldValues[1]+ " es invalido");
+				}
+				if (!Utils.isValidName(fieldValues[2])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,2);
+					System.out.println(fieldValues[2]+ " es invalido");
+				}
+				if (!Utils.isNumber(fieldValues[3])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,3);
+					System.out.println(fieldValues[3]+ " es invalido");
+				}
+				if (!Utils.isNumber(fieldValues[4])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,4);
+					System.out.println(fieldValues[4]+ " es invalido");
+				}
+
+				if (!Utils.isNumber(fieldValues[5])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,5);
+					System.out.println(fieldValues[5]+ " es invalido");
+				}
+
+				if (!Utils.isEmail(fieldValues[6])) {
+					passed = false;
+					this.ventanaPersona.showErrorMessage(fields,errorMessages,6);
+					System.out.println(fieldValues[6]+ " es invalido");
+				}
+
+				if(passed) {
+					PersonaDTO persona = new PersonaDTO();
+					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+					//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+					this.agenda.agregarPersona(nuevaPersona);
+					this.llenarTabla();
+					this.ventanaPersona.dispose();
+				}
 			}
 
 			else if(e.getSource() == this.ventanaPersona.getBtnGuardarPersona())
 			{
-				PersonaDTO persona = new PersonaDTO();
-				PersonaDTO nuevaPersona = cargarDatosPersona(persona);
 
-				this.agenda.borrarPersona(BKP);
-				//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
-				nuevaPersona.setIdPersona(BKP.getIdPersona());
-				this.agenda.agregarPersona(nuevaPersona);
-				this.llenarTabla();
-				this.ventanaPersona.dispose();
+				boolean passed = true;
+				String [] fieldValues = this.ventanaPersona.getFieldValues();
+				JTextField [] fields = this.ventanaPersona.getFields();
+				String [] regexPatterns = this.ventanaPersona.regex();
+				String [] errorMessages = this.ventanaPersona.errorMessages();
 
+				for(int i = 0; i < fieldValues.length; i++){
+					if(!fieldValues[i].matches(regexPatterns[i])){
+						passed = false;
+						this.ventanaPersona.showErrorMessage(fields,errorMessages,i);
+					}
+				}
+
+				if(passed) {
+					PersonaDTO persona = new PersonaDTO();
+					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+
+					this.agenda.borrarPersona(BKP);
+					//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+					nuevaPersona.setIdPersona(BKP.getIdPersona());
+					this.agenda.agregarPersona(nuevaPersona);
+					this.llenarTabla();
+					this.ventanaPersona.dispose();
+				}
 			}
 	}
 

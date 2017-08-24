@@ -10,6 +10,9 @@ import com.toedter.calendar.JDayChooser;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class VentanaPersona extends JFrame
@@ -200,8 +203,6 @@ public class VentanaPersona extends JFrame
 	panel.add(panelFecha);
 
 
-
-
 	Localidad = new JComboBox<String>();
 	Localidad.setBounds(133, base+350, 164, 20);
 	cargarLocalidades();
@@ -212,15 +213,10 @@ public class VentanaPersona extends JFrame
 	cargarEtiquetas();
 	panel.add(Etiqueta);
 
-
-
 	btnAgregarPersona = new JButton("Agregar");
 	btnAgregarPersona.addActionListener(this.controlador);
 	btnAgregarPersona.setBounds(208, base+450, 89, 23);
 	panel.add(btnAgregarPersona);
-
-
-
 
 	this.setVisible(true);
 }
@@ -295,10 +291,6 @@ public class VentanaPersona extends JFrame
 
 		panel.add(lblEtiqueta);
 
-
-
-
-
 		txtNombre = new JTextField();
 		txtNombre.setBounds(133, base+0, 164, 20);
 		txtNombre.setText(personaDTO.getNombre());
@@ -310,8 +302,6 @@ public class VentanaPersona extends JFrame
 		txtTelefono.setText(personaDTO.getTelefono());
 		panel.add(txtTelefono);
 		txtTelefono.setColumns(10);
-
-
 
 		txtCalle = new JTextField();
 		txtCalle.setBounds(133, base+100, 150, 20);
@@ -345,7 +335,6 @@ public class VentanaPersona extends JFrame
 		txtEmail.setColumns(10);
 
 
-
 		JPanel panelFecha=new JPanel();
 		panelFecha.setBounds(450, base+0, 300, 600);
 
@@ -363,8 +352,6 @@ public class VentanaPersona extends JFrame
 		panel.add(panelFecha);
 
 
-
-
 		Localidad = new JComboBox<String>();
 		Localidad.setBounds(133, base+350, 164, 20);
 		cargarLocalidades();
@@ -377,14 +364,10 @@ public class VentanaPersona extends JFrame
 		Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
 		panel.add(Etiqueta);
 
-
-
 		btnGuardarPersona = new JButton("Guardar");
 		btnGuardarPersona.addActionListener(this.controlador);
 		btnGuardarPersona.setBounds(208, base+450, 89, 23);
 		panel.add(btnGuardarPersona);
-
-
 
 
 		this.setVisible(true);
@@ -414,5 +397,88 @@ public class VentanaPersona extends JFrame
 	{
 		return btnAgregarPersona;
 	}
+
+	public JTextField[] getFields(){
+		JTextField[] fields = { txtNombre,
+								txtTelefono,
+								txtCalle,
+								txtAltura,
+								txtPiso,
+								txtDepartamento,
+								txtEmail,
+		};
+		return fields;
+	}
+
+	public String[] getFieldValues(){
+		String[] fieldValues = { txtNombre.getText(),
+		 						 txtTelefono.getText(),
+				                 txtCalle.getText(),
+								 txtAltura.getText(),
+								 txtPiso.getText(),
+								 txtDepartamento.getText(),
+								 txtEmail.getText(),
+		};
+		return fieldValues;
+	}
+
+	public String [] regex(){
+		String[] regexValues = { "/^[A-z]+$/" ,
+								 "^1?(\\d{10})",
+								 "^\\d*\\s*((?:\\w+\\s*)*)ST$",
+								 "/^\\d{2}(?:\\d{2})?$/",
+								 "/^\\d{4}(?:\\d{2})?$/",
+								 "/^\\d{2}(?:\\d{2})?$/",
+								 "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+		};
+		return regexValues;
+	}
+
+	public String [] errorMessages(){
+		String[] errorMessages = {  "Nombre con caracteres invalidos",
+									"Telefono con caracteres invalidos",
+									"Nombre de calle con caracteres invalidos",
+									"Numero de calle con caracteres invalidos",
+								    "Numero de piso con caracteres invalidos",
+				 					"numero de dpto con caracteres invalidos",
+									"formato de mail invalido",
+		};
+		return errorMessages;
+	}
+
+	public void showErrorMessage(JTextField[] fields,String[] errorMessages, int index){
+		Label label = new Label(errorMessages[index]);
+		JTextField field = fields[index];
+		JPanel panel = new JPanel();
+		panel.setBounds(600,400,100,100);
+		label.setBounds(600,400,100,100);
+		label.setVisible(true);
+	}
+
+
+	public static boolean matchesRegex(Pattern regex, String string){
+		Matcher matcher = regex.matcher(string);
+		if(string.equals(""))
+			return false;
+		if(matcher.find()) {
+			if (matcher.start() == 0 && matcher.end() == string.length()){
+				return true;
+			}
+
+		}
+		return false;
+
+	}
+
+
+	public static boolean isCellphone(String number){
+		Pattern pat = Pattern.compile("(\\d{10})");
+		Pattern pat2 = Pattern.compile("^\\+?\\d{1,3}?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$");
+
+		return  matchesRegex(pat,number)||matchesRegex(pat2,number);
+	}
+
+
+
 
 }
