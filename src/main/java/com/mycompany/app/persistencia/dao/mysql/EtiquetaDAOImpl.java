@@ -17,7 +17,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 {
 
 
-	private static final String insert = "INSERT INTO Etiquetas(idEtiqueta, nombre_Etiqueta) VALUES(? ,?)";
+	private static final String insert = "INSERT INTO Etiquetas(idEtiqueta,nombre_Etiqueta) VALUES(? ,?)";
 	private static final String delete = "DELETE FROM Etiquetas WHERE idEtiqueta = ?";
 	private static final String readall = "SELECT * FROM Etiquetas";
 
@@ -84,9 +84,10 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 	
 	public List<EtiquetaDTO> readAll()
 	{
-		PreparedStatement statement;
+		PreparedStatement statement=null;
 		ResultSet resultSet; //Guarda el resultado de la query
 		ArrayList<EtiquetaDTO> Etiquetas = new ArrayList<EtiquetaDTO>();
+
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readall);
@@ -94,11 +95,13 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 			
 			while(resultSet.next())
 			{
-				Etiquetas.add(new EtiquetaDTO(resultSet.getInt("idEtiqueta"), resultSet.getString("nombre_etiqueta")));
+				Etiquetas.add(new EtiquetaDTO(resultSet.getInt("idEtiqueta"), resultSet.getString("nombre_Etiqueta")));
 			}
 		} 
 		catch (SQLException e) 
 		{
+			System.out.println("error en la Sentencia SQL= "+statement.toString());
+
 			e.printStackTrace();
 		}
 		finally //Se ejecuta siempre

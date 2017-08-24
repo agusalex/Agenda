@@ -3,13 +3,13 @@ CREATE DATABASE agenda;
 USE agenda;
 CREATE TABLE Localidades
 (  idLocalidad int(11) NOT NULL AUTO_INCREMENT,
-   Nombre varchar(45) NOT NULL,
+   nombre_Localidad varchar(45) NOT NULL,
    PRIMARY KEY (idLocalidad)
 );
 CREATE TABLE Etiquetas
 (
     idEtiqueta int(11) NOT NULL AUTO_INCREMENT,
-	Nombre varchar(15) NOT NULL,
+	nombre_Etiqueta varchar(15) NOT NULL,
     PRIMARY KEY (idEtiqueta)
 );
 

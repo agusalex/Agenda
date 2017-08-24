@@ -95,7 +95,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.3.2</version>
           <configuration>
-            <mainClass>com.mycompany.app.main.Main</mainClass>
+            <mainClass>com.mycompany.app.negocio.Main</mainClass>
             <cleanupDaemonThreads>false</cleanupDaemonThreads>
           </configuration>
         </plugin>
@@ -112,7 +112,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>com.mycompany.app.main.Main</mainClass>
+              <mainClass>com.mycompany.app.negocio.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
