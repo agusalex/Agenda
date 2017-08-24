@@ -32,3 +32,7 @@ CREATE TABLE Personas
   FOREIGN KEY (idEtiqueta) REFERENCES Etiquetas(idEtiqueta)
 
 );
+CREATE USER 'user'@'%' IDENTIFIED BY 'mypass';
+GRANT RELOAD,PROCESS ON *.* TO 'user'@'%';
+
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
