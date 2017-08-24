@@ -12,7 +12,7 @@ public class VistaLocalidad
 	private JButton btnBorrar;
 	private JButton btnEditar;
 	private DefaultTableModel modelLocalidades;
-	private  String[] nombreColumnas = {"id","Nombre"};
+	private  String[] nombreColumnas = {"Nombre"};
 
 	public VistaLocalidad() 
 	{
@@ -39,11 +39,7 @@ public class VistaLocalidad
 		
 		modelLocalidades = new DefaultTableModel(null,nombreColumnas);
 		tablaLocalidades = new JTable(modelLocalidades);
-		
-		tablaLocalidades.getColumnModel().getColumn(0).setPreferredWidth(103);
-		tablaLocalidades.getColumnModel().getColumn(0).setResizable(false);
-		tablaLocalidades.getColumnModel().getColumn(1).setPreferredWidth(103);
-		tablaLocalidades.getColumnModel().getColumn(1).setResizable(false);
+
 
 		
 		spLocalidades.setViewportView(tablaLocalidades);

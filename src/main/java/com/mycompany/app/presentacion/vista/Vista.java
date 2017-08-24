@@ -9,8 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 public class Vista
 {
@@ -22,9 +25,11 @@ public class Vista
 	private JButton btnReporte;
 	private JButton btnEtiquetas;
 	private JButton btnLocalidades;
+	private static final int WIDTH=1000;
+	private static final int HEIGHT=600;
 
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Mail","Localidad", "Calle","Alura","Piso","Depto","Etiqueta"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Localidad","Calle", "Altura","Piso","Dpto.","Etiqueta"};
 
 	public Vista() 
 	{
@@ -40,18 +45,18 @@ public class Vista
 	private void initialize()
 	{
 		frame = new JFrame("Agenda");
-		frame.setBounds(100, 100, 800, 600);
+		frame.setBounds(100, 100, WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 790, 600);
+		panel.setBounds(0, 0, WIDTH, HEIGHT);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 800, 182);
+		spPersonas.setBounds(10, 11,  WIDTH-25, HEIGHT-75);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -65,27 +70,27 @@ public class Vista
 		spPersonas.setViewportView(tablaPersonas);
 
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(10, 228, 89, 23);
+		btnAgregar.setBounds(10, HEIGHT-60, 89, 23);
 		panel.add(btnAgregar);
 		
 		btnEditar = new JButton("Editar");
-		btnEditar.setBounds(109 , 228, 89, 23);
+		btnEditar.setBounds(109 , HEIGHT-60, 89, 23);
 		panel.add(btnEditar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(208, 228, 89, 23);
+		btnBorrar.setBounds(208, HEIGHT-60, 89, 23);
 		panel.add(btnBorrar);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, 228, 92, 23);
+		btnReporte.setBounds(307, HEIGHT-60, 92, 23);
 		panel.add(btnReporte);
 
 		btnEtiquetas = new JButton("Tags");
-		btnEtiquetas.setBounds(409, 228, 89, 23);
+		btnEtiquetas.setBounds(409, HEIGHT-60, 89, 23);
 		panel.add(btnEtiquetas);
 
 		btnLocalidades = new JButton("Localidad");
-		btnLocalidades.setBounds(510, 228, 105, 23);
+		btnLocalidades.setBounds(510, HEIGHT-60, 105, 23);
 		panel.add(btnLocalidades);
 
 	}

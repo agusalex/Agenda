@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 public class VentanaPersona extends JFrame
 {
 	private static final long serialVersionUID = 1L;
+	private PersonaDTO personaDTO;
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -231,6 +232,7 @@ public class VentanaPersona extends JFrame
 	public VentanaPersona(Controlador controlador, PersonaDTO personaDTO)
 	{
 		super();
+		this.personaDTO=personaDTO;
 		this.controlador = controlador;
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -366,13 +368,13 @@ public class VentanaPersona extends JFrame
 		Localidad = new JComboBox<String>();
 		Localidad.setBounds(133, base+350, 164, 20);
 		cargarLocalidades();
-		Localidad.setSelectedItem(personaDTO.getLocalidad());
+		Localidad.setSelectedItem(personaDTO.getLocalidad().toString());
 		panel.add(Localidad);
 
 		Etiqueta = new JComboBox<String>();
 		Etiqueta.setBounds(133, base+400, 164, 20);
 		cargarEtiquetas();
-		Etiqueta.setSelectedItem(personaDTO.getEtiqueta());
+		Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
 		panel.add(Etiqueta);
 
 

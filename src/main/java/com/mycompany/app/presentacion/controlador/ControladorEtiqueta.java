@@ -65,7 +65,7 @@ public class ControladorEtiqueta implements ActionListener
 			this.Etiquetas_en_tabla = ABMEtiquetas.obtenerEtiquetas();
 			for (int i = 0; i < this.Etiquetas_en_tabla.size(); i ++)
 			{
-				Object[] fila = {this.Etiquetas_en_tabla.get(i).getIdEtiqueta(),this.Etiquetas_en_tabla.get(i).getNombre()};
+				Object[] fila = {this.Etiquetas_en_tabla.get(i).getNombre()};
 				this.vista.getModelEtiquetas().addRow(fila);
 			}
 			this.vista.show();

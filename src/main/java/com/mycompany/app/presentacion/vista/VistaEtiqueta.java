@@ -11,7 +11,7 @@ public class VistaEtiqueta
 	private JButton btnBorrar;
 	private JButton btnEditar;
 	private DefaultTableModel modelEtiquetas;
-	private  String[] nombreColumnas = {"id","Nombre"};
+	private  String[] nombreColumnas = {"Nombre"};
 
 	public VistaEtiqueta() 
 	{
@@ -43,10 +43,7 @@ public class VistaEtiqueta
 		modelEtiquetas = new DefaultTableModel(null,nombreColumnas);
 		tablaEtiquetas = new JTable(modelEtiquetas);
 		
-		tablaEtiquetas.getColumnModel().getColumn(0).setPreferredWidth(103);
-		tablaEtiquetas.getColumnModel().getColumn(0).setResizable(false);
-		tablaEtiquetas.getColumnModel().getColumn(1).setPreferredWidth(103);
-		tablaEtiquetas.getColumnModel().getColumn(1).setResizable(false);
+
 
 		
 		spEtiquetas.setViewportView(tablaEtiquetas);

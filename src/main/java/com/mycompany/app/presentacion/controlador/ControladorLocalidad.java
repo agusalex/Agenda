@@ -66,7 +66,7 @@ public class ControladorLocalidad implements ActionListener
 			this.Localidades_en_tabla = ABMLocalidades.obtenerLocalidades();
 			for (int i = 0; i < this.Localidades_en_tabla.size(); i ++)
 			{
-				Object[] fila = {this.Localidades_en_tabla.get(i).getIdLocalidad(),this.Localidades_en_tabla.get(i).getNombre()};
+				Object[] fila = {this.Localidades_en_tabla.get(i).getNombre()};
 				this.vista.getModelLocalidades().addRow(fila);
 			}
 			this.vista.show();
