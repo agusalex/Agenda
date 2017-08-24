@@ -5,6 +5,7 @@ import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.presentacion.controlador.Controlador;
+import com.mycompany.app.presentacion.controlador.Utils;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 
@@ -456,29 +457,55 @@ public class VentanaPersona extends JFrame
 	}
 
 
-	public static boolean matchesRegex(Pattern regex, String string){
-		Matcher matcher = regex.matcher(string);
-		if(string.equals(""))
-			return false;
-		if(matcher.find()) {
-			if (matcher.start() == 0 && matcher.end() == string.length()){
-				return true;
-			}
+	public boolean allFieldsChecked(){
+		boolean passed = true;
+		String [] fieldValues = this.getFieldValues();
+		JTextField [] fields = this.getFields();
+		String [] regexPatterns = this.regex();
+		String [] errorMessages = this.errorMessages();
 
+		if (!Utils.isValidName(fieldValues[0])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,0);
+			System.out.println(fieldValues[0]+ " es invalido");
 		}
-		return false;
+
+		if (!Utils.isCellphone(fieldValues[1])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,1);
+			System.out.println(fieldValues[1]+ " es invalido");
+		}
+		if (!Utils.isValidName(fieldValues[2])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,2);
+			System.out.println(fieldValues[2]+ " es invalido");
+		}
+		if (!Utils.isNumber(fieldValues[3])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,3);
+			System.out.println(fieldValues[3]+ " es invalido");
+		}
+		if (!Utils.isNumber(fieldValues[4])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,4);
+			System.out.println(fieldValues[4]+ " es invalido");
+		}
+
+		if (!Utils.isNumber(fieldValues[5])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,5);
+			System.out.println(fieldValues[5]+ " es invalido");
+		}
+
+		if (!Utils.isEmail(fieldValues[6])) {
+			passed = false;
+			this.showErrorMessage(fields,errorMessages,6);
+			System.out.println(fieldValues[6]+ " es invalido");
+		}
+
+		return passed;
 
 	}
-
-
-	public static boolean isCellphone(String number){
-		Pattern pat = Pattern.compile("(\\d{10})");
-		Pattern pat2 = Pattern.compile("^\\+?\\d{1,3}?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$");
-
-		return  matchesRegex(pat,number)||matchesRegex(pat2,number);
-	}
-
-
 
 
 }
