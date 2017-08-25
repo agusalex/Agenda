@@ -81,7 +81,11 @@
       <artifactId>jcalendar</artifactId>
       <version>1.4</version>
     </dependency>
-
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>RELEASE</version>
+    </dependency>
 
 
   </dependencies>

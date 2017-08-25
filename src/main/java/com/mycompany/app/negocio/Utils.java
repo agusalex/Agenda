@@ -11,6 +11,8 @@ public class Utils {
 
 
 
+
+
     private Utils(){
 
     }
@@ -21,8 +23,9 @@ public class Utils {
     }
 
 
-    public static boolean matchesRegex(Pattern regex, String string){
-        Matcher matcher = regex.matcher(string);
+    public static boolean matchesRegex(String regex, String string){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(string);
         if(string.equals(""))
             return false;
         if(matcher.find()) {
@@ -34,46 +37,7 @@ public class Utils {
         return false;
 
     }
-    public static boolean isNumber(String number){
-        Pattern pat = Pattern.compile("(\\d+)");
-        Pattern pat2 = Pattern.compile("(\\d+)");
 
-        return  matchesRegex(pat,number);
-    }
-
-    public static boolean isValidName(String name){
-        Pattern pat=Pattern.compile("([A-Z]||[a-z]*.?[\\s])*([A-Z][a-z]*)");
-        return matchesRegex(pat,name);
-    }
-
-
-
-    public static boolean isEmail(String number) {
-        Pattern pat = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
-        return matchesRegex(pat, number);
-    }
-    public static boolean isCUITL(String number) {
-        Pattern pat = Pattern.compile("^(20|23|27|30|33)-[0-9]{8}-[0-9]$");
-
-        return matchesRegex(pat, number);
-    }
-    public static boolean isDNI(String number) {
-        Pattern pat = Pattern.compile("(\\d{8})");
-        return matchesRegex(pat, number);
-    }
-
-    public static boolean isCellphone(String number){
-        Pattern pat = Pattern.compile("(\\d{10})");
-        Pattern pat2 = Pattern.compile("^\\+?\\d{1,3}?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$");
-
-        return  matchesRegex(pat,number)||matchesRegex(pat2,number);
-    }
-    public static boolean isLandLine(String number){
-        Pattern pat = Pattern.compile("(\\d{8})");
-        Pattern pat2 = Pattern.compile("^\\+?\\d{1,3}?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$");
-
-        return  matchesRegex(pat,number)||matchesRegex(pat2,number);
-    }
 
 
     public static boolean isPercentageMatch(String candidate,String keyword,int threshold){

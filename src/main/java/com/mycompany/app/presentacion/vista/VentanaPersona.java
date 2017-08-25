@@ -448,12 +448,9 @@ public class VentanaPersona extends JFrame
 	}
 
 	public void showErrorMessage(JTextField[] fields,String[] errorMessages, int index){
-		Label label = new Label(errorMessages[index]);
 		JTextField field = fields[index];
 		JPanel panel = new JPanel();
-		panel.setBounds(600,400,100,100);
-		label.setBounds(600,400,100,100);
-		label.setVisible(true);
+		field.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
 	}
 
 
@@ -464,40 +461,47 @@ public class VentanaPersona extends JFrame
 		String [] regexPatterns = this.regex();
 		String [] errorMessages = this.errorMessages();
 
-		if (!Utils.isValidName(fieldValues[0])) {
+		if(fieldValues[0].equals("")) {
 			passed = false;
-			this.showErrorMessage(fields,errorMessages,0);
-			System.out.println(fieldValues[0]+ " es invalido");
+			this.showErrorMessage(fields, errorMessages, 0);
+			System.out.println("nombre no puede ser vacio");
+		}
+		else if(!fieldValues[0].equals("")){
+			if (!Utils.matchesRegex(Utils.REGEX_NAME,fieldValues[0])) {
+				passed = false;
+				this.showErrorMessage(fields, errorMessages, 0);
+				System.out.println(fieldValues[0] + " es invalido");
+			}
 		}
 
-		if (!Utils.isCellphone(fieldValues[1])) {
+		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,1);
 			System.out.println(fieldValues[1]+ " es invalido");
 		}
-		if (!Utils.isValidName(fieldValues[2])) {
+		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NAME,fieldValues[2]) && !fieldValues[2].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,2);
 			System.out.println(fieldValues[2]+ " es invalido");
 		}
-		if (!Utils.isNumber(fieldValues[3])) {
+		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NUMBER,fieldValues[3]) && !fieldValues[3].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,3);
 			System.out.println(fieldValues[3]+ " es invalido");
 		}
-		if (!Utils.isNumber(fieldValues[4])) {
+		if (!Utils.matchesRegex(Utils.REGEX_FLOOR,fieldValues[4]) && !fieldValues[4].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,4);
 			System.out.println(fieldValues[4]+ " es invalido");
 		}
 
-		if (!Utils.isNumber(fieldValues[5])) {
+		if (!Utils.matchesRegex(Utils.REGEX_APARTMENT,fieldValues[5]) && !fieldValues[5].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,5);
 			System.out.println(fieldValues[5]+ " es invalido");
 		}
 
-		if (!Utils.isEmail(fieldValues[6])) {
+		if (!Utils.matchesRegex(Utils.REGEX_EMAIL,fieldValues[6]) && !fieldValues[6].equals("")) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,6);
 			System.out.println(fieldValues[6]+ " es invalido");

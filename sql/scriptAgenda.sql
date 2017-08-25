@@ -24,8 +24,8 @@ CREATE TABLE Personas
   Departamento varchar(45) NOT NULL,
   Email varchar(45) NOT NULL,
   fechaNacimiento Date NOT NULL,
-  idLocalidad int(11)NOT NULL,
-  idEtiqueta int(11) NOT NULL,
+  idLocalidad int(11),
+  idEtiqueta int(11) ,
 
   PRIMARY KEY (idPersona),
   FOREIGN KEY (idLocalidad) REFERENCES Localidades(idLocalidad),
