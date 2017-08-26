@@ -474,8 +474,16 @@ public class VentanaPersona extends JFrame
 		field.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
 	}
 
+	public void restoreFieldsColor(){
+		JTextField [] fields = this.getFields();
+		for(JTextField field : fields){
+			field.setBorder(BorderFactory.createLineBorder(Color.decode("#000000")));
+		}
+	}
+
 
 	public boolean allFieldsChecked(){
+		this.restoreFieldsColor();
 		boolean passed = true;
 		String [] fieldValues = this.getFieldValues();
 		JTextField [] fields = this.getFields();

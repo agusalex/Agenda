@@ -90,9 +90,6 @@ public class Controlador implements ActionListener
 
 
 
-
-
-
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.vista.getBtnEtiquetas()){
 			this.vistaEtiqueta = new VistaEtiqueta();

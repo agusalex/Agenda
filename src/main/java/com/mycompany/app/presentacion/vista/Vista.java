@@ -68,6 +68,7 @@ public class Vista
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
 
 		spPersonas.setViewportView(tablaPersonas);
+		tablaPersonas.setEnabled(false);
 
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setBounds(10, HEIGHT-60, 89, 23);
