@@ -468,13 +468,13 @@ public class VentanaPersona extends JFrame
 		return errorMessages;
 	}
 
-	public void showErrorMessage(JTextField[] fields,String[] errorMessages, int index){
+	private void showErrorMessage(JTextField[] fields,String[] errorMessages, int index){
 		JTextField field = fields[index];
 		JPanel panel = new JPanel();
 		field.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
 	}
 
-	public void restoreFieldsColor(){
+	private void restoreFieldsColor(){
 		JTextField [] fields = this.getFields();
 		for(JTextField field : fields){
 			field.setBorder(BorderFactory.createLineBorder(Color.decode("#000000")));

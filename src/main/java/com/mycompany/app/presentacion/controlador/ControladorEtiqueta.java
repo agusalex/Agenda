@@ -88,7 +88,6 @@ public class ControladorEtiqueta implements ActionListener
 					this.ventanaEtiqueta = new VentanaEtiqueta(this,this.Etiquetas_en_tabla.get(fila));
 				}
 
-
 			}
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
@@ -108,27 +107,28 @@ public class ControladorEtiqueta implements ActionListener
 
 			else if(e.getSource() == this.ventanaEtiqueta.getBtnAgregarEtiqueta())
 			{
-				EtiquetaDTO Etiqueta = new EtiquetaDTO(0,this.ventanaEtiqueta.getTxtNombre().getText());
+				if(this.ventanaEtiqueta.checkNameField()) {
+					EtiquetaDTO Etiqueta = new EtiquetaDTO(0, this.ventanaEtiqueta.getTxtNombre().getText());
 
+					this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
+					this.llenarTabla();
+					this.ventanaEtiqueta.dispose();
+				}
 
-
-
-				this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
-				this.llenarTabla();
-				this.ventanaEtiqueta.dispose();
 			}
 
 			else if(e.getSource() == this.ventanaEtiqueta.getBtnGuardarEtiqueta())
 			{
 
 
+				if(this.ventanaEtiqueta.checkNameField()) {
+					this.ABMEtiquetas.borrarEtiqueta(BKP);
 
-				this.ABMEtiquetas.borrarEtiqueta(BKP);
-
-				this.ABMEtiquetas.agregarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(),ventanaEtiqueta.getTxtNombre().getText()));
-				BKP=null;
-				this.llenarTabla();
-				this.ventanaEtiqueta.dispose();
+					this.ABMEtiquetas.agregarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
+					BKP = null;
+					this.llenarTabla();
+					this.ventanaEtiqueta.dispose();
+				}
 			}
 
 		}

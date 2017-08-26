@@ -2,14 +2,12 @@ package com.mycompany.app.presentacion.vista;
 
 
 import com.mycompany.app.dto.EtiquetaDTO;
+import com.mycompany.app.negocio.Utils;
 import com.mycompany.app.presentacion.controlador.ControladorEtiqueta;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 
 public class VentanaEtiqueta extends JFrame
@@ -94,12 +92,33 @@ public class VentanaEtiqueta extends JFrame
 		this.setVisible(true);
 	}
 
+	private void showErrorMessage(){
+		this.txtNombre.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
+	}
+
+	private void restoreFieldsColor(){
+		this.txtNombre.setBorder(BorderFactory.createLineBorder(Color.decode("#000000")));
+	}
+
+	public boolean checkNameField(){
+		this.restoreFieldsColor();
+		if(this.txtNombre.equals("")) {
+			this.showErrorMessage();
+			return false;
+		}
+		else{
+			if(!Utils.matchesRegex(Utils.REGEX_NAME,txtNombre.getText())) {
+				this.showErrorMessage();
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public JTextField getTxtNombre()
 	{
 		return txtNombre;
 	}
-
-
 
 	public JButton getBtnAgregarEtiqueta()
 	{

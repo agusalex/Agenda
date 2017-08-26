@@ -110,13 +110,13 @@ public class ControladorLocalidad implements ActionListener
 
 			else if(e.getSource() == this.ventanaLocalidad.getBtnAgregarLocalidad())
 			{
-				LocalidadDTO Localidad = new LocalidadDTO(0,this.ventanaLocalidad.getTxtNombre().getText());
 
-
-
-				this.ABMLocalidades.agregarLocalidad(Localidad);
-				this.llenarTabla();
-				this.ventanaLocalidad.dispose();
+				if(this.ventanaLocalidad.checkNameField()) {
+					LocalidadDTO Localidad = new LocalidadDTO(0, this.ventanaLocalidad.getTxtNombre().getText());
+					this.ABMLocalidades.agregarLocalidad(Localidad);
+					this.llenarTabla();
+					this.ventanaLocalidad.dispose();
+				}
 			}
 
 
@@ -126,11 +126,13 @@ public class ControladorLocalidad implements ActionListener
 
 			{
 
-				this.ABMLocalidades.borrarLocalidad(BKP);
-				this.ABMLocalidades.agregarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(),ventanaLocalidad.getTxtNombre().getText()));
-				BKP=null;
-				this.llenarTabla();
-				this.ventanaLocalidad.dispose();
+				if(this.ventanaLocalidad.checkNameField()) {
+					this.ABMLocalidades.borrarLocalidad(BKP);
+					this.ABMLocalidades.agregarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(), ventanaLocalidad.getTxtNombre().getText()));
+					BKP = null;
+					this.llenarTabla();
+					this.ventanaLocalidad.dispose();
+				}
 			}
 
 
