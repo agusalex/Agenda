@@ -175,10 +175,10 @@ public class Controlador implements ActionListener
 			ArrayList<LocalidadDTO> localidadDTOS=cargarLocalidades();
 			for (LocalidadDTO loc: localidadDTOS
 				 ) {
-				if (loc.getNombre().equals(localidad)){
-					return loc;
-				}
-
+				if(loc.getNombre() != null)
+					if (loc.getNombre().equals(localidad)){
+						return loc;
+					}
 
 			}
 			return null;
@@ -190,12 +190,11 @@ public class Controlador implements ActionListener
 		for (EtiquetaDTO et: etiquetasDTOS
 				) {
 
-			if (et.getNombre().equals(etiqueta)){
+			if(et.getNombre() != null)
+				if (et.getNombre().equals(etiqueta)){
 
-				return et;
-			}
-
-
+					return et;
+				}
 
 		}
 		return null;
@@ -205,16 +204,32 @@ public class Controlador implements ActionListener
 
 		private PersonaDTO cargarDatosPersona(PersonaDTO persona){
 			PersonaDTO nuevaPersona = new PersonaDTO();
+
 			nuevaPersona.setNombre(ventanaPersona.getTxtNombre().getText());
-			nuevaPersona.setTelefono(ventanaPersona.getTxtTelefono().getText());
 
-			nuevaPersona.setCalle(ventanaPersona.getTxtCalle().getText());
+			String telefono = ventanaPersona.getTxtTelefono().getText();
+			String nombreCalle = ventanaPersona.getTxtCalle().getText();
+			Integer altura = null;
+			Integer piso = null;
+			if(!ventanaPersona.getTxtAltura().getText().equals(""))
+				altura = Integer.valueOf(ventanaPersona.getTxtAltura().getText());
+			if(!ventanaPersona.getTxtPiso().getText().equals(""))
+				piso = Integer.valueOf(ventanaPersona.getTxtPiso().getText());
+			String dpto = ventanaPersona.getTxtDepartamento().getText();
+			String email = ventanaPersona.getTxtEmail().getText();
 
-	
-			nuevaPersona.setAltura(Integer.valueOf(ventanaPersona.getTxtAltura().getText()));
-			nuevaPersona.setPiso(Integer.valueOf(ventanaPersona.getTxtPiso().getText()));
-			nuevaPersona.setDepartamento(ventanaPersona.getTxtDepartamento().getText());
-			nuevaPersona.setEmail(ventanaPersona.getTxtEmail().getText());
+			if(!telefono.equals(""))
+				nuevaPersona.setTelefono(telefono);
+			if(!nombreCalle.equals(""))
+				nuevaPersona.setCalle(nombreCalle);
+			if (altura != null)
+				nuevaPersona.setAltura(altura);
+			if(piso != null)
+				nuevaPersona.setPiso(piso);
+			if(!dpto.equals(""))
+				nuevaPersona.setDepartamento(dpto);
+			if(!email.equals(""))
+				nuevaPersona.setEmail(email);
 			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate());
 
 

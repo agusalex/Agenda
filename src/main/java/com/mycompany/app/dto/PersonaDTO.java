@@ -3,8 +3,7 @@ package com.mycompany.app.dto;
 import java.time.Instant;
 import java.util.Date;
 
-public class PersonaDTO
-{
+public class PersonaDTO {
 	private int idPersona;
 	private String nombre;
 	private String telefono;
@@ -17,14 +16,15 @@ public class PersonaDTO
 	private LocalidadDTO localidad;
 	private EtiquetaDTO etiqueta;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono)
-	{
+	public PersonaDTO(int idPersona, String nombre, String telefono) {
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
 	}
+
+
 	public PersonaDTO()
-	{
+	{/*
 		this.idPersona = 0;
 		this.nombre = "Ejemplo";
 		this.telefono = "13245678";
@@ -36,8 +36,9 @@ public class PersonaDTO
 		this.fechaNacimmiento =  Date.from(Instant.now());
 		this.etiqueta =new EtiquetaDTO(999,"Sin Localidad");
 		this.localidad =new LocalidadDTO(999,"Sin Etiqueta");
+		*/
 	}
-	
+
 	public int getIdPersona() 
 	{
 		return this.idPersona;

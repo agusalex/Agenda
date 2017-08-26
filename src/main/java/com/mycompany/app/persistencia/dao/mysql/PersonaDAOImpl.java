@@ -33,6 +33,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 			statement = conexion.getSQLConexion().prepareStatement(insert);
 			statement.setInt(1, persona.getIdPersona());
+			System.out.println(persona.getNombre());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
 			statement.setString(4,persona.getCalle());
@@ -42,9 +43,14 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(8,persona.getEmail());
 			statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
 
-			statement.setInt(10,persona.getLocalidad().getIdLocalidad());
-			statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
-
+			if (persona.getLocalidad() != null)
+				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
+			else if(persona.getLocalidad() == null)
+				statement.setInt(10,-1);
+			if(persona.getEtiqueta() != null)
+				statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
+			else if(persona.getEtiqueta() == null)
+				statement.setInt(11,-1);
 
 
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
