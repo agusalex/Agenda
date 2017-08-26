@@ -14,15 +14,15 @@ CREATE TABLE Etiquetas(
 
 CREATE TABLE Personas
 (
-  idPersona int(11) NOT NULL AUTO_INCREMENT,
+    idPersona int(11) NOT NULL AUTO_INCREMENT,
   Nombre varchar(45) NOT NULL,
   Telefono varchar(20) ,
   Calle varchar(45) ,
-  Altura int(11) ,
-  Piso int(11) ,
+  Altura varchar(11) ,
+  Piso varchar(11) ,
   Departamento varchar(45) ,
   Email varchar(45) ,
-  fechaNacimiento Date ,
+  fechaNacimiento varchar(10) ,
   idLocalidad int(11),
   idEtiqueta int(11) ,
 
