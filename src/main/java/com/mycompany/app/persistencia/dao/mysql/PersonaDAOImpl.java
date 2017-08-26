@@ -18,22 +18,56 @@ import java.util.List;
 public class PersonaDAOImpl implements DAO<PersonaDTO>
 {
 	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,?)";
+	private static final String insert_noFK = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?)";
+	private static final String insert_etiqueta = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? )";
+	private static final String insert_localidad = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,?)";
 	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM Personas";
 
+	private enum TipoInsert{
+		INSERT, INSERT_NOFK,INSERT_ETIQUETA,INSERT_LOCALIDAD
+	}
+
 
 	private static final Conexion conexion = Conexion.getConexion();
-	
+
 	public boolean insert(PersonaDTO persona)
 	{
+		boolean noForeignKey = (persona.getLocalidad()==null)&&(persona.getEtiqueta()==null);
+		boolean etiquetaOnly = (persona.getLocalidad()==null)&&(persona.getEtiqueta()!=null);
+		boolean localidadOnly = (persona.getLocalidad()!=null)&&(persona.getEtiqueta()==null);
+		boolean Both = (persona.getLocalidad()!=null)&&(persona.getEtiqueta()!=null);
+
+
 		PreparedStatement statement=null;
 
-		try 
+
+		try
 		{
 
-			statement = conexion.getSQLConexion().prepareStatement(insert);
+
+			if(Both) {
+				statement = conexion.getSQLConexion().prepareStatement(insert);
+				statement.setInt(10, persona.getLocalidad().getIdLocalidad());
+				statement.setInt(11, persona.getEtiqueta().getIdEtiqueta());
+			}
+			else if(etiquetaOnly){
+				statement = conexion.getSQLConexion().prepareStatement(insert_etiqueta);
+
+				statement.setInt(10,persona.getEtiqueta().getIdEtiqueta());
+
+			}
+			else if(localidadOnly){
+				statement = conexion.getSQLConexion().prepareStatement(insert_localidad);
+				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
+
+			}
+			else if(noForeignKey){
+				statement = conexion.getSQLConexion().prepareStatement(insert_noFK);
+			}
+
+
 			statement.setInt(1, persona.getIdPersona());
-			System.out.println(persona.getNombre());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
 			statement.setString(4,persona.getCalle());
@@ -41,22 +75,18 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setInt(6,persona.getPiso());
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
-			statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
 
-			if (persona.getLocalidad() != null)
-				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
-			else if(persona.getLocalidad() == null)
-				statement.setInt(10,-1);
-			if(persona.getEtiqueta() != null)
-				statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
-			else if(persona.getEtiqueta() == null)
-				statement.setInt(11,-1);
+			if(persona.getFechaNacimmiento()!=null)
+				statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
+			else{
+				statement.setDate(9,null);
+			}
 
 
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
-		} 
-		catch (SQLException e) 
+		}
+		catch (SQLException e)
 		{
 			if(statement!=null){
 				System.out.println("error en la Sentencia SQL= "+statement.toString());
@@ -70,19 +100,21 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 	}
 
 
+
+
 	public boolean delete(PersonaDTO persona_a_eliminar)
 	{
 		PreparedStatement statement;
 		int chequeoUpdate=0;
-		try 
+		try
 		{
 			statement = conexion.getSQLConexion().prepareStatement(delete);
 			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
 				return true;
-		} 
-		catch (SQLException e) 
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -104,7 +136,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 		};
 		return map;
-		
+
 	}
 
 	public HashMap<Integer,String> cargarLocalidades(){
@@ -112,7 +144,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 		HashMap<Integer,String>  map= new HashMap<>();
 		for (LocalidadDTO loc:
-		localidadDAO.readAll()) {
+				localidadDAO.readAll()) {
 
 			map.put(loc.getIdLocalidad(),loc.getNombre());
 
@@ -131,11 +163,11 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		PreparedStatement statement;
 		ResultSet resultSet; //Guarda el resultado de la query
 		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
-		try 
+		try
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readall);
 			resultSet = statement.executeQuery();
-			
+
 			while(resultSet.next())
 			{
 				//personas.add(new PersonaDTO(resultSet.getInt("idPersona"), resultSet.getString("Nombre"), resultSet.getString("Telefono")));
@@ -162,8 +194,8 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 
 			}
-		} 
-		catch (SQLException e) 
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}

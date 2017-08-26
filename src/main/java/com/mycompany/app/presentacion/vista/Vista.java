@@ -29,7 +29,7 @@ public class Vista
 	private static final int HEIGHT=600;
 
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Localidad","Calle", "Altura","Piso","Dpto.","Etiqueta"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta"};
 
 	public Vista() 
 	{

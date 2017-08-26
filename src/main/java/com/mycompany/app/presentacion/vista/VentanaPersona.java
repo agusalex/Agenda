@@ -381,6 +381,7 @@ public class VentanaPersona extends JFrame
 
 
 	public void cargarLocalidades(){
+		Localidad.addItem("Sin Localidad");
 		for(LocalidadDTO loc:controlador.cargarLocalidades())
 			if(loc!=null)
 				Localidad.addItem(loc.getNombre());
@@ -388,9 +389,12 @@ public class VentanaPersona extends JFrame
 
 
 	public void cargarEtiquetas(){
+		Etiqueta.addItem("Sin Etiqueta");
 		for(EtiquetaDTO et:controlador.cargarEtiquetas())
 			if(et!=null)
 				Etiqueta.addItem(et.getNombre());
+
+
 	}
 	
 	
@@ -423,17 +427,6 @@ public class VentanaPersona extends JFrame
 		return fieldValues;
 	}
 
-	public String [] regex(){
-		String[] regexValues = { "/^[A-z]+$/" ,
-								 "^1?(\\d{10})",
-								 "^\\d*\\s*((?:\\w+\\s*)*)ST$",
-								 "/^\\d{2}(?:\\d{2})?$/",
-								 "/^\\d{4}(?:\\d{2})?$/",
-								 "/^\\d{2}(?:\\d{2})?$/",
-								 "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
-		};
-		return regexValues;
-	}
 
 	public String [] errorMessages(){
 		String[] errorMessages = {  "Nombre con caracteres invalidos",
@@ -458,7 +451,6 @@ public class VentanaPersona extends JFrame
 		boolean passed = true;
 		String [] fieldValues = this.getFieldValues();
 		JTextField [] fields = this.getFields();
-		String [] regexPatterns = this.regex();
 		String [] errorMessages = this.errorMessages();
 
 		if(fieldValues[0].equals("")) {

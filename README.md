@@ -5,3 +5,6 @@ Maven goals: clean package install exec:java
  - Evitar agregado repetido de etiquetas/localidades.
  - No mostrar etiquetas vacias ni localidades vacias por tabla!
 
+
+
+
