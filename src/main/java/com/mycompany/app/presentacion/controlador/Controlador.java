@@ -2,8 +2,12 @@ package com.mycompany.app.presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.dto.LocalidadDTO;
@@ -18,6 +22,8 @@ import com.mycompany.app.presentacion.vista.VistaEtiqueta;
 import com.mycompany.app.presentacion.vista.VistaLocalidad;
 
 import javax.swing.*;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 
 public class Controlador implements ActionListener
@@ -81,6 +87,8 @@ public class Controlador implements ActionListener
 			}
 			this.vista.show();
 		}
+
+
 
 
 
@@ -209,12 +217,12 @@ public class Controlador implements ActionListener
 
 			String telefono = ventanaPersona.getTxtTelefono().getText();
 			String nombreCalle = ventanaPersona.getTxtCalle().getText();
-			Integer altura = null;
-			Integer piso = null;
+			String altura = null;
+			String piso = null;
 			if(!ventanaPersona.getTxtAltura().getText().equals(""))
-				altura = Integer.valueOf(ventanaPersona.getTxtAltura().getText());
+				altura = ventanaPersona.getTxtAltura().getText();
 			if(!ventanaPersona.getTxtPiso().getText().equals(""))
-				piso = Integer.valueOf(ventanaPersona.getTxtPiso().getText());
+				piso = ventanaPersona.getTxtPiso().getText();
 			String dpto = ventanaPersona.getTxtDepartamento().getText();
 			String email = ventanaPersona.getTxtEmail().getText();
 
@@ -230,7 +238,7 @@ public class Controlador implements ActionListener
 				nuevaPersona.setDepartamento(dpto);
 			if(!email.equals(""))
 				nuevaPersona.setEmail(email);
-			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate());
+			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
 
 
 

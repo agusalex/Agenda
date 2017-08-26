@@ -5,13 +5,16 @@ import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.presentacion.controlador.Controlador;
-import com.mycompany.app.presentacion.controlador.Utils;
+import com.mycompany.app.negocio.Utils;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,6 +84,25 @@ public class VentanaPersona extends JFrame
 
 	public JComboBox<String> getEtiqueta() {
 		return Etiqueta;
+	}
+
+
+	public java.util.Date fromString(String dateInString){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+		try {
+
+			Date date = formatter.parse(dateInString);
+			System.out.println(date);
+			System.out.println(formatter.format(date));
+			return date;
+
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public VentanaPersona(Controlador controlador)
@@ -312,14 +334,14 @@ public class VentanaPersona extends JFrame
 
 		txtAltura = new JTextField();
 		txtAltura.setBounds(133, base+150, 200, 20);
-		txtAltura.setText(Integer.toString(personaDTO.getAltura()));
+		txtAltura.setText(personaDTO.getAltura());
 		panel.add(txtAltura);
 		txtAltura.setColumns(10);
 
 
 		txtPiso = new JTextField();
 		txtPiso.setBounds(133, base+200, 250, 20);
-		txtPiso.setText(Integer.toString(personaDTO.getPiso()));
+		txtPiso.setText(personaDTO.getPiso());
 		panel.add(txtPiso);
 		txtPiso.setColumns(10);
 
@@ -348,7 +370,9 @@ public class VentanaPersona extends JFrame
 		panelFecha.add(fechaNacimiento);
 
 		if(personaDTO.getFechaNacimmiento()!=null)
-			calendario.setDate(personaDTO.getFechaNacimmiento());
+
+
+			calendario.setDate(fromString(personaDTO.getFechaNacimmiento()));
 
 		panel.add(panelFecha);
 
@@ -396,8 +420,12 @@ public class VentanaPersona extends JFrame
 
 
 	}
-	
-	
+
+
+
+
+
+
 	public JButton getBtnAgregarPersona()
 	{
 		return btnAgregarPersona;
@@ -481,17 +509,8 @@ public class VentanaPersona extends JFrame
 			this.showErrorMessage(fields,errorMessages,3);
 			System.out.println(fieldValues[3]+ " es invalido");
 		}
-		if (!Utils.matchesRegex(Utils.REGEX_FLOOR,fieldValues[4]) && !fieldValues[4].equals("")) {
-			passed = false;
-			this.showErrorMessage(fields,errorMessages,4);
-			System.out.println(fieldValues[4]+ " es invalido");
-		}
 
-		if (!Utils.matchesRegex(Utils.REGEX_APARTMENT,fieldValues[5]) && !fieldValues[5].equals("")) {
-			passed = false;
-			this.showErrorMessage(fields,errorMessages,5);
-			System.out.println(fieldValues[5]+ " es invalido");
-		}
+
 
 		if (!Utils.matchesRegex(Utils.REGEX_EMAIL,fieldValues[6]) && !fieldValues[6].equals("")) {
 			passed = false;

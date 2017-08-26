@@ -31,6 +31,11 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 	private static final Conexion conexion = Conexion.getConexion();
 
+
+
+
+
+
 	public boolean insert(PersonaDTO persona)
 	{
 		boolean noForeignKey = (persona.getLocalidad()==null)&&(persona.getEtiqueta()==null);
@@ -71,16 +76,11 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
 			statement.setString(4,persona.getCalle());
-			statement.setInt(5,persona.getAltura());
-			statement.setInt(6,persona.getPiso());
+			statement.setString(5,persona.getAltura());
+			statement.setString(6,persona.getPiso());
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
-
-			if(persona.getFechaNacimmiento()!=null)
-				statement.setDate(9,new java.sql.Date(persona.getFechaNacimmiento().getTime()));
-			else{
-				statement.setDate(9,null);
-			}
+			statement.setString(9,persona.getFechaNacimmiento());
 
 
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
@@ -176,11 +176,11 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 				personaDTO.setNombre(resultSet.getString("Nombre"));
 				personaDTO.setTelefono(resultSet.getString("Telefono"));
 				personaDTO.setCalle(resultSet.getString("Calle"));
-				personaDTO.setAltura(resultSet.getInt("Altura"));
-				personaDTO.setPiso(resultSet.getInt("Piso"));
+				personaDTO.setAltura(resultSet.getString("Altura"));
+				personaDTO.setPiso(resultSet.getString("Piso"));
 				personaDTO.setDepartamento(resultSet.getString("Departamento"));
 				personaDTO.setEmail(resultSet.getString("Email"));
-				personaDTO.setFechaNacimmiento(resultSet.getDate("FechaNacimiento"));
+				personaDTO.setFechaNacimmiento(resultSet.getString("FechaNacimiento"));
 
 				int codigoLocalidad=resultSet.getInt("idLocalidad");
 				String nombreLocalidad=mapa.get(codigoLocalidad);

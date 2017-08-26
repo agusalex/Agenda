@@ -1,8 +1,6 @@
 package com.mycompany.app.negocio;
-
-
-        import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by agusa on 2/13/2017.
@@ -10,6 +8,12 @@ package com.mycompany.app.negocio;
 public class Utils {
 
 
+
+    public final static String REGEX_NAME = "([A-Z]||[a-z]*.?[\\s])*([A-Z][a-z]*)";
+    public final static String REGEX_CELL_PHONE = "(\\d{10})";
+    public final static String REGEX_ADRESS_NAME = "([A-Z]||[a-z]*.?[\\s])*([A-Z][a-z]*)";
+    public final static String REGEX_ADRESS_NUMBER = "(\\d+)";
+    public final static String REGEX_EMAIL = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 
 
 
@@ -26,8 +30,6 @@ public class Utils {
     public static boolean matchesRegex(String regex, String string){
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(string);
-        if(string.equals(""))
-            return false;
         if(matcher.find()) {
             if (matcher.start() == 0 && matcher.end() == string.length()){
                 return true;
@@ -35,7 +37,6 @@ public class Utils {
 
         }
         return false;
-
     }
 
 
@@ -124,8 +125,9 @@ public class Utils {
         percentage=(int) (100 - (float) LevenshteinDistance(s0, s1) * 100 / (float) (s0.length() + s1.length()));
         return percentage;
     }
-
+    // c
     public static int LevenshteinDistance(String s0, String s1) {
+
 
         int len0 = s0.length() + 1;
         int len1 = s1.length() + 1;

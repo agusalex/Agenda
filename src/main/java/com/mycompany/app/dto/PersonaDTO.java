@@ -8,35 +8,18 @@ public class PersonaDTO {
 	private String nombre;
 	private String telefono;
 	private String calle;
-	private int altura;
-	private int piso;
+	private String altura;
+	private String piso;
 	private String departamento;
 	private String email;
-	private Date fechaNacimmiento;
+	private String fechaNacimmiento;
 	private LocalidadDTO localidad;
 	private EtiquetaDTO etiqueta;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono) {
-		this.idPersona = idPersona;
-		this.nombre = nombre;
-		this.telefono = telefono;
-	}
 
 
 	public PersonaDTO()
-	{/*
-		this.idPersona = 0;
-		this.nombre = "Ejemplo";
-		this.telefono = "13245678";
-		this.calle = "Calle";
-		this.altura =1234;
-		this.piso=1;
-		this.departamento="A";
-		this.email = "email@ejemplo.org";
-		this.fechaNacimmiento =  Date.from(Instant.now());
-		this.etiqueta =new EtiquetaDTO(999,"Sin Localidad");
-		this.localidad =new LocalidadDTO(999,"Sin Etiqueta");
-		*/
+	{
 	}
 
 	public int getIdPersona() 
@@ -62,19 +45,21 @@ public class PersonaDTO {
 		this.calle = calle;
 	}
 
-	public int getAltura() {
+
+	public String getAltura() {
+
 		return altura;
 	}
 
-	public void setAltura(int altura) {
+	public void setAltura(String altura) {
 		this.altura = altura;
 	}
 
-	public int getPiso() {
+	public String getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
 
@@ -94,11 +79,11 @@ public class PersonaDTO {
 		this.email = email;
 	}
 
-	public Date getFechaNacimmiento() {
+	public String getFechaNacimmiento() {
 		return fechaNacimmiento;
 	}
 
-	public void setFechaNacimmiento(Date fechaNacimmiento) {
+	public void setFechaNacimmiento(String fechaNacimmiento) {
 		this.fechaNacimmiento = fechaNacimmiento;
 	}
 
