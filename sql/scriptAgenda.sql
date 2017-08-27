@@ -32,10 +32,6 @@ CREATE TABLE Personas
 
 );
 
-INSERT INTO Etiquetas(idEtiqueta, nombre_Etiqueta) VALUES(-1,NULL);
-INSERT INTO Localidades(idLocalidad, nombre_Localidad) VALUES(-1,NULL);
-
-
 CREATE USER 'user'@'%' IDENTIFIED BY 'mypass';
 GRANT RELOAD,PROCESS ON *.* TO 'user'@'%';
 

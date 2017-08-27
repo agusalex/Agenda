@@ -8,6 +8,7 @@ import com.mycompany.app.persistencia.dao.interfaz.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,10 +31,6 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 
 	private static final Conexion conexion = Conexion.getConexion();
-
-
-
-
 
 
 	public boolean insert(PersonaDTO persona)
@@ -67,10 +64,9 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
 
 			}
-			else if(noForeignKey){
+			else if(noForeignKey) {
 				statement = conexion.getSQLConexion().prepareStatement(insert_noFK);
 			}
-
 
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
@@ -81,6 +77,9 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
 			statement.setString(9,persona.getFechaNacimmiento());
+
+
+
 
 
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
@@ -190,9 +189,6 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 				String nombreEtiqueta=mapa2.get(codigoEtiqueta);
 				personaDTO.setEtiqueta(new EtiquetaDTO(codigoEtiqueta,nombreEtiqueta));
 				personas.add(personaDTO);
-
-
-
 			}
 		}
 		catch (SQLException e)
