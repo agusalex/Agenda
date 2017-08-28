@@ -7,12 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
+import java.util.EventObject;
 import java.util.Iterator;
 
 public class Vista
@@ -68,7 +72,8 @@ public class Vista
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
 
 		spPersonas.setViewportView(tablaPersonas);
-		tablaPersonas.setEnabled(false);
+
+
 
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setBounds(10, HEIGHT-60, 89, 23);
