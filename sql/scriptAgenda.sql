@@ -23,6 +23,7 @@ CREATE TABLE Personas
   Departamento varchar(45) ,
   Email varchar(45) ,
   fechaNacimiento varchar(10) ,
+  mailServer varchar (15) ,
   idLocalidad int(11),
   idEtiqueta int(11) ,
 

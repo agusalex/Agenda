@@ -36,6 +36,26 @@
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[email]]></fieldDescription>
 	</field>
+	<field name="mailServer" class="java.lang.String">
+		<fieldDescription><![CDATA[mailServer]]></fieldDescription>
+	</field>
+	<group name="mailServer">
+		<groupExpression><![CDATA[$F{mailServer}]]></groupExpression>
+		<groupHeader>
+			<band height="68">
+				<rectangle>
+					<reportElement x="5" y="0" width="1045" height="68" backcolor="#716ED4" uuid="ae286d0a-ed17-4b65-8f8c-d8d2fa529e7f"/>
+				</rectangle>
+				<textField>
+					<reportElement x="5" y="0" width="1037" height="68" uuid="281294af-d118-4eb5-9503-31d2cc483e9d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mailServer}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

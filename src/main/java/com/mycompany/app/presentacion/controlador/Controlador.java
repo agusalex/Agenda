@@ -51,7 +51,6 @@ public class Controlador implements ActionListener
 		}
 
 
-
 	public ArrayList<LocalidadDTO> cargarLocalidades(){
 		ABMLocalidades ABML=new ABMLocalidades();
 		ArrayList<LocalidadDTO> listaLocalidades=(ArrayList)ABML.obtenerLocalidades();
@@ -59,8 +58,6 @@ public class Controlador implements ActionListener
 		return  listaLocalidades;
 	}
 
-
-	
 	
 	public ArrayList<EtiquetaDTO> cargarEtiquetas() {
 		ABMEtiquetas ABML=new ABMEtiquetas();
@@ -149,6 +146,7 @@ public class Controlador implements ActionListener
 				if(this.ventanaPersona.allFieldsChecked()) {
 					PersonaDTO persona = new PersonaDTO();
 					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
+
 					//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
 					this.agenda.agregarPersona(nuevaPersona);
 					this.llenarTabla();
@@ -189,6 +187,7 @@ public class Controlador implements ActionListener
 			return null;
 
 		}
+
 	public EtiquetaDTO deStringaEtiquetaDTO(String etiqueta){
 
 		ArrayList<EtiquetaDTO> etiquetasDTOS=cargarEtiquetas();
@@ -233,8 +232,10 @@ public class Controlador implements ActionListener
 				nuevaPersona.setPiso(piso);
 			if(!dpto.equals(""))
 				nuevaPersona.setDepartamento(dpto);
-			if(!email.equals(""))
+			if(!email.equals("")){
 				nuevaPersona.setEmail(email);
+				nuevaPersona.setMailServer();
+			}
 			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
 
 

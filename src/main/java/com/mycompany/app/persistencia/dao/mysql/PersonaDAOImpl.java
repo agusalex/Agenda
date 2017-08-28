@@ -18,10 +18,10 @@ import java.util.List;
 
 public class PersonaDAOImpl implements DAO<PersonaDTO>
 {
-	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,?)";
-	private static final String insert_noFK = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?)";
-	private static final String insert_etiqueta = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? )";
-	private static final String insert_localidad = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,?)";
+	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,? ,?)";
+	private static final String insert_noFK = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,?)";
+	private static final String insert_etiqueta = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,? )";
+	private static final String insert_localidad = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idLocalidad) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?,? ,?)";
 	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM Personas";
 
@@ -50,18 +50,18 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 			if(Both) {
 				statement = conexion.getSQLConexion().prepareStatement(insert);
-				statement.setInt(10, persona.getLocalidad().getIdLocalidad());
-				statement.setInt(11, persona.getEtiqueta().getIdEtiqueta());
+				statement.setInt(11, persona.getLocalidad().getIdLocalidad());
+				statement.setInt(12, persona.getEtiqueta().getIdEtiqueta());
 			}
 			else if(etiquetaOnly){
 				statement = conexion.getSQLConexion().prepareStatement(insert_etiqueta);
 
-				statement.setInt(10,persona.getEtiqueta().getIdEtiqueta());
+				statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
 
 			}
 			else if(localidadOnly){
 				statement = conexion.getSQLConexion().prepareStatement(insert_localidad);
-				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
+				statement.setInt(11,persona.getLocalidad().getIdLocalidad());
 
 			}
 			else if(noForeignKey) {
@@ -77,6 +77,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
 			statement.setString(9,persona.getFechaNacimmiento());
+			statement.setString(10,persona.getMailServer());
 
 
 
@@ -179,6 +180,8 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 				personaDTO.setPiso(resultSet.getString("Piso"));
 				personaDTO.setDepartamento(resultSet.getString("Departamento"));
 				personaDTO.setEmail(resultSet.getString("Email"));
+				if(personaDTO.getEmail() != null || !personaDTO.getEmail().equals(""))
+					personaDTO.setMailServer();
 				personaDTO.setFechaNacimmiento(resultSet.getString("FechaNacimiento"));
 
 				int codigoLocalidad=resultSet.getInt("idLocalidad");
