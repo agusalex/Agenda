@@ -51,6 +51,9 @@ public class ControladorEtiqueta implements ActionListener
 		}
 
 
+
+
+
 	public void inicializar()
 		{
 			this.llenarTabla();
@@ -120,11 +123,10 @@ public class ControladorEtiqueta implements ActionListener
 			else if(e.getSource() == this.ventanaEtiqueta.getBtnGuardarEtiqueta())
 			{
 
+				this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
 
 				if(this.ventanaEtiqueta.checkNameField()) {
-					this.ABMEtiquetas.borrarEtiqueta(BKP);
-
-					this.ABMEtiquetas.agregarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
+					this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
 					BKP = null;
 					this.llenarTabla();
 					this.ventanaEtiqueta.dispose();

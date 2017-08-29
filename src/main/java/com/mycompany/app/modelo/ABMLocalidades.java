@@ -2,6 +2,7 @@ package com.mycompany.app.modelo;
 
 
 import com.mycompany.app.dto.LocalidadDTO;
+import com.mycompany.app.negocio.Main;
 import com.mycompany.app.persistencia.dao.interfaz.DAO;
 import com.mycompany.app.persistencia.dao.mysql.LocalidadDAOImpl;
 
@@ -21,6 +22,9 @@ public class ABMLocalidades
 	{
 		Localidad.insert(nuevaLocalidad);
 	}
+
+	public void editarLocalidad(LocalidadDTO nuevaLocalidad) {Localidad.update(nuevaLocalidad);
+		Main.refreshAgenda(); }
 
 
 

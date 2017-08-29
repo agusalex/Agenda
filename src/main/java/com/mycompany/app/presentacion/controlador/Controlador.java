@@ -167,6 +167,7 @@ public class Controlador implements ActionListener
 
 
 				if(this.ventanaPersona.allFieldsChecked()) {
+
 					PersonaDTO persona = new PersonaDTO();
 					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
 
@@ -219,6 +220,7 @@ public class Controlador implements ActionListener
 
 			nuevaPersona.setNombre(ventanaPersona.getTxtNombre().getText());
 
+
 			String telefono = ventanaPersona.getTxtTelefono().getText();
 			String nombreCalle = ventanaPersona.getTxtCalle().getText();
 			String altura = null;
@@ -262,4 +264,9 @@ public class Controlador implements ActionListener
 		}
 
 
+	public void refresh() {
+		this.llenarTabla();
+
+
+	}
 }

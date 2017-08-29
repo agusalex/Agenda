@@ -493,16 +493,10 @@ public class VentanaPersona extends JFrame
 			passed = false;
 			this.showErrorMessage(fields, errorMessages, 0);
 			System.out.println("nombre no puede ser vacio");
-		}
-		else if(!fieldValues[0].equals("")){
-			if (!Utils.matchesRegex(Utils.REGEX_NAME,fieldValues[0])) {
-				passed = false;
-				this.showErrorMessage(fields, errorMessages, 0);
-				System.out.println(fieldValues[0] + " es invalido");
-			}
+
 		}
 
-		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("")) {
+		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("") ) {
 			passed = false;
 			this.showErrorMessage(fields,errorMessages,1);
 			System.out.println(fieldValues[1]+ " es invalido");

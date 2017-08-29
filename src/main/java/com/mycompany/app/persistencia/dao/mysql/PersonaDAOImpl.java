@@ -25,12 +25,15 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM Personas";
 
-	private enum TipoInsert{
-		INSERT, INSERT_NOFK,INSERT_ETIQUETA,INSERT_LOCALIDAD
-	}
+
+
 
 
 	private static final Conexion conexion = Conexion.getConexion();
+
+
+
+
 
 
 	public boolean insert(PersonaDTO persona)
@@ -99,7 +102,10 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		return false;
 	}
 
-
+	@Override
+	public boolean update(PersonaDTO objeto) {
+		return false;
+	}
 
 
 	public boolean delete(PersonaDTO persona_a_eliminar)

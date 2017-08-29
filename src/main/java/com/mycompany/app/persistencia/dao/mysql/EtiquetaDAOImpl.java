@@ -18,12 +18,45 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 
 
 	private static final String insert = "INSERT INTO Etiquetas(idEtiqueta, nombre_Etiqueta) VALUES(? ,?)";
+	private static final String update = "UPDATE Etiquetas SET nombre_Etiqueta=? WHERE idEtiqueta=?";
 	private static final String delete = "DELETE FROM Etiquetas WHERE idEtiqueta = ?";
 	private static final String readall = "SELECT * FROM Etiquetas";
 
 
 	private static final Conexion conexion = Conexion.getConexion();
-	
+
+
+	public boolean update(EtiquetaDTO Etiqueta)
+	{
+		PreparedStatement statement=null;
+
+		try
+		{
+
+			statement = conexion.getSQLConexion().prepareStatement(update);
+
+			statement.setString(1, Etiqueta.getNombre());
+			statement.setInt(2, Etiqueta.getIdEtiqueta());
+
+
+
+
+			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
+				return true;
+		}
+		catch (SQLException e)
+		{
+			if(statement!=null)
+				System.out.println("error en la Sentencia SQL= "+statement.toString());
+			e.printStackTrace();
+		}
+		finally //Se ejecuta siempre
+		{
+			conexion.cerrarConexion();
+		}
+		return false;
+	}
+
 	public boolean insert(EtiquetaDTO Etiqueta)
 	{
 		PreparedStatement statement=null;

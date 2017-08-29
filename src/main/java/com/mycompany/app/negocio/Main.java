@@ -8,11 +8,31 @@ import com.mycompany.app.presentacion.vista.Vista;
 public class Main
 {
 
-	public static void main(String[] args) 
-	{
-		Vista vista = new Vista();
-		Agenda modelo = new Agenda();
-		Controlador controlador = new Controlador(vista, modelo);
+
+	private static Controlador controlador;
+	private static Vista vista;
+	private static Agenda modelo;
+	private static Main main;
+
+
+	public static Main getMain() {
+		return main;
+	}
+
+	private Main(){
+		vista = new Vista();
+		modelo = new Agenda();
+		controlador = new Controlador(vista, modelo);
 		controlador.inicializar();
 	}
+	public static void main(String[] args)
+	{
+		Main.main=new Main();
+	}
+
+	public static void refreshAgenda(){
+		controlador.refresh();
+	}
+
+
 }

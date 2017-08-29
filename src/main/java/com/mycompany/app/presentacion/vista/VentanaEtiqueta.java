@@ -107,7 +107,7 @@ public class VentanaEtiqueta extends JFrame
 			return false;
 		}
 		else{
-			if(!Utils.matchesRegex(Utils.REGEX_NAME,txtNombre.getText())) {
+			if(txtNombre.getText().length()>14) {
 				this.showErrorMessage();
 				return false;
 			}
