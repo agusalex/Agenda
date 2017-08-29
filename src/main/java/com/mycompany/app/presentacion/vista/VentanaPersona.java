@@ -487,24 +487,24 @@ public class VentanaPersona extends JFrame
 		JTextField [] fields = this.getFields();
 		String [] errorMessages = this.errorMessages();
 
-		if(!(fieldValues[0].equals("")) && !(fieldValues[0].length()>44)) {
+		if(((fieldValues[0].equals("")))) {
 			passed = false;
 			this.setRedBorder(fields, errorMessages, 0);
 			System.out.println("nombre no puede ser vacio");
 
 		}
 
-		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("") && !(fieldValues[1].length()>44) ) {
+		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("") ) {
 			passed = false;
 			this.setRedBorder(fields,errorMessages,1);
 			System.out.println(fieldValues[1]+ " es invalido");
 		}
-		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NAME,fieldValues[2]) && !fieldValues[2].equals("") && !(fieldValues[2].length()>44)) {
+		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NAME,fieldValues[2]) && !fieldValues[2].equals("")) {
 			passed = false;
 			this.setRedBorder(fields,errorMessages,2);
 			System.out.println(fieldValues[2]+ " es invalido");
 		}
-		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NUMBER,fieldValues[3]) && !fieldValues[3].equals("") && !(fieldValues[3].length()>44)) {
+		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NUMBER,fieldValues[3]) && !fieldValues[3].equals("")) {
 			passed = false;
 			this.setRedBorder(fields,errorMessages,3);
 			System.out.println(fieldValues[3]+ " es invalido");
@@ -512,14 +512,15 @@ public class VentanaPersona extends JFrame
 
 
 
-		if (!Utils.matchesRegex(Utils.REGEX_EMAIL,fieldValues[6]) && !fieldValues[6].equals("") && !(fieldValues[4].length()>44)) {
+		if (!Utils.matchesRegex(Utils.REGEX_EMAIL,fieldValues[6]) && !fieldValues[6].equals("") ) {
 			passed = false;
 			this.setRedBorder(fields,errorMessages,6);
 			System.out.println(fieldValues[6]+ " es invalido");
 		}
 
 
-	    showError("Campos Invalidos");
+	    if (!passed)
+	    	showError("Campos Invalidos");
 
 		return passed;
 
