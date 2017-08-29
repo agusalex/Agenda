@@ -27,13 +27,14 @@ public class Vista
 	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
+	private JButton btnReporteMail;
 	private JButton btnEtiquetas;
 	private JButton btnLocalidades;
 	private static final int WIDTH=1000;
 	private static final int HEIGHT=600;
 
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"};
 
 	public Vista() 
 	{
@@ -99,6 +100,10 @@ public class Vista
 		btnLocalidades.setBounds(510, HEIGHT-60, 105, 23);
 		panel.add(btnLocalidades);
 
+		btnReporteMail = new JButton("Reporte Mail");
+		btnReporteMail.setBounds(625, HEIGHT-60, 125, 23);
+		panel.add(btnReporteMail);
+
 	}
 	
 	public void show()
@@ -139,4 +144,7 @@ public class Vista
 	public JButton getBtnEtiquetas() { return btnEtiquetas; }
 
 	public JButton getBtnLocalidades() { return btnLocalidades; }
+
+	public JButton getBtnReporteMail() { return btnReporteMail; }
+
 }

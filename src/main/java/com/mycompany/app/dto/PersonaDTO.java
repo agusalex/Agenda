@@ -129,7 +129,6 @@ public class PersonaDTO {
 			for (int j = i; j < this.email.length(); j++) {
 				this.mailServer += this.email.charAt(j);
 			}
-			System.out.println("servidor de " + this.getNombre() + " : " + this.mailServer);
 		}
 	}
 

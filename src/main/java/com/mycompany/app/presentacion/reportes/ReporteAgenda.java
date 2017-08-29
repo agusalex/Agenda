@@ -24,14 +24,14 @@ public class ReporteAgenda
 	private JasperPrint reporteLleno;
 	
 	//Recibe la lista de personas para armar el reporte
-    public ReporteAgenda(List<PersonaDTO> personas)
+    public ReporteAgenda(List<PersonaDTO> personas, String reportToOpen)
     {
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		{
     		
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes"+ File.separator+"MailReport.jasper" );
+			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( reportToOpen );
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap,
 					new JRBeanCollectionDataSource(personas));
 		}

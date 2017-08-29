@@ -2,6 +2,7 @@ package com.mycompany.app.presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,6 +47,7 @@ public class Controlador implements ActionListener
 			this.vista.getBtnReporte().addActionListener(this);
 			this.vista.getBtnEtiquetas().addActionListener(this);
 			this.vista.getBtnLocalidades().addActionListener(this);
+			this.vista.getBtnReporteMail().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
 		}
@@ -79,7 +81,7 @@ public class Controlador implements ActionListener
 			this.personas_en_tabla = agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento(), this.personas_en_tabla.get(i).getLocalidad(),this.personas_en_tabla.get(i).getEtiqueta()};
+				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento(), this.personas_en_tabla.get(i).getLocalidad(),this.personas_en_tabla.get(i).getEtiqueta(),this.personas_en_tabla.get(i).getEmail()};
 				this.vista.getModelPersonas().addRow(fila);
 			}
 			this.vista.show();
@@ -138,9 +140,15 @@ public class Controlador implements ActionListener
 			}
 			else if(e.getSource() == this.vista.getBtnReporte())
 			{				
-				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
+				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas(), "reportes"+ File.separator+"ReporteAgenda.jasper");
 				reporte.mostrar();				
 			}
+
+			else if(e.getSource() == this.vista.getBtnReporteMail()){
+				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas(), "reportes"+ File.separator+"MailReport.jasper");
+				reporte.mostrar();
+			}
+
 		    else if(e.getSource() == this.ventanaPersona.getBtnAgregarPersona())
 			{
 				if(this.ventanaPersona.allFieldsChecked()) {
