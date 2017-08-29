@@ -145,7 +145,7 @@ public class VentanaLocalidad extends JFrame
 			return false;
 		}
 		else{
-			if(!Utils.matchesRegex(Utils.REGEX_NAME,txtNombre.getText())) {
+			if(txtNombre.getText().length()>44) {
 				this.showErrorMessage();
 				return false;
 			}
