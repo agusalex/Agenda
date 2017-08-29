@@ -71,6 +71,11 @@ public class VentanaLocalidad extends JFrame
 		panel.add(btnGuardarLocalidad);
 
 		this.setVisible(true);
+		try{ImageIcon img = new ImageIcon("addpicon.png");
+			this.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
 		
 		
 		
@@ -109,6 +114,14 @@ public class VentanaLocalidad extends JFrame
 		btnAgregarLocalidad.addActionListener(this.controlador);
 		btnAgregarLocalidad.setBounds(208, 92, 89, 23);
 		panel.add(btnAgregarLocalidad);
+
+		this.setVisible(true);
+		try{ImageIcon img = new ImageIcon("addcicon.png");
+			this.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
+
 
 		this.setVisible(true);
 	}

@@ -6,6 +6,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -16,6 +17,7 @@ import com.mycompany.app.dto.PersonaDTO;
 import com.mycompany.app.modelo.ABMEtiquetas;
 import com.mycompany.app.modelo.ABMLocalidades;
 import com.mycompany.app.modelo.Agenda;
+import com.mycompany.app.negocio.Utils;
 import com.mycompany.app.presentacion.reportes.ReporteAgenda;
 import com.mycompany.app.presentacion.vista.VentanaPersona;
 import com.mycompany.app.presentacion.vista.Vista;
@@ -81,7 +83,15 @@ public class Controlador implements ActionListener
 			this.personas_en_tabla = agenda.obtenerPersonas();
 			for (int i = 0; i < this.personas_en_tabla.size(); i ++)
 			{
-				Object[] fila = {this.personas_en_tabla.get(i).getNombre(), this.personas_en_tabla.get(i).getTelefono(),this.personas_en_tabla.get(i).getCalle(),this.personas_en_tabla.get(i).getAltura(),this.personas_en_tabla.get(i).getPiso(),this.personas_en_tabla.get(i).getDepartamento(), this.personas_en_tabla.get(i).getLocalidad(),this.personas_en_tabla.get(i).getEtiqueta(),this.personas_en_tabla.get(i).getEmail()};
+				Object[] fila = {this.personas_en_tabla.get(i).getNombre(),
+						this.personas_en_tabla.get(i).getTelefono(),
+						this.personas_en_tabla.get(i).getCalle(),
+						this.personas_en_tabla.get(i).getAltura(),
+						this.personas_en_tabla.get(i).getPiso(),
+						this.personas_en_tabla.get(i).getDepartamento(),
+						this.personas_en_tabla.get(i).getLocalidad(),
+						this.personas_en_tabla.get(i).getEtiqueta(),
+						this.personas_en_tabla.get(i).getEmail(), this.personas_en_tabla.get(i).getFechaNacimmiento()};
 				this.vista.getModelPersonas().addRow(fila);
 			}
 			this.vista.show();
@@ -276,9 +286,11 @@ public class Controlador implements ActionListener
 				nuevaPersona.setEmail(email);
 				nuevaPersona.setMailServer();
 			}
-			nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
 
 
+			if(!esHoy(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10))){
+				nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
+			}
 
 			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
 			String Etiqueta=(String)ventanaPersona.getEtiqueta().getSelectedItem();
@@ -293,6 +305,15 @@ public class Controlador implements ActionListener
 
 		}
 
+
+		public boolean esHoy(String fechaString){
+
+			Date now=Utils.datefromString(Instant.now().toString().substring(0,10));
+			Date fecha=Utils.datefromString(fechaString);
+			return now.equals(fecha);
+
+
+		}
 
 	public void refresh() {
 		this.llenarTabla();

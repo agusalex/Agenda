@@ -54,7 +54,14 @@ public class VentanaEtiqueta extends JFrame
 		btnAgregarEtiqueta.setBounds(208, 92, 89, 23);
 		panel.add(btnAgregarEtiqueta);
 
+
+
 		this.setVisible(true);
+		try{ImageIcon img = new ImageIcon("addticon.png");
+			this.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
 	}
 
 	public VentanaEtiqueta(ControladorEtiqueta controlador, EtiquetaDTO etiquetaDTO) {
@@ -91,6 +98,11 @@ public class VentanaEtiqueta extends JFrame
 		panel.add(btnGuardarEtiqueta);
 
 		this.setVisible(true);
+		try{ImageIcon img = new ImageIcon("addpicon.png");
+			this.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
 	}
 
 	private void showErrorMessage(){

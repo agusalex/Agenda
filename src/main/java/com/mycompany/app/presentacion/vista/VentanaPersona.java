@@ -85,23 +85,7 @@ public class VentanaPersona extends JFrame
 	}
 
 
-	public java.util.Date fromString(String dateInString){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-
-		try {
-
-			Date date = formatter.parse(dateInString);
-			System.out.println(date);
-			System.out.println(formatter.format(date));
-			return date;
-
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 	public VentanaPersona(Controlador controlador)
 {
@@ -240,6 +224,17 @@ public class VentanaPersona extends JFrame
 	panel.add(btnAgregarPersona);
 
 	this.setVisible(true);
+
+
+
+	try{ImageIcon img = new ImageIcon("addpicon.png");
+		this.setIconImage(img.getImage());}
+	catch (Exception e){
+		System.out.println("Error al cargar el icono:"+e.toString());
+	}
+
+
+
 }
 
 	public JButton getBtnGuardarPersona() {
@@ -367,23 +362,25 @@ public class VentanaPersona extends JFrame
 		fechaNacimiento.setBounds(0, 0, 200, 200);
 		panelFecha.add(fechaNacimiento);
 
-		if(personaDTO.getFechaNacimmiento()!=null)
-
-
-			calendario.setDate(fromString(personaDTO.getFechaNacimmiento()));
+		if(personaDTO.getFechaNacimmiento()!=null) {
+			Date date=Utils.datefromString(personaDTO.getFechaNacimmiento());
+			if ( date!= null) {
+				calendario.setDate(date);
+			}
+	}
 
 		panel.add(panelFecha);
 
 
-		Localidad = new JComboBox<String>();
+	Localidad = new JComboBox<String>();
 		Localidad.setBounds(133, base+350, 164, 20);
-		cargarLocalidades();
+	cargarLocalidades();
 		Localidad.setSelectedItem(personaDTO.getLocalidad().toString());
 		panel.add(Localidad);
 
-		Etiqueta = new JComboBox<String>();
+	Etiqueta = new JComboBox<String>();
 		Etiqueta.setBounds(133, base+400, 164, 20);
-		cargarEtiquetas();
+	cargarEtiquetas();
 		Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
 		panel.add(Etiqueta);
 
@@ -394,12 +391,22 @@ public class VentanaPersona extends JFrame
 
 
 		this.setVisible(true);
+		try{ImageIcon img = new ImageIcon("addpicon.png");
+			this.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
 	}
+
+
+
 
 	public JTextField getTxtNombre()
 	{
 		return txtNombre;
 	}
+
+
 
 
 	public void cargarLocalidades(){
@@ -453,18 +460,6 @@ public class VentanaPersona extends JFrame
 		return fieldValues;
 	}
 
-
-	/*public String [] errorMessages(){
-		String[] errorMessages = {  "Nombre con caracteres invalidos",
-									"Telefono con caracteres invalidos",
-									"Nombre de calle con caracteres invalidos",
-									"Numero de calle con caracteres invalidos",
-								    "Numero de piso con caracteres invalidos",
-				 					"numero de dpto con caracteres invalidos",
-									"formato de mail invalido",
-		};
-		return errorMessages;
-	}*/
 
 	private void setRedBorder(JTextField[] fields,int index){
 		JTextField field = fields[index];

@@ -1,4 +1,7 @@
 package com.mycompany.app.negocio;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,8 +42,23 @@ public class Utils {
         return false;
     }
 
+    public static java.util.Date datefromString(String dateInString){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        if(dateInString==null ||dateInString.equals(""))
+            return null;
+        try {
+
+            Date date = formatter.parse(dateInString);
+
+            return date;
 
 
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public static boolean isPercentageMatch(String candidate,String keyword,int threshold){
 
         String trimmedCandidate=trimCandidate(candidate,keyword,4);

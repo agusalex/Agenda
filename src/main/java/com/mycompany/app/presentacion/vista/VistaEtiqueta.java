@@ -60,6 +60,12 @@ public class VistaEtiqueta
 		btnBorrar.setBounds(208, 228, 89, 23);
 		panel.add(btnBorrar);
 
+		try{ImageIcon img = new ImageIcon("ticon.png");
+			frame.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
+
 	}
 	
 	public void show()

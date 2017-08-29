@@ -30,7 +30,7 @@ public class Vista
 	private static final int HEIGHT=600;
 	private JPanel panel;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"," Cumpleaños"};
 
 	public Vista() 
 	{
@@ -99,9 +99,22 @@ public class Vista
 
 
 		btnReporteMail = new JButton("Reporte Mail");
-		btnReporteMail.setBounds(625, HEIGHT-60, 125, 23);
+		btnReporteMail.setBounds(642, HEIGHT-60, 110, 23);
 		panel.add(btnReporteMail);
 
+		addIcon("icon.png");
+
+
+
+	}
+
+	public void addIcon(String location){
+
+		try{ImageIcon img = new ImageIcon(location);
+		frame.setIconImage(img.getImage());}
+		catch (Exception e){
+			System.out.println("Error al cargar el icono:"+e.toString());
+		}
 	}
 
 
