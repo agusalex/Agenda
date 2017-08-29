@@ -18,14 +18,16 @@ public class Agenda
 
 
 	
-	public void agregarPersona(PersonaDTO nuevaPersona)
+	public boolean agregarPersona(PersonaDTO nuevaPersona)
 	{
-		persona.insert(nuevaPersona);
-	}
 
-	public void borrarPersona(PersonaDTO persona_a_eliminar) 
+        return persona.insert(nuevaPersona);
+    }
+
+	public boolean borrarPersona(PersonaDTO persona_a_eliminar)
 	{
-		persona.delete(persona_a_eliminar);
+
+		return persona.delete(persona_a_eliminar);
 	}
 	
 	public List<PersonaDTO> obtenerPersonas()

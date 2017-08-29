@@ -138,6 +138,7 @@ public class VentanaLocalidad extends JFrame
 		this.txtNombre.setBorder(BorderFactory.createLineBorder(Color.decode("#000000")));
 	}
 
+
 	public boolean checkNameField(){
 		this.restoreFieldsColor();
 		if(this.txtNombre.equals("")) {

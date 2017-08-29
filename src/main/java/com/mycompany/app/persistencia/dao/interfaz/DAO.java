@@ -19,4 +19,5 @@ public interface DAO<T>
 	public List<T> readAll();
 
 
+
 }

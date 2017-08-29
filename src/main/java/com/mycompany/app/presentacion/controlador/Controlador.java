@@ -109,6 +109,8 @@ public class Controlador implements ActionListener
 				this.ventanaPersona = new VentanaPersona(this);
 
 
+
+
 			}
 
 			else if(e.getSource() == this.vista.getBtnEditar())
@@ -132,7 +134,12 @@ public class Controlador implements ActionListener
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 				for (int fila:filas_seleccionadas)
 				{
-					this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
+					boolean borrar=this.agenda.borrarPersona(this.personas_en_tabla.get(fila));
+					if(!borrar){
+						vista.showError("Error al eliminar la Persona!");
+					}
+
+
 				}
 				
 				this.llenarTabla();
@@ -145,6 +152,7 @@ public class Controlador implements ActionListener
 			}
 
 			else if(e.getSource() == this.vista.getBtnReporteMail()){
+
 				ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas(), "reportes"+ File.separator+"MailReport.jasper");
 				reporte.mostrar();
 			}
@@ -156,7 +164,11 @@ public class Controlador implements ActionListener
 					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
 
 					//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
-					this.agenda.agregarPersona(nuevaPersona);
+					boolean agregar=this.agenda.agregarPersona(nuevaPersona);
+
+					if(!agregar){
+						vista.showError("Error al agregar la persona!");
+					}
 					this.llenarTabla();
 					this.ventanaPersona.dispose();
 				}
@@ -171,10 +183,17 @@ public class Controlador implements ActionListener
 					PersonaDTO persona = new PersonaDTO();
 					PersonaDTO nuevaPersona = cargarDatosPersona(persona);
 
-					this.agenda.borrarPersona(BKP);
-					//	 nuevaPersona = new PersonaDTO(0,this.ventanaPersona.getTxtNombre().getText(), ventanaPersona.getTxtTelefono().getText());
+
+					boolean borrar=this.agenda.borrarPersona(BKP);
+
 					nuevaPersona.setIdPersona(BKP.getIdPersona());
-					this.agenda.agregarPersona(nuevaPersona);
+
+					boolean agregar=this.agenda.agregarPersona(nuevaPersona);
+
+					if(!agregar||!borrar){
+						vista.showError("Error error al editar la persona!");
+					}
+
 					this.llenarTabla();
 					this.ventanaPersona.dispose();
 				}

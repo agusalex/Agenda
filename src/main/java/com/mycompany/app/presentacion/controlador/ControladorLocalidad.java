@@ -101,8 +101,11 @@ public class ControladorLocalidad implements ActionListener
 				int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
 				for (int fila:filas_seleccionadas)
 				{
-					this.ABMLocalidades.borrarLocalidad(this.Localidades_en_tabla.get(fila));
+					boolean borrar=this.ABMLocalidades.borrarLocalidad(this.Localidades_en_tabla.get(fila));
+					if(!borrar)
+							this.vista.showError("Error al borrar la Localidad!\n Es probable que este en uso...");
 				}
+
 				
 				this.llenarTabla();
 				
@@ -113,7 +116,9 @@ public class ControladorLocalidad implements ActionListener
 
 				if(this.ventanaLocalidad.checkNameField()) {
 					LocalidadDTO Localidad = new LocalidadDTO(0, this.ventanaLocalidad.getTxtNombre().getText());
-					this.ABMLocalidades.agregarLocalidad(Localidad);
+					boolean agregar=this.ABMLocalidades.agregarLocalidad(Localidad);
+					if(!agregar)
+						this.vista.showError("Error al agregar la Localidad!");
 					this.llenarTabla();
 					this.ventanaLocalidad.dispose();
 				}
@@ -128,7 +133,9 @@ public class ControladorLocalidad implements ActionListener
 
 				if(this.ventanaLocalidad.checkNameField()) {
 
-					this.ABMLocalidades.editarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(), ventanaLocalidad.getTxtNombre().getText()));
+					boolean editar=this.ABMLocalidades.editarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(), ventanaLocalidad.getTxtNombre().getText()));
+					if(!editar)
+						this.vista.showError("Error al editar la Localidad!");
 					BKP = null;
 					this.llenarTabla();
 					this.ventanaLocalidad.dispose();

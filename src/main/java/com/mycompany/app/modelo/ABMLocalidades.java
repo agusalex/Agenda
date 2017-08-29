@@ -18,19 +18,25 @@ public class ABMLocalidades
 		Localidad = new LocalidadDAOImpl();
 	}
 
-	public void agregarLocalidad(LocalidadDTO nuevaLocalidad)
+	public boolean agregarLocalidad(LocalidadDTO nuevaLocalidad)
 	{
-		Localidad.insert(nuevaLocalidad);
+		return Localidad.insert(nuevaLocalidad);
 	}
 
-	public void editarLocalidad(LocalidadDTO nuevaLocalidad) {Localidad.update(nuevaLocalidad);
-		Main.refreshAgenda(); }
+	public boolean editarLocalidad(LocalidadDTO nuevaLocalidad) {
+
+		boolean ret=Localidad.update(nuevaLocalidad);
+		Main.refreshAgenda();
+		return ret;
+	}
 
 
 
-	public void borrarLocalidad(LocalidadDTO Localidad_a_eliminar)
+	public boolean borrarLocalidad(LocalidadDTO Localidad_a_eliminar)
 	{
-		Localidad.delete(Localidad_a_eliminar);
+
+
+		return Localidad.delete(Localidad_a_eliminar);
 	}
 
 	public List<LocalidadDTO> obtenerLocalidades()

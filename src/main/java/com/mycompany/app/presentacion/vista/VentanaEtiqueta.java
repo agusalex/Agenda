@@ -20,6 +20,7 @@ public class VentanaEtiqueta extends JFrame
 	private JButton btnAgregarEtiqueta;
 	private ControladorEtiqueta controlador;
 
+
 	public VentanaEtiqueta(ControladorEtiqueta controlador)
 	{
 		super();
@@ -114,6 +115,7 @@ public class VentanaEtiqueta extends JFrame
 		}
 		return true;
 	}
+
 
 	public JTextField getTxtNombre()
 	{

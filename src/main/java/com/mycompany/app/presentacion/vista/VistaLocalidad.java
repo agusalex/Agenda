@@ -13,6 +13,7 @@ public class VistaLocalidad
 	private JButton btnEditar;
 	private DefaultTableModel modelLocalidades;
 	private  String[] nombreColumnas = {"Nombre"};
+	private JPanel panel;
 
 	public VistaLocalidad() 
 	{
@@ -28,7 +29,7 @@ public class VistaLocalidad
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -92,5 +93,7 @@ public class VistaLocalidad
 		return nombreColumnas;
 	}
 
-
+	public void showError(String msj){
+		JOptionPane.showMessageDialog(frame,msj);
+	}
 }

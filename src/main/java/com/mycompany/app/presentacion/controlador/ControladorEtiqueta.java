@@ -98,7 +98,9 @@ public class ControladorEtiqueta implements ActionListener
 				for (int fila:filas_seleccionadas)
 				{
 
-					this.ABMEtiquetas.borrarEtiqueta(this.Etiquetas_en_tabla.get(fila));
+					boolean borrar=this.ABMEtiquetas.borrarEtiqueta(this.Etiquetas_en_tabla.get(fila));
+					if(!borrar)
+						this.vista.showError("Error al borrar la Etiqueta!\n Es probable que este en uso...");
 
 				}
 				
@@ -113,7 +115,10 @@ public class ControladorEtiqueta implements ActionListener
 				if(this.ventanaEtiqueta.checkNameField()) {
 					EtiquetaDTO Etiqueta = new EtiquetaDTO(0, this.ventanaEtiqueta.getTxtNombre().getText());
 
-					this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
+					boolean agregar=this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
+					if(!agregar)
+						this.vista.showError("Error al agregar la etiqueta!");
+
 					this.llenarTabla();
 					this.ventanaEtiqueta.dispose();
 				}
@@ -123,7 +128,10 @@ public class ControladorEtiqueta implements ActionListener
 			else if(e.getSource() == this.ventanaEtiqueta.getBtnGuardarEtiqueta())
 			{
 
-				this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
+				boolean editar=this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
+				if(!editar)
+					this.vista.showError("Error al editar la etiqueta!");
+
 
 				if(this.ventanaEtiqueta.checkNameField()) {
 					this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));

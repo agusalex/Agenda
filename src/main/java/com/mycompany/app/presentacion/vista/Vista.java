@@ -3,10 +3,7 @@ package com.mycompany.app.presentacion.vista;
 import com.mycompany.app.modelo.ABMEtiquetas;
 import com.mycompany.app.presentacion.controlador.ControladorEtiqueta;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
@@ -32,7 +29,7 @@ public class Vista
 	private JButton btnLocalidades;
 	private static final int WIDTH=1000;
 	private static final int HEIGHT=600;
-
+	private JPanel panel;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"};
 
@@ -55,7 +52,7 @@ public class Vista
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, WIDTH, HEIGHT);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -88,24 +85,43 @@ public class Vista
 		btnBorrar.setBounds(208, HEIGHT-60, 89, 23);
 		panel.add(btnBorrar);
 		
-		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, HEIGHT-60, 92, 23);
-		panel.add(btnReporte);
 
-		btnEtiquetas = new JButton("Tags");
-		btnEtiquetas.setBounds(409, HEIGHT-60, 89, 23);
+		btnEtiquetas = new JButton("Etiquetas");
+		btnEtiquetas.setBounds(307, HEIGHT-60, 89, 23);
 		panel.add(btnEtiquetas);
 
-		btnLocalidades = new JButton("Localidad");
-		btnLocalidades.setBounds(510, HEIGHT-60, 105, 23);
+		btnLocalidades = new JButton("Localidades");
+		btnLocalidades.setBounds(409, HEIGHT-60, 105, 23);
 		panel.add(btnLocalidades);
+
+		btnReporte = new JButton("Reporte");
+		btnReporte.setBounds(550, HEIGHT-60, 92, 23);
+		panel.add(btnReporte);
+
 
 		btnReporteMail = new JButton("Reporte Mail");
 		btnReporteMail.setBounds(625, HEIGHT-60, 125, 23);
 		panel.add(btnReporteMail);
 
 	}
-	
+
+
+	public void bloquearBotonesEdicion(){
+		btnEditar.setEnabled(false);
+		btnAgregar.setEnabled(false);
+		btnBorrar.setEnabled(false);
+	}
+	public void desbloquearBotonesEdicion(){
+		btnEditar.setEnabled(true);
+		btnAgregar.setEnabled(true);
+		btnBorrar.setEnabled(true);
+	}
+
+	public void showError(String msj){
+		JOptionPane.showMessageDialog(panel,msj);
+	}
+
+
 	public void show()
 	{
 		this.frame.setVisible(true);

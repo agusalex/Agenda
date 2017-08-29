@@ -26,6 +26,11 @@ public class ReporteAgenda
 	//Recibe la lista de personas para armar el reporte
     public ReporteAgenda(List<PersonaDTO> personas, String reportToOpen)
     {
+
+
+    	if(personas==null||personas.isEmpty()){
+
+		}
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		

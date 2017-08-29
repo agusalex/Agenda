@@ -66,7 +66,11 @@ public class VistaEtiqueta
 	{
 		this.frame.setVisible(true);
 	}
-	
+	public void showError(String msj){
+		JOptionPane.showMessageDialog(frame,msj);
+	}
+
+
 	public JButton getBtnAgregarEtiqueta()
 	{
 		return btnAgregarEtiqueta;

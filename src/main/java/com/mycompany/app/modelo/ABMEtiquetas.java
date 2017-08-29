@@ -18,20 +18,24 @@ public class ABMEtiquetas
 		etiqueta = new EtiquetaDAOImpl();
 	}
 
-	public void agregarEtiqueta(EtiquetaDTO nuevaEtiqueta)
+	public boolean agregarEtiqueta(EtiquetaDTO nuevaEtiqueta)
 	{
-		etiqueta.insert(nuevaEtiqueta);
+		return etiqueta.insert(nuevaEtiqueta);
 
 	}
 
-	public void editarEtiqueta(EtiquetaDTO nuevaEtiqueta) {etiqueta.update(nuevaEtiqueta);
-		Main.refreshAgenda();}
+	public boolean editarEtiqueta(EtiquetaDTO nuevaEtiqueta) {
+		boolean ret=etiqueta.update(nuevaEtiqueta);
+
+		Main.refreshAgenda();
+	return ret;}
 
 
-	public void borrarEtiqueta(EtiquetaDTO etiqueta_a_eliminar)
+	public boolean borrarEtiqueta(EtiquetaDTO etiqueta_a_eliminar)
 	{
 
-		etiqueta.delete(etiqueta_a_eliminar);
+
+		return etiqueta.delete(etiqueta_a_eliminar);
 	}
 
 
