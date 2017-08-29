@@ -15,6 +15,7 @@ import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class VentanaPersona extends JFrame
@@ -107,7 +108,7 @@ public class VentanaPersona extends JFrame
 
 	int base=10;
 
-	JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
+	JLabel lblNombreYApellido = new JLabel("Nombre y apellido *");
 	lblNombreYApellido.setBounds(10,base+0 , 113, 14);
 	panel.add(lblNombreYApellido);
 
@@ -207,6 +208,8 @@ public class VentanaPersona extends JFrame
 	panelFecha.add(fechaNacimiento);
 	panel.add(panelFecha);
 
+	calendario.setLocale(new Locale("es", "AR"));
+
 
 	Localidad = new JComboBox<String>();
 	Localidad.setBounds(133, base+350, 164, 20);
@@ -262,7 +265,7 @@ public class VentanaPersona extends JFrame
 
 		int base=10;
 
-		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
+		JLabel lblNombreYApellido = new JLabel("Nombre y apellido *");
 		lblNombreYApellido.setBounds(10,base+0 , 113, 14);
 		panel.add(lblNombreYApellido);
 
