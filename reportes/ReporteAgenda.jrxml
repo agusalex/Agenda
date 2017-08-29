@@ -176,10 +176,10 @@
 					<text><![CDATA[Fecha Nac]]></text>
 				</staticText>
 				<rectangle>
-					<reportElement x="940" y="0" width="100" height="20" backcolor="#716ED4" uuid="ae286d0a-ed17-4b65-8f8c-d8d2fa529e7f"/>
+					<reportElement x="940" y="0" width="200" height="20" backcolor="#716ED4" uuid="ae286d0a-ed17-4b65-8f8c-d8d2fa529e7f"/>
 				</rectangle>
 				<staticText>
-					<reportElement x="940" y="0" width="100" height="20" uuid="e2352ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<reportElement x="940" y="0" width="200" height="20" uuid="e2352ea3-811b-43d8-ae6b-e9b261b705f9"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
@@ -227,7 +227,7 @@
 				<textFieldExpression><![CDATA[$F{fechaNacimmiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="940" y="1" width="100" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
+				<reportElement x="940" y="1" width="200" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 		</band>
