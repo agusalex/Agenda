@@ -487,7 +487,7 @@ public class VentanaPersona extends JFrame
 		JTextField [] fields = this.getFields();
 		String [] errorMessages = this.errorMessages();
 
-		if(!(fieldValues[0].equals("")) && !(fieldValues[1].length()>44)) {
+		if(!(fieldValues[0].equals("")) && !(fieldValues[0].length()>44)) {
 			passed = false;
 			this.setRedBorder(fields, errorMessages, 0);
 			System.out.println("nombre no puede ser vacio");

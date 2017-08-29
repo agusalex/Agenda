@@ -85,6 +85,17 @@ public class Controlador implements ActionListener
 				this.vista.getModelPersonas().addRow(fila);
 			}
 			this.vista.show();
+			if(this.personas_en_tabla.size()==0){
+				this.vista.getBtnReporte().setEnabled(false);
+				this.vista.getBtnReporteMail().setEnabled(false);
+			}
+			else{
+				this.vista.getBtnReporte().setEnabled(true);
+				this.vista.getBtnReporteMail().setEnabled(true);
+			}
+
+
+
 		}
 
 
