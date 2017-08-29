@@ -454,7 +454,7 @@ public class VentanaPersona extends JFrame
 	}
 
 
-	public String [] errorMessages(){
+	/*public String [] errorMessages(){
 		String[] errorMessages = {  "Nombre con caracteres invalidos",
 									"Telefono con caracteres invalidos",
 									"Nombre de calle con caracteres invalidos",
@@ -464,9 +464,9 @@ public class VentanaPersona extends JFrame
 									"formato de mail invalido",
 		};
 		return errorMessages;
-	}
+	}*/
 
-	private void setRedBorder(JTextField[] fields, String[] errorMessages, int index){
+	private void setRedBorder(JTextField[] fields,int index){
 		JTextField field = fields[index];
 		JPanel panel = new JPanel();
 		field.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
@@ -479,48 +479,71 @@ public class VentanaPersona extends JFrame
 		}
 	}
 
+	public boolean checkfieldLimits() {
+		boolean ret=true;
+		String[] values=this.getFieldValues();
+		for (int i=0;i<values.length;i++) {
+			String s=values[i];
+			if (s.length() > 44) {
+				this.setRedBorder(this.getFields(),i);
+				ret=false;
+			}
+
+		}
+         return ret;
+
+
+	}
+
+
 
 	public boolean allFieldsChecked(){
 		this.restoreFieldsColor();
 		boolean passed = true;
 		String [] fieldValues = this.getFieldValues();
 		JTextField [] fields = this.getFields();
-		String [] errorMessages = this.errorMessages();
+		String errors="";
+
+		if(checkfieldLimits()==false){
+			passed=false;
+			errors=errors+"\n Limite de Caracteres Superado en algun campo\n";
+
+		}
 
 		if(((fieldValues[0].equals("")))) {
 			passed = false;
-			this.setRedBorder(fields, errorMessages, 0);
-			System.out.println("nombre no puede ser vacio");
+			this.setRedBorder(fields, 0);
+			errors=errors+"\nSe necesita al menos un nombre para agregar una persona\n";
 
 		}
 
 		if (!Utils.matchesRegex(Utils.REGEX_CELL_PHONE,fieldValues[1]) && !fieldValues[1].equals("") ) {
 			passed = false;
-			this.setRedBorder(fields,errorMessages,1);
-			System.out.println(fieldValues[1]+ " es invalido");
+			this.setRedBorder(fields,1);
+			errors=errors+"\n- Celular Invalido";
 		}
 		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NAME,fieldValues[2]) && !fieldValues[2].equals("")) {
 			passed = false;
-			this.setRedBorder(fields,errorMessages,2);
-			System.out.println(fieldValues[2]+ " es invalido");
+			this.setRedBorder(fields,2);
+			errors=errors+"\n- Direccion Invalida";
 		}
 		if (!Utils.matchesRegex(Utils.REGEX_ADRESS_NUMBER,fieldValues[3]) && !fieldValues[3].equals("")) {
 			passed = false;
-			this.setRedBorder(fields,errorMessages,3);
-			System.out.println(fieldValues[3]+ " es invalido");
+			this.setRedBorder(fields,3);
+			errors=errors+"\n- Altura Invalida";
 		}
 
 
 
 		if (!Utils.matchesRegex(Utils.REGEX_EMAIL,fieldValues[6]) && !fieldValues[6].equals("") ) {
 			passed = false;
-			this.setRedBorder(fields,errorMessages,6);
-			System.out.println(fieldValues[6]+ " es invalido");
+			this.setRedBorder(fields,6);
+			errors=errors+"\n- E-mail Invalido";
 		}
 
 
 	    if (!passed)
-	    	showError("Campos Invalidos");
+	    	showError("Campos Invalidos:"+errors);
 
 		return passed;
 
