@@ -163,7 +163,7 @@
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
-					<text><![CDATA[Tipo]]></text>
+					<text><![CDATA[Etiqueta]]></text>
 				</staticText>
 				<rectangle>
 					<reportElement x="840" y="0" width="100" height="20" backcolor="#716ED4" uuid="ae286d0a-ed17-4b65-8f8c-d8d2fa529e7f"/>
