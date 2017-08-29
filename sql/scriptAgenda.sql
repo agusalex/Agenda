@@ -8,7 +8,7 @@ CREATE TABLE Localidades
 );
 CREATE TABLE Etiquetas(
     idEtiqueta int(11) NOT NULL AUTO_INCREMENT,
-	nombre_Etiqueta varchar(15) ,
+	nombre_Etiqueta varchar(45) ,
     PRIMARY KEY (idEtiqueta)
 );
 
@@ -16,13 +16,13 @@ CREATE TABLE Personas
 (
     idPersona int(11) NOT NULL AUTO_INCREMENT,
   Nombre varchar(45) NOT NULL,
-  Telefono varchar(20) ,
+  Telefono varchar(45) ,
   Calle varchar(45) ,
-  Altura varchar(11) ,
-  Piso varchar(11) ,
+  Altura varchar(45) ,
+  Piso varchar(45) ,
   Departamento varchar(45) ,
   Email varchar(45) ,
-  fechaNacimiento varchar(10) ,
+  fechaNacimiento varchar(45) ,
   mailServer varchar (15) ,
   idLocalidad int(11),
   idEtiqueta int(11) ,

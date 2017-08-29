@@ -6,7 +6,6 @@ import com.mycompany.app.presentacion.controlador.ControladorEtiqueta;
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.*;
