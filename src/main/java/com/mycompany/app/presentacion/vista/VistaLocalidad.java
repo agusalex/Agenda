@@ -15,7 +15,16 @@ public class VistaLocalidad
 	private  String[] nombreColumnas = {"Nombre"};
 	private JPanel panel;
 
-	public VistaLocalidad() 
+	public static VistaLocalidad getVistaLocalidad() {
+
+		if(vistaLocalidad==null)
+			vistaLocalidad=new VistaLocalidad();
+		return vistaLocalidad;
+	}
+
+	private static VistaLocalidad vistaLocalidad;
+
+	private VistaLocalidad()
 	{
 		super();
 		initialize();

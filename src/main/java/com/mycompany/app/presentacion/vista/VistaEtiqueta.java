@@ -12,13 +12,21 @@ public class VistaEtiqueta
 	private JButton btnEditar;
 	private DefaultTableModel modelEtiquetas;
 	private  String[] nombreColumnas = {"Nombre"};
+	private static VistaEtiqueta vistaEtiqueta;
 
-	public VistaEtiqueta() 
+	private VistaEtiqueta()
 	{
 		super();
 		initialize();
 	}
 
+	public static VistaEtiqueta getVistaEtiqueta() {
+		if(vistaEtiqueta==null)
+			vistaEtiqueta = new VistaEtiqueta();
+
+		return vistaEtiqueta;
+
+	}
 
 	public JButton getBtnEditar() {
 		return btnEditar;

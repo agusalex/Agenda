@@ -1,5 +1,7 @@
 package com.mycompany.app.presentacion.reportes;
 
+import com.mycompany.app.dto.EtiquetaDTO;
+import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.dto.PersonaDTO;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -22,17 +24,18 @@ public class ReporteAgenda
 	private JasperReport reporte;
 	private JasperViewer reporteViewer;
 	private JasperPrint reporteLleno;
-	
+
 	//Recibe la lista de personas para armar el reporte
     public ReporteAgenda(List<PersonaDTO> personas, String reportToOpen)
     {
 
 
-    	if(personas==null||personas.isEmpty()){
 
-		}
-    	//Hardcodeado
+
+
+		//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
+		borrarNulls(personas);
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		{
     		
@@ -45,11 +48,60 @@ public class ReporteAgenda
 			ex.printStackTrace();
 		}
     }       
-    
+
+
+
     public void mostrar()
 	{
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
 		this.reporteViewer.setVisible(true);
+	}
+
+
+
+	public void borrarNulls(List<PersonaDTO> personas){
+
+		for (PersonaDTO persona:personas
+				) {
+
+
+			if(persona.getLocalidad()==null){
+				persona.setLocalidad(new LocalidadDTO(""));
+
+
+			}
+			else if(persona.getLocalidad().getNombre()==null){
+				persona.setLocalidad(new LocalidadDTO(""));
+
+
+			}
+			else if(persona.getLocalidad().getNombre().equals("null")){
+				persona.setLocalidad(new LocalidadDTO(""));
+
+
+			}
+
+
+			if(persona.getEtiqueta()==null){
+				persona.setEtiqueta(new EtiquetaDTO(""));
+
+
+			}
+			else if(persona.getEtiqueta().getNombre()==null){
+				persona.setEtiqueta(new EtiquetaDTO(""));
+
+
+			}
+			else if(persona.getEtiqueta().getNombre().equals("null")){
+				persona.setEtiqueta(new EtiquetaDTO(""));
+
+
+			}
+
+
+		}
+
+
 	}
    
 }	

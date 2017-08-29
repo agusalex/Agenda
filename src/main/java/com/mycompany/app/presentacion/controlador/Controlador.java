@@ -112,14 +112,14 @@ public class Controlador implements ActionListener
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.vista.getBtnEtiquetas()){
-			this.vistaEtiqueta = new VistaEtiqueta();
+			this.vistaEtiqueta = VistaEtiqueta.getVistaEtiqueta();
 			ABMEtiquetas modeloet = new ABMEtiquetas();
 			ControladorEtiqueta controladoret = new ControladorEtiqueta(this.vistaEtiqueta, modeloet);
 			controladoret.inicializar();
 		}
 
 		else if(e.getSource() == this.vista.getBtnLocalidades()){
-			this.vistaLocalidad = new VistaLocalidad();
+			this.vistaLocalidad =VistaLocalidad.getVistaLocalidad();
 			ABMLocalidades modeloLo = new ABMLocalidades();
 			ControladorLocalidad controladorLo = new ControladorLocalidad(this.vistaLocalidad, modeloLo);
 			controladorLo.inicializar();
