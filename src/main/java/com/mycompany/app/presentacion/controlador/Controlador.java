@@ -265,31 +265,34 @@ public class Controlador implements ActionListener
 			String nombreCalle = ventanaPersona.getTxtCalle().getText();
 			String altura = null;
 			String piso = null;
-			if(!ventanaPersona.getTxtAltura().getText().equals(""))
+			//if(!ventanaPersona.getTxtAltura().getText().equals(""))
 				altura = ventanaPersona.getTxtAltura().getText();
-			if(!ventanaPersona.getTxtPiso().getText().equals(""))
+			//if(!ventanaPersona.getTxtPiso().getText().equals(""))
 				piso = ventanaPersona.getTxtPiso().getText();
 			String dpto = ventanaPersona.getTxtDepartamento().getText();
 			String email = ventanaPersona.getTxtEmail().getText();
 
-			if(!telefono.equals(""))
+			//if(!telefono.equals(""))
 				nuevaPersona.setTelefono(telefono);
-			if(!nombreCalle.equals(""))
+			//if(!nombreCalle.equals(""))
 				nuevaPersona.setCalle(nombreCalle);
-			if (altura != null)
+			//if (altura != null)
 				nuevaPersona.setAltura(altura);
-			if(piso != null)
+			//if(piso != null)
 				nuevaPersona.setPiso(piso);
-			if(!dpto.equals(""))
+			//if(!dpto.equals(""))
 				nuevaPersona.setDepartamento(dpto);
-			if(!email.equals("")){
+			//if(!email.equals("")){
 				nuevaPersona.setEmail(email);
-				nuevaPersona.setMailServer();
-			}
+				//nuevaPersona.setMailServer();
+			//}
 
 
 			if(!esHoy(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10))){
 				nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
+			}
+			else {
+				nuevaPersona.setFechaNacimmiento("");
 			}
 
 			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
@@ -299,6 +302,7 @@ public class Controlador implements ActionListener
 			nuevaPersona.setLocalidad(deStringaLocalidadDTO(Localidad));
 			nuevaPersona.setEtiqueta(deStringaEtiquetaDTO(Etiqueta));
 
+			System.out.println(nuevaPersona.getFechaNacimmiento());
 			return nuevaPersona;
 
 

@@ -5,15 +5,15 @@ import java.util.Date;
 
 public class PersonaDTO {
 	private int idPersona;
-	private String nombre = "";
-	private String telefono = "";
-	private String calle = "";
-	private String altura = "";
-	private String piso = "";
-	private String departamento = "";
-	private String email = "";
-	private String mailServer = "";
-	private String fechaNacimmiento = "";
+	private String nombre ;
+	private String telefono ;
+	private String calle ;
+	private String altura ;
+	private String piso ;
+	private String departamento ;
+	private String email ;
+	private String mailServer ;
+	private String fechaNacimmiento ;
 	private LocalidadDTO localidad;
 	private EtiquetaDTO etiqueta;
 
@@ -121,6 +121,7 @@ public class PersonaDTO {
 		this.telefono = telefono;
 	}
 
+	/*
 	public void setMailServer() {
 		this.mailServer = "";
 		int i = this.email.indexOf('@');
@@ -131,6 +132,6 @@ public class PersonaDTO {
 			}
 		}
 	}
-
+*/
 	public String getMailServer(){ return this.mailServer; }
 }

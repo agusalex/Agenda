@@ -186,9 +186,9 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 				personaDTO.setPiso(resultSet.getString("Piso"));
 				personaDTO.setDepartamento(resultSet.getString("Departamento"));
 				personaDTO.setEmail(resultSet.getString("Email"));
-				if(personaDTO.getEmail() != null )
-					if(!personaDTO.getEmail().equals(""))
-						personaDTO.setMailServer();
+				//if(personaDTO.getEmail() != null )
+				//	if(!personaDTO.getEmail().equals(""))
+				//		personaDTO.setMailServer();
 				personaDTO.setFechaNacimmiento(resultSet.getString("FechaNacimiento"));
 
 				int codigoLocalidad=resultSet.getInt("idLocalidad");
