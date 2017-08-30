@@ -10,6 +10,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import report.data.PersonaJasper;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -29,19 +30,16 @@ public class ReporteAgenda
     public ReporteAgenda(List<PersonaDTO> personas, String reportToOpen)
     {
 
-
-
-
-
 		//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		borrarNulls(personas);
+		List<PersonaJasper> personasJasper = PersonaJasper.getPersonasJasper(personas);
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		{
     		
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( reportToOpen );
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap,
-					new JRBeanCollectionDataSource(personas));
+					new JRBeanCollectionDataSource(personasJasper));
 		}
 		catch( JRException ex )
 		{

@@ -4,18 +4,18 @@ import java.time.Instant;
 import java.util.Date;
 
 public class PersonaDTO {
-	private int idPersona;
-	private String nombre ;
-	private String telefono ;
-	private String calle ;
-	private String altura ;
-	private String piso ;
-	private String departamento ;
-	private String email ;
-	private String mailServer ;
-	private String fechaNacimmiento ;
-	private LocalidadDTO localidad;
-	private EtiquetaDTO etiqueta;
+	protected int idPersona;
+	protected String nombre ;
+	protected String telefono ;
+	protected String calle ;
+	protected String altura ;
+	protected String piso ;
+	protected String departamento ;
+	protected String email ;
+	protected String mailServer ;
+	protected String fechaNacimmiento ;
+	protected LocalidadDTO localidad;
+	protected EtiquetaDTO etiqueta;
 
 
 
@@ -134,4 +134,9 @@ public class PersonaDTO {
 	}
 */
 	public String getMailServer(){ return this.mailServer; }
+
+	public void setMailServer(String mailServer) {
+		this.mailServer = mailServer;
+		
+	}
 }
