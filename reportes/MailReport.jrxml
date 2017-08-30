@@ -39,6 +39,7 @@
 	<field name="mailServer" class="java.lang.String">
 		<fieldDescription><![CDATA[mailServer]]></fieldDescription>
 	</field>
+	<sortField name="mailServer" order="Descending"/>
 	<variable name="Variable_1" class="java.lang.String" resetType="Group" resetGroup="mailServer" calculation="Count">
 		<variableExpression><![CDATA[$F{mailServer}]]></variableExpression>
 	</variable>
@@ -274,7 +275,7 @@
 						<keyExpression><![CDATA[$F{mailServer}]]></keyExpression>
 						<valueExpression><![CDATA[$V{mailServer_COUNT}]]></valueExpression>
 					</pieDataset>
-					<piePlot labelFormat="{2}">
+					<piePlot isCircular="true" labelFormat="{1}" legendLabelFormat="{0}">
 						<plot/>
 						<itemLabel/>
 					</piePlot>
