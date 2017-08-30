@@ -1,10 +1,13 @@
 Maven goals: clean package install exec:java
-//FIXME :
- - edicion de etiquetas y localidades, cambiar las que esten en uso  de personas al editarlas( correccion de excepctiones de tipo SQL )
- - Evitar agregado repetido de etiquetas/localidades... es necesario?
- por ej, San Miguel, Buenos Aires y San Miguel, Tucuman las dos localidades se llaman igual pero tienen diferentes provincias pero no son la misma localidad
- - Chequear que los campos no superen limite impuesto por db en el script
-  -Si la fecha es igual a la de hoy (no la cambio) entonces se guarda como null
+//TODO :
+1 Ordenar Reporte por nombre y por mail
+2 Configuracion de la DB accesible desde interfaz nueva
+3 Menu para lanzar configuracion de la DB
+4 Interfaz de configuracion de DB + boolean en el properties para first Run
+5 Hacer Instalador
+6 Excepciones SQL mostrar mensaje por interfaz de manera desacoplada
+7 Guardar una imagen de maquina virtual con el instalador y t/odo desinstalado
+8 Testear t/odo de arriba a bajo
 
 
 
