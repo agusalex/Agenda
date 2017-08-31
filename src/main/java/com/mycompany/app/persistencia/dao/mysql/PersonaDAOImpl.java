@@ -18,10 +18,10 @@ import java.util.List;
 
 public class PersonaDAOImpl implements DAO<PersonaDTO>
 {
-	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,? ,?)";
-	private static final String insert_noFK = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,?)";
-	private static final String insert_etiqueta = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,? )";
-	private static final String insert_localidad = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer,idLocalidad) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?,? ,?)";
+	private static final String insert = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,? ,?)";
+	private static final String insert_noFK = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?)";
+	private static final String insert_etiqueta = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idEtiqueta) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,? ,?)";
+	private static final String insert_localidad = "INSERT INTO Personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,idLocalidad) VALUES(?, ?, ?, ? , ?, ?, ?, ? ,?,?)";
 	private static final String delete = "DELETE FROM Personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM Personas";
 
@@ -80,12 +80,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 			statement.setString(7,persona.getDepartamento());
 			statement.setString(8,persona.getEmail());
 			statement.setString(9,persona.getFechaNacimmiento());
-			statement.setString(10,persona.getMailServer());
-
-
-
-
-
+			
 			if(statement.executeUpdate() > 0) //Si se ejecutó devuelvo true
 				return true;
 		}

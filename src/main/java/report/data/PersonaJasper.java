@@ -12,6 +12,7 @@ import com.mycompany.app.dto.PersonaDTO;
 
 public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJasper>{
 
+	private String mailServer;
 	public PersonaJasper() {
 		super();
 	}
@@ -28,14 +29,14 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 		 this.localidad = person.getLocalidad();
 		 this.etiqueta = person.getEtiqueta();
 		 if(this.email.equals(""))
-			 this.setMailServer("Sin cuenta de correo electronico");
+			 this.mailServer = "Sin cuenta de correo electronico";
 		 else
-			 this.setMailServerToPerson(person);
+			 this.setMailServer(person);
 			
 	}
 	
 	
-	private void setMailServerToPerson(PersonaDTO person) {
+	private void setMailServer(PersonaDTO person) {
 		this.mailServer = "";
 		int i = this.email.indexOf('@');
 		if (i != -1) {
@@ -44,7 +45,6 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 				this.mailServer += this.email.charAt(j);
 			}
 		}
-		person.setMailServer(this.mailServer);
 	}
 	
 	

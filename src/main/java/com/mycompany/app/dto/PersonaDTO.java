@@ -12,7 +12,6 @@ public class PersonaDTO {
 	protected String piso ;
 	protected String departamento ;
 	protected String email ;
-	protected String mailServer ;
 	protected String fechaNacimmiento ;
 	protected LocalidadDTO localidad;
 	protected EtiquetaDTO etiqueta;
@@ -121,22 +120,5 @@ public class PersonaDTO {
 		this.telefono = telefono;
 	}
 
-	/*
-	public void setMailServer() {
-		this.mailServer = "";
-		int i = this.email.indexOf('@');
-		if (i != -1) {
-		i++;
-			for (int j = i; j < this.email.length(); j++) {
-				this.mailServer += this.email.charAt(j);
-			}
-		}
-	}
-*/
-	public String getMailServer(){ return this.mailServer; }
-
-	public void setMailServer(String mailServer) {
-		this.mailServer = mailServer;
-		
-	}
+	
 }
