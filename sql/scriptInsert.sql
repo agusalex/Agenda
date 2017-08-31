@@ -1,8 +1,10 @@
-INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(1, Max Lencina, 1234567890, Falsa, 123, 1, 1, max@gmail.com, 05/08/1995, gmail.com);
 
-INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(2, Agus Alex, 1234567832, Gaspar Campos, 1232, 12, 12, agus@gmail.com, 05/08/1995, gmail.com);
 
-INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(3, Rober Ger, 1234512890, Lujan, 3245, 1, 1, rober@hotmail.com, 05/08/1995, hotmail.com);
+INSERT INTO Personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES("Max Lencina", "1234567890", "Falsa", "123", "1", "1", "max@gmail.com", 05/08/1995);
+
+INSERT INTO personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(2, Agus Alex, 1234567832, Gaspar Campos, 1232, 12, 12, agus@gmail.com, 05/08/1995, gmail.com);
+
+INSERT INTO personas( nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(3, Rober Ger, 1234512890, Lujan, 3245, 1, 1, rober@hotmail.com, 05/08/1995, hotmail.com);
 
 INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(4, Danilo Eldelson, 1234567821, Cordoba, 1235, 1, 1, dani@gmail.com, 05/08/1995, gmail.com);
 
@@ -10,7 +12,7 @@ INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,
 
 INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(6, Max Lencina, 1234567890, Lujan, 1234, 1, 1, maxi@ungs.com, 05/08/1995, ungs.com);
 
-INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(7, Max Power, 1234567143, Cabildo, 1230, 12, A3, max@ungs.org, 05/08/1995, ungs.org);
+INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(7, Max Powwer, 1234567143, Cabildo, 1230, 12, A3, max@ungs.org, 05/08/1995, ungs.org);
 
 INSERT INTO personas(idPersona, nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(8, Agustin Perez, 1234567827, Justo, 879, 10, B3, agus@hotmail.com, 05/08/1995, hotmail.com);
 
