@@ -32,7 +32,6 @@ public class ReporteAgenda
 
 		//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
-		borrarNulls(personas);
 		List<PersonaJasper> personasJasper = PersonaJasper.getPersonasJasper(personas);
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		{
@@ -57,49 +56,6 @@ public class ReporteAgenda
 
 
 
-	public void borrarNulls(List<PersonaDTO> personas){
-
-		for (PersonaDTO persona:personas
-				) {
-
-
-			if(persona.getLocalidad()==null){
-				persona.setLocalidad(new LocalidadDTO(""));
-
-
-			}
-			else if(persona.getLocalidad().getNombre()==null){
-				persona.setLocalidad(new LocalidadDTO(""));
-
-
-			}
-			else if(persona.getLocalidad().getNombre().equals("null")){
-				persona.setLocalidad(new LocalidadDTO(""));
-
-
-			}
-
-
-			if(persona.getEtiqueta()==null){
-				persona.setEtiqueta(new EtiquetaDTO(""));
-
-
-			}
-			else if(persona.getEtiqueta().getNombre()==null){
-				persona.setEtiqueta(new EtiquetaDTO(""));
-
-
-			}
-			else if(persona.getEtiqueta().getNombre().equals("null")){
-				persona.setEtiqueta(new EtiquetaDTO(""));
-
-
-			}
-
-
-		}
-
-
-	}
+	
    
 }	

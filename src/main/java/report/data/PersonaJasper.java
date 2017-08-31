@@ -27,12 +27,15 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 		 this.fechaNacimmiento = person.getFechaNacimmiento();
 		 this.localidad = person.getLocalidad();
 		 this.etiqueta = person.getEtiqueta();
-		 //if(!this.email.equals(""))
-			 this.setMailServer(person);
+		 if(this.email.equals(""))
+			 this.setMailServer("Sin cuenta de correo electronico");
+		 else
+			 this.setMailServerToPerson(person);
+			
 	}
 	
 	
-	private void setMailServer(PersonaDTO person) {
+	private void setMailServerToPerson(PersonaDTO person) {
 		this.mailServer = "";
 		int i = this.email.indexOf('@');
 		if (i != -1) {
@@ -51,7 +54,33 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 	}
 
 	
+	private static void borrarNulls(List<PersonaDTO> personas){
+
+		for (PersonaDTO persona:personas) {
+
+			if(persona.getLocalidad()==null)
+				persona.setLocalidad(new LocalidadDTO(""));
+
+			else if(persona.getLocalidad().getNombre()==null)
+				persona.setLocalidad(new LocalidadDTO(""));
+
+			else if(persona.getLocalidad().getNombre().equals("null"))
+				persona.setLocalidad(new LocalidadDTO(""));
+
+			if(persona.getEtiqueta()==null)
+				persona.setEtiqueta(new EtiquetaDTO(""));
+
+			else if(persona.getEtiqueta().getNombre()==null)
+				persona.setEtiqueta(new EtiquetaDTO(""));
+
+			else if(persona.getEtiqueta().getNombre().equals("null"))
+				persona.setEtiqueta(new EtiquetaDTO(""));
+		}
+	}
+			
+	
 	public static List<PersonaJasper> getPersonasJasper(List<PersonaDTO> personas){
+		borrarNulls(personas);
 		List<PersonaJasper> personasJasper = new ArrayList<PersonaJasper>();
 		personas.forEach(p -> personasJasper.add(new PersonaJasper(p)));
 		Collections.sort(personasJasper);
