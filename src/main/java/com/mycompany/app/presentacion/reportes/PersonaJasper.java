@@ -1,4 +1,4 @@
-package report.data;
+package com.mycompany.app.presentacion.reportes;
 
 import java.util.ArrayList;
 import java.util.Collections;

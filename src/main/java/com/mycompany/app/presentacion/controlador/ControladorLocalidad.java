@@ -112,6 +112,15 @@ public class ControladorLocalidad implements ActionListener
 				this.llenarTabla();
 				
 			}
+			else if (e.getSource() == this.ventanaLocalidad.getBtnCerrar()){
+				this.vista.enable();
+				this.refresh();
+				ventanaLocalidad.dispose();
+
+
+
+			}
+
 
 			else if(e.getSource() == this.ventanaLocalidad.getBtnAgregarLocalidad())
 			{
@@ -146,14 +155,7 @@ public class ControladorLocalidad implements ActionListener
 
 				}
 			}
-			else if (e.getSource() == this.ventanaLocalidad.getBtnCerrar()){
-				this.vista.enable();
-				this.refresh();
-				ventanaLocalidad.dispose();
 
-
-
-			}
 
 
 
