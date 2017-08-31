@@ -12,7 +12,6 @@ import com.mycompany.app.dto.PersonaDTO;
 
 public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJasper>{
 
-	private String mailServer;
 	
 	public PersonaJasper() {
 		super();
@@ -89,4 +88,16 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 		Collections.sort(personasJasper);
 		return personasJasper;
 	}
+	
+	private String mailServer;
+
+	public String getMailServer() {
+		return mailServer;
+	}
+
+	public void setMailServer(String mailServer) {
+		this.mailServer = mailServer;
+	}
+	
+	
 }

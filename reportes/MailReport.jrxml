@@ -10,20 +10,26 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
-		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
-	</field>
 	<field name="piso" class="java.lang.String">
 		<fieldDescription><![CDATA[piso]]></fieldDescription>
-	</field>
-	<field name="altura" class="java.lang.String">
-		<fieldDescription><![CDATA[altura]]></fieldDescription>
 	</field>
 	<field name="fechaNacimmiento" class="java.lang.String">
 		<fieldDescription><![CDATA[fechaNacimmiento]]></fieldDescription>
 	</field>
 	<field name="calle" class="java.lang.String">
 		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="mailServer" class="java.lang.String">
+		<fieldDescription><![CDATA[mailServer]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	</field>
+	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
+		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.String">
+		<fieldDescription><![CDATA[altura]]></fieldDescription>
 	</field>
 	<field name="departamento" class="java.lang.String">
 		<fieldDescription><![CDATA[departamento]]></fieldDescription>
@@ -34,45 +40,50 @@
 	<field name="telefono" class="java.lang.String">
 		<fieldDescription><![CDATA[telefono]]></fieldDescription>
 	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
-	</field>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[email]]></fieldDescription>
 	</field>
+	<sortField name="mailServer"/>
 	<variable name="Variable_1" class="java.lang.String" resetType="Group" resetGroup="mailServer" calculation="Count">
 		<variableExpression><![CDATA[$F{mailServer}]]></variableExpression>
 	</variable>
-	<variable name="mailServerCount" class="java.lang.Integer" resetType="Group" resetGroup="mailServer" calculation="Count">
+	<variable name="mailServerCount" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">
 		<variableExpression><![CDATA[$F{mailServer}]]></variableExpression>
 	</variable>
 	<group name="mailServer">
 		<groupExpression><![CDATA[$F{mailServer}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{mailServer}]]></groupExpression>
 		<groupHeader>
-			<band height="40">
+			<band height="21">
 				<rectangle>
-					<reportElement x="5" y="0" width="1135" height="20" backcolor="#999999" uuid="ae286d0a-ed17-4b65-8f8c-d8d2fa529e7f"/>
+					<reportElement x="4" y="-10" width="1142" height="30" backcolor="#857F7F" uuid="6c8a583b-ae35-411c-9a94-7531ede107a6"/>
 				</rectangle>
 				<textField>
-					<reportElement x="10" y="-2" width="1135" height="22" backcolor="#DB5E69" uuid="281294af-d118-4eb5-9503-31d2cc483e9d"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<reportElement x="542" y="-10" width="100" height="30" uuid="9cfa787e-1794-4630-bfef-50ff132196ae"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{mailServer}]]></textFieldExpression>
 				</textField>
-				<textField evaluationTime="Group" evaluationGroup="mailServer">
-					<reportElement x="990" y="20" width="100" height="20" uuid="9dd5d490-a9ef-4d15-b783-38c326d49bc6"/>
-					<textFieldExpression><![CDATA[$V{mailServerCount}]]></textFieldExpression>
-				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="28">
 				<staticText>
-					<reportElement x="884" y="20" width="100" height="20" uuid="01603cb4-ac17-4986-b2bd-2a00bc40c042"/>
-					<textElement>
+					<reportElement x="869" y="0" width="91" height="21" uuid="c2a4f01f-5ba5-469b-bdac-6d11d3bafdd0"/>
+					<textElement textAlignment="Left">
 						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Total grupo:]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="950" y="0" width="100" height="21" uuid="caf97a9b-8f79-4ca6-a8f9-fa87b7845afe"/>
+					<textFieldExpression><![CDATA[$V{mailServerCount}]]></textFieldExpression>
+				</textField>
 			</band>
-		</groupHeader>
+		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -274,21 +285,21 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch"/>
+		<band height="26" splitType="Stretch"/>
 	</columnFooter>
 	<summary>
 		<band height="390">
 			<frame>
-				<reportElement x="40" y="10" width="870" height="380" uuid="96a384ff-75c6-4ead-a49f-78f9cfc0e2b1"/>
+				<reportElement x="40" y="0" width="870" height="390" uuid="96a384ff-75c6-4ead-a49f-78f9cfc0e2b1"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="264" y="50" width="580" height="314" uuid="6076e250-617a-4de7-aed4-6a813aa744c8"/>
+						<reportElement x="160" y="0" width="619" height="360" uuid="90b8400e-39ff-4737-8a4f-9cbf3d75ebe3"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
-						<dataset incrementType="Group" incrementGroup="mailServer"/>
+						<dataset incrementType="Group" incrementGroup="Group1"/>
 						<keyExpression><![CDATA[$F{mailServer}]]></keyExpression>
 						<valueExpression><![CDATA[$V{mailServerCount}]]></valueExpression>
 					</pieDataset>
