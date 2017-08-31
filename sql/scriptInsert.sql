@@ -1,6 +1,6 @@
 
 
-INSERT INTO Personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES("Max Lencina", "1234567890", "Falsa", "123", "1", "1", "max@gmail.com", 05/08/1995);
+INSERT INTO Personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES("Max Lencina", "1234567890", "Falsa", "123", "1", "1", "max@gmail.com", 1995/08/05);
 
 INSERT INTO personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento,mailServer) VALUES(2, Agus Alex, 1234567832, Gaspar Campos, 1232, 12, 12, agus@gmail.com, 05/08/1995, gmail.com);
 

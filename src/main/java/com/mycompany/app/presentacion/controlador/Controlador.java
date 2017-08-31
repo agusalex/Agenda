@@ -3,10 +3,7 @@ package com.mycompany.app.presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -265,34 +262,22 @@ public class Controlador implements ActionListener
 			String nombreCalle = ventanaPersona.getTxtCalle().getText();
 			String altura = null;
 			String piso = null;
-			//if(!ventanaPersona.getTxtAltura().getText().equals(""))
-				altura = ventanaPersona.getTxtAltura().getText();
-			//if(!ventanaPersona.getTxtPiso().getText().equals(""))
-				piso = ventanaPersona.getTxtPiso().getText();
+
+			altura = ventanaPersona.getTxtAltura().getText();
+			piso = ventanaPersona.getTxtPiso().getText();
 			String dpto = ventanaPersona.getTxtDepartamento().getText();
 			String email = ventanaPersona.getTxtEmail().getText();
-
-			//if(!telefono.equals(""))
-				nuevaPersona.setTelefono(telefono);
-			//if(!nombreCalle.equals(""))
-				nuevaPersona.setCalle(nombreCalle);
-			//if (altura != null)
-				nuevaPersona.setAltura(altura);
-			//if(piso != null)
-				nuevaPersona.setPiso(piso);
-			//if(!dpto.equals(""))
-				nuevaPersona.setDepartamento(dpto);
-			//if(!email.equals("")){
-				nuevaPersona.setEmail(email);
-				//nuevaPersona.setMailServer();
-			//}
+			nuevaPersona.setTelefono(telefono);
+			nuevaPersona.setCalle(nombreCalle);
+			nuevaPersona.setAltura(altura);
+			nuevaPersona.setPiso(piso);
+			nuevaPersona.setDepartamento(dpto);
+			nuevaPersona.setEmail(email);
 
 
-			if(!esHoy(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10))){
-				nuevaPersona.setFechaNacimmiento(ventanaPersona.getCalendario().getDate().toInstant().toString().substring(0,10)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
-			}
-			else {
-				nuevaPersona.setFechaNacimmiento("");
+			Date fecha=ventanaPersona.getCalendario().getDate();
+			if(!esHoy(Utils.stringfromDate(fecha))){
+				nuevaPersona.setFechaNacimmiento(Utils.stringfromDate(fecha)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
 			}
 
 			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
@@ -311,10 +296,11 @@ public class Controlador implements ActionListener
 
 
 		public boolean esHoy(String fechaString){
+			String now=Utils.stringfromDate(new Date());
 
-			Date now=Utils.datefromString(Instant.now().toString().substring(0,10));
-			Date fecha=Utils.datefromString(fechaString);
-			return now.equals(fecha);
+			//System.out.println(fechaString+ "es igual a "+now+"?:"+now.equals(fechaString));
+
+			return now.equals(fechaString);
 
 
 		}

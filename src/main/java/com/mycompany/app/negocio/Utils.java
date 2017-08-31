@@ -42,6 +42,10 @@ public class Utils {
         return false;
     }
 
+
+
+
+
     public static java.util.Date datefromString(String dateInString){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -59,6 +63,25 @@ public class Utils {
         }
         return null;
     }
+
+    public static String stringfromDate(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        if(date==null )
+            return null;
+        try {
+
+            String ret = formatter.format(date);
+
+            return ret;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static boolean isPercentageMatch(String candidate,String keyword,int threshold){
 
         String trimmedCandidate=trimCandidate(candidate,keyword,4);
