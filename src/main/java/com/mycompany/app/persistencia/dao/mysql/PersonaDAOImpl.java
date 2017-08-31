@@ -53,18 +53,18 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 			if(Both) {
 				statement = conexion.getSQLConexion().prepareStatement(insert);
-				statement.setInt(11, persona.getLocalidad().getIdLocalidad());
-				statement.setInt(12, persona.getEtiqueta().getIdEtiqueta());
+				statement.setInt(10, persona.getLocalidad().getIdLocalidad());
+				statement.setInt(11, persona.getEtiqueta().getIdEtiqueta());
 			}
 			else if(etiquetaOnly){
 				statement = conexion.getSQLConexion().prepareStatement(insert_etiqueta);
 
-				statement.setInt(11,persona.getEtiqueta().getIdEtiqueta());
+				statement.setInt(10,persona.getEtiqueta().getIdEtiqueta());
 
 			}
 			else if(localidadOnly){
 				statement = conexion.getSQLConexion().prepareStatement(insert_localidad);
-				statement.setInt(11,persona.getLocalidad().getIdLocalidad());
+				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
 
 			}
 			else if(noForeignKey) {

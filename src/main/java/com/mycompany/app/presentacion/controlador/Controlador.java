@@ -286,8 +286,7 @@ public class Controlador implements ActionListener
 
 			nuevaPersona.setLocalidad(deStringaLocalidadDTO(Localidad));
 			nuevaPersona.setEtiqueta(deStringaEtiquetaDTO(Etiqueta));
-
-			System.out.println(nuevaPersona.getFechaNacimmiento());
+			
 			return nuevaPersona;
 
 

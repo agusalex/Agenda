@@ -14,5 +14,7 @@
 # Maven
 log/
 target/
-
-*.properties
+#TP
+*db.properties
+*db.default
+db.properties
