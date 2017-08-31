@@ -110,4 +110,12 @@ public class VistaEtiqueta
 	{
 		return nombreColumnas;
 	}
+
+
+	public void enable() {
+		frame.setEnabled(true);
+	}
+	public void disable(){
+		frame.setEnabled(false);
+	}
 }

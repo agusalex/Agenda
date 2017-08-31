@@ -3,6 +3,7 @@ package com.mycompany.app.negocio;
 
 import com.mycompany.app.modelo.Agenda;
 import com.mycompany.app.presentacion.controlador.Controlador;
+
 import com.mycompany.app.presentacion.vista.Vista;
 
 public class Main
@@ -20,10 +21,12 @@ public class Main
 	}
 
 	private Main(){
-		vista = new Vista();
-		modelo = new Agenda();
+		vista = Vista.getVista();
+		modelo = Agenda.getAgenda();
 		controlador = new Controlador(vista, modelo);
 		controlador.inicializar();
+
+
 	}
 	public static void main(String[] args)
 	{
@@ -31,7 +34,9 @@ public class Main
 	}
 
 	public static void refreshAgenda(){
-		controlador.refresh();
+
+		if(controlador!=null)
+			controlador.refresh();
 	}
 
 

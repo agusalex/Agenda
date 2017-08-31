@@ -26,13 +26,41 @@ public class Vista
 	private JButton btnReporteMail;
 	private JButton btnEtiquetas;
 	private JButton btnLocalidades;
+	private JButton btnRefresh;
+	private JButton btnDBConfig;
+
+	public JButton getBtnRefresh() {
+		return btnRefresh;
+	}
+
+
 	private static final int WIDTH=1000;
 	private static final int HEIGHT=600;
 	private JPanel panel;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"," Cumpleaños"};
+	private static Vista vista;
 
-	public Vista() 
+
+	public static Vista getVista() {
+
+		if(vista==null) {
+			vista=new Vista();
+			return vista;
+		}
+		return vista;
+	}
+
+
+	public void disable(){
+		frame.setEnabled(false);
+	}
+	public void enable(){
+		frame.setEnabled(true);
+
+	}
+
+	private Vista()
 	{
 		super();
 		initialize();
@@ -90,7 +118,7 @@ public class Vista
 		panel.add(btnEtiquetas);
 
 		btnLocalidades = new JButton("Localidades");
-		btnLocalidades.setBounds(409, HEIGHT-60, 105, 23);
+		btnLocalidades.setBounds(407, HEIGHT-60, 105, 23);
 		panel.add(btnLocalidades);
 
 		btnReporte = new JButton("Reporte");
@@ -101,6 +129,15 @@ public class Vista
 		btnReporteMail = new JButton("Reporte Mail");
 		btnReporteMail.setBounds(642, HEIGHT-60, 110, 23);
 		panel.add(btnReporteMail);
+
+		btnRefresh = new JButton("↻");
+		btnRefresh.setBounds(850, HEIGHT-60, 50, 23);
+		panel.add(btnRefresh);
+
+
+		btnDBConfig = new JButton("\uD83D\uDD27");
+		btnDBConfig.setBounds(900, HEIGHT-60, 50, 23);
+		panel.add(btnDBConfig);
 
 		addIcon("icon.png");
 
@@ -175,4 +212,7 @@ public class Vista
 
 	public JButton getBtnReporteMail() { return btnReporteMail; }
 
+	public JButton getBtnDBConfig() {
+		return btnDBConfig;
+	}
 }

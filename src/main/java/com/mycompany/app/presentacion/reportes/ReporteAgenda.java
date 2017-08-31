@@ -1,7 +1,5 @@
 package com.mycompany.app.presentacion.reportes;
 
-import com.mycompany.app.dto.EtiquetaDTO;
-import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.dto.PersonaDTO;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -12,7 +10,6 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import report.data.PersonaJasper;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;

@@ -112,4 +112,12 @@ public class VistaLocalidad
 	public void showError(String msj){
 		JOptionPane.showMessageDialog(frame,msj);
 	}
+
+    public void enable() {
+		frame.setEnabled(true);
+    }
+    public void disable(){
+		frame.setEnabled(false);
+	}
+
 }

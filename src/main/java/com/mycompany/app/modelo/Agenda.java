@@ -10,14 +10,19 @@ import java.util.List;
 public class Agenda
 {
 	private DAO persona;
-	
-	public Agenda()
+	private static Agenda agenda;
+	private Agenda()
 	{
 		persona = new PersonaDAOImpl();
 	}
 
+	public static Agenda getAgenda() {
 
-	
+		if(agenda==null)
+			agenda=new Agenda();
+		return agenda;
+	}
+
 	public boolean agregarPersona(PersonaDTO nuevaPersona)
 	{
 

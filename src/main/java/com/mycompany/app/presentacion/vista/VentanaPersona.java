@@ -33,6 +33,12 @@ public class VentanaPersona extends JFrame
 	private JTextField txtEmail;
 	private JButton btnAgregarPersona;
 	private  JButton btnGuardarPersona;
+
+	public JButton getBtnCerrar() {
+		return btnCerrar;
+	}
+
+	private  JButton btnCerrar;
 	private Controlador controlador;
 
 	private JCalendar calendario;
@@ -84,6 +90,9 @@ public class VentanaPersona extends JFrame
 	public JComboBox<String> getEtiqueta() {
 		return Etiqueta;
 	}
+
+
+
 
 
 
@@ -226,7 +235,16 @@ public class VentanaPersona extends JFrame
 	btnAgregarPersona.setBounds(208, base+450, 89, 23);
 	panel.add(btnAgregarPersona);
 
+
+
+
+	btnCerrar = new JButton("Cerrar");
+	btnCerrar.addActionListener(this.controlador);
+	btnCerrar.setBounds(208+100, base+450, 89, 23);
+	panel.add(btnCerrar);
+
 	this.setVisible(true);
+
 
 
 
@@ -236,7 +254,7 @@ public class VentanaPersona extends JFrame
 		System.out.println("Error al cargar el icono:"+e.toString());
 	}
 
-
+	this.setDefaultCloseOperation(0);
 
 }
 
@@ -375,15 +393,15 @@ public class VentanaPersona extends JFrame
 		panel.add(panelFecha);
 
 
-	Localidad = new JComboBox<String>();
+	    Localidad = new JComboBox<String>();
 		Localidad.setBounds(133, base+350, 164, 20);
-	cargarLocalidades();
+	    cargarLocalidades();
 		Localidad.setSelectedItem(personaDTO.getLocalidad().toString());
 		panel.add(Localidad);
 
-	Etiqueta = new JComboBox<String>();
+	    Etiqueta = new JComboBox<String>();
 		Etiqueta.setBounds(133, base+400, 164, 20);
-	cargarEtiquetas();
+	     cargarEtiquetas();
 		Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
 		panel.add(Etiqueta);
 
@@ -393,12 +411,22 @@ public class VentanaPersona extends JFrame
 		panel.add(btnGuardarPersona);
 
 
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this.controlador);
+		btnCerrar.setBounds(208+100, base+450, 89, 23);
+		panel.add(btnCerrar);
+
+
+
 		this.setVisible(true);
 		try{ImageIcon img = new ImageIcon("addpicon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
 		}
+
+
+		this.setDefaultCloseOperation(0);
 	}
 
 

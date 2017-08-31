@@ -19,6 +19,11 @@ public class VentanaEtiqueta extends JFrame
 
 	private JButton btnAgregarEtiqueta;
 	private ControladorEtiqueta controlador;
+	private  JButton btnCerrar;
+	public JButton getBtnCerrar() {
+		return btnCerrar;
+	}
+
 
 
 	public VentanaEtiqueta(ControladorEtiqueta controlador)
@@ -38,7 +43,7 @@ public class VentanaEtiqueta extends JFrame
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lbletiqueta = new JLabel("etiqueta");
+		JLabel lbletiqueta = new JLabel("Etiqueta:");
 		lbletiqueta.setBounds(10, 11, 113, 14);
 		panel.add(lbletiqueta);
 
@@ -51,8 +56,14 @@ public class VentanaEtiqueta extends JFrame
 
 		btnAgregarEtiqueta = new JButton("Agregar");
 		btnAgregarEtiqueta.addActionListener(this.controlador);
-		btnAgregarEtiqueta.setBounds(208, 92, 89, 23);
+		btnAgregarEtiqueta.setBounds(100, 92, 89, 23);
 		panel.add(btnAgregarEtiqueta);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this.controlador);
+		btnCerrar.setBounds(208, 92, 89, 23);
+		panel.add(btnCerrar);
+
 
 
 
@@ -62,6 +73,7 @@ public class VentanaEtiqueta extends JFrame
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
 		}
+		this.setDefaultCloseOperation(0);
 	}
 
 	public VentanaEtiqueta(ControladorEtiqueta controlador, EtiquetaDTO etiquetaDTO) {
@@ -94,8 +106,13 @@ public class VentanaEtiqueta extends JFrame
 
 		btnGuardarEtiqueta = new JButton("Guardar");
 		btnGuardarEtiqueta.addActionListener(this.controlador);
-		btnGuardarEtiqueta.setBounds(208, 92, 89, 23);
+		btnGuardarEtiqueta.setBounds(100, 92, 89, 23);
 		panel.add(btnGuardarEtiqueta);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this.controlador);
+		btnCerrar.setBounds(208, 92, 89, 23);
+		panel.add(btnCerrar);
 
 		this.setVisible(true);
 		try{ImageIcon img = new ImageIcon("addpicon.png");
@@ -103,6 +120,8 @@ public class VentanaEtiqueta extends JFrame
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
 		}
+
+		this.setDefaultCloseOperation(0);
 	}
 
 	private void showErrorMessage(){

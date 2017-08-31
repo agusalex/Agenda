@@ -5,7 +5,6 @@ package com.mycompany.app;
 
 
 
-
 import com.mycompany.app.negocio.Utils;
 import org.junit.Test;
 

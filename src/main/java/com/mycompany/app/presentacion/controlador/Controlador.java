@@ -16,10 +16,7 @@ import com.mycompany.app.modelo.ABMLocalidades;
 import com.mycompany.app.modelo.Agenda;
 import com.mycompany.app.negocio.Utils;
 import com.mycompany.app.presentacion.reportes.ReporteAgenda;
-import com.mycompany.app.presentacion.vista.VentanaPersona;
-import com.mycompany.app.presentacion.vista.Vista;
-import com.mycompany.app.presentacion.vista.VistaEtiqueta;
-import com.mycompany.app.presentacion.vista.VistaLocalidad;
+import com.mycompany.app.presentacion.vista.*;
 
 import javax.swing.*;
 
@@ -47,6 +44,8 @@ public class Controlador implements ActionListener
 			this.vista.getBtnEtiquetas().addActionListener(this);
 			this.vista.getBtnLocalidades().addActionListener(this);
 			this.vista.getBtnReporteMail().addActionListener(this);
+			this.vista.getBtnRefresh().addActionListener(this);
+			this.vista.getBtnDBConfig().addActionListener(this);
 			this.agenda = agenda;
 			this.personas_en_tabla = null;
 		}
@@ -108,6 +107,7 @@ public class Controlador implements ActionListener
 
 
 	public void actionPerformed(ActionEvent e) {
+
 		if(e.getSource() == this.vista.getBtnEtiquetas()){
 			this.vistaEtiqueta = VistaEtiqueta.getVistaEtiqueta();
 			ABMEtiquetas modeloet = new ABMEtiquetas();
@@ -115,33 +115,56 @@ public class Controlador implements ActionListener
 			controladoret.inicializar();
 		}
 
+		else if(e.getSource() == this.vista.getBtnRefresh())
+		{
+			this.refresh();
+			System.out.println("...");
+
+
+		}
+
+		else if(e.getSource() == this.vista.getBtnDBConfig())
+		{
+
+			VentanaDBConfig vDBC=VentanaDBConfig.getVentanaDBConfig();
+			System.out.println("...");
+
+
+		}
+
+
+
 		else if(e.getSource() == this.vista.getBtnLocalidades()){
 			this.vistaLocalidad =VistaLocalidad.getVistaLocalidad();
 			ABMLocalidades modeloLo = new ABMLocalidades();
 			ControladorLocalidad controladorLo = new ControladorLocalidad(this.vistaLocalidad, modeloLo);
 			controladorLo.inicializar();
+
 		}
 
 		else if(e.getSource() == this.vista.getBtnAgregar())
 			{
 				this.ventanaPersona = new VentanaPersona(this);
+				this.vista.disable();
 
 
 
 
 			}
 
+
+
 			else if(e.getSource() == this.vista.getBtnEditar())
 			{
 
 
 				int[] filas_seleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-				for (int fila:filas_seleccionadas)
-				{
-					BKP=this.personas_en_tabla.get(fila);
-					this.ventanaPersona = new VentanaPersona(this,this.personas_en_tabla.get(fila));
+					if(filas_seleccionadas.length>0) {
+						BKP = this.personas_en_tabla.get(filas_seleccionadas[0]);
+						this.ventanaPersona = new VentanaPersona(this, this.personas_en_tabla.get(filas_seleccionadas[0]));
+						this.vista.disable();
+					}
 
-				}
 
 
 
@@ -189,6 +212,7 @@ public class Controlador implements ActionListener
 					}
 					this.llenarTabla();
 					this.ventanaPersona.dispose();
+					this.vista.enable();
 				}
 			}
 
@@ -214,8 +238,20 @@ public class Controlador implements ActionListener
 
 					this.llenarTabla();
 					this.ventanaPersona.dispose();
+					this.vista.enable();
 				}
 			}
+
+		else if (e.getSource() == this.ventanaPersona.getBtnCerrar()){
+			this.vista.enable();
+			this.refresh();
+			ventanaPersona.dispose();
+
+
+		}
+
+
+
 	}
 
 
@@ -303,6 +339,8 @@ public class Controlador implements ActionListener
 
 
 		}
+
+
 
 	public void refresh() {
 		this.llenarTabla();

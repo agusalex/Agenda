@@ -78,6 +78,7 @@ public class ControladorLocalidad implements ActionListener
 			if(e.getSource() == this.vista.getBtnAgregarLocalidad())
 			{
 				this.ventanaLocalidad = new VentanaLocalidad(this);
+				this.vista.disable();
 			}
 
 			else if(e.getSource() == this.vista.getBtnEditar())
@@ -85,16 +86,17 @@ public class ControladorLocalidad implements ActionListener
 
 
 				int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
-				for (int fila:filas_seleccionadas)
-				{
-					BKP=this.Localidades_en_tabla.get(fila);
-					this.ventanaLocalidad = new VentanaLocalidad(this,this.Localidades_en_tabla.get(fila));
+					if(filas_seleccionadas.length>0) {
+						BKP = this.Localidades_en_tabla.get(filas_seleccionadas[0]);
+						this.ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
+						this.vista.disable();
+					}
 
-				}
 
 
 
 			}
+
 
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
@@ -119,6 +121,7 @@ public class ControladorLocalidad implements ActionListener
 					boolean agregar=this.ABMLocalidades.agregarLocalidad(Localidad);
 					if(!agregar)
 						this.vista.showError("Error al agregar la Localidad!");
+					this.vista.enable();
 					this.llenarTabla();
 					this.ventanaLocalidad.dispose();
 				}
@@ -137,15 +140,27 @@ public class ControladorLocalidad implements ActionListener
 					if(!editar)
 						this.vista.showError("Error al editar la Localidad!");
 					BKP = null;
+					this.vista.enable();
 					this.llenarTabla();
 					this.ventanaLocalidad.dispose();
+
 				}
+			}
+			else if (e.getSource() == this.ventanaLocalidad.getBtnCerrar()){
+				this.vista.enable();
+				this.refresh();
+				ventanaLocalidad.dispose();
+
+
+
 			}
 
 
 
 		}
-
+		public void refresh(){
+			this.llenarTabla();
+		}
 
 
 }

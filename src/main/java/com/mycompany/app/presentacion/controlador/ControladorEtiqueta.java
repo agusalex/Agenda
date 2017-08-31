@@ -1,5 +1,6 @@
 package com.mycompany.app.presentacion.controlador;
 
+import com.google.zxing.client.result.VEventResultParser;
 import com.mycompany.app.dto.EtiquetaDTO;
 import com.mycompany.app.modelo.ABMEtiquetas;
 
@@ -79,19 +80,28 @@ public class ControladorEtiqueta implements ActionListener
 			if(e.getSource() == this.vista.getBtnAgregarEtiqueta())
 			{
 				this.ventanaEtiqueta = new VentanaEtiqueta(this);
+				this.vista.disable();
 			}
 
 			else if(e.getSource() == this.vista.getBtnEditar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
-				for (int fila:filas_seleccionadas)
-				{
-					BKP=this.Etiquetas_en_tabla.get(fila);
-
-					this.ventanaEtiqueta = new VentanaEtiqueta(this,this.Etiquetas_en_tabla.get(fila));
+				if(filas_seleccionadas.length>0){
+					BKP=this.Etiquetas_en_tabla.get(filas_seleccionadas[0]);
+					this.ventanaEtiqueta = new VentanaEtiqueta(this,this.Etiquetas_en_tabla.get(filas_seleccionadas[0]));
+					this.vista.disable();
 				}
 
 			}
+
+			else if (e.getSource() == this.ventanaEtiqueta.getBtnCerrar()){
+				this.vista.enable();
+				ventanaEtiqueta.dispose();
+
+
+			}
+
+
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
@@ -118,7 +128,7 @@ public class ControladorEtiqueta implements ActionListener
 					boolean agregar=this.ABMEtiquetas.agregarEtiqueta(Etiqueta);
 					if(!agregar)
 						this.vista.showError("Error al agregar la etiqueta!");
-
+					this.vista.enable();
 					this.llenarTabla();
 					this.ventanaEtiqueta.dispose();
 				}
@@ -136,6 +146,7 @@ public class ControladorEtiqueta implements ActionListener
 				if(this.ventanaEtiqueta.checkNameField()) {
 					this.ABMEtiquetas.editarEtiqueta(new EtiquetaDTO(BKP.getIdEtiqueta(), ventanaEtiqueta.getTxtNombre().getText()));
 					BKP = null;
+					this.vista.enable();
 					this.llenarTabla();
 					this.ventanaEtiqueta.dispose();
 				}

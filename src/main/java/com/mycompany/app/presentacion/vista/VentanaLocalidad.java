@@ -17,7 +17,7 @@ public class VentanaLocalidad extends JFrame
 	private JPanel contentPane;
 	private JTextField txtNombre;
 
-  
+
 
     public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -34,6 +34,10 @@ public class VentanaLocalidad extends JFrame
 
 	private JButton btnAgregarLocalidad;
 	private ControladorLocalidad controlador;
+	private  JButton btnCerrar;
+	public JButton getBtnCerrar() {
+		return btnCerrar;
+	}
 
 	public VentanaLocalidad(ControladorLocalidad controlador, LocalidadDTO localidadDTO) {
 
@@ -67,8 +71,15 @@ public class VentanaLocalidad extends JFrame
 
 		btnGuardarLocalidad = new JButton("Guardar");
 		btnGuardarLocalidad.addActionListener(controlador);
-		btnGuardarLocalidad.setBounds(208, 92, 89, 23);
+		btnGuardarLocalidad.setBounds(100, 92, 89, 23);
 		panel.add(btnGuardarLocalidad);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this.controlador);
+		btnCerrar.setBounds(208, 92, 89, 23);
+		panel.add(btnCerrar);
+
+
 
 		this.setVisible(true);
 		try{ImageIcon img = new ImageIcon("addpicon.png");
@@ -76,8 +87,8 @@ public class VentanaLocalidad extends JFrame
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
 		}
-		
-		
+
+		this.setDefaultCloseOperation(0);
 		
 	}
 	
@@ -112,8 +123,14 @@ public class VentanaLocalidad extends JFrame
 
 		btnAgregarLocalidad = new JButton("Agregar");
 		btnAgregarLocalidad.addActionListener(this.controlador);
-		btnAgregarLocalidad.setBounds(208, 92, 89, 23);
+		btnAgregarLocalidad.setBounds(100, 92, 89, 23);
 		panel.add(btnAgregarLocalidad);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this.controlador);
+		btnCerrar.setBounds(208, 92, 89, 23);
+		panel.add(btnCerrar);
+
 
 		this.setVisible(true);
 		try{ImageIcon img = new ImageIcon("addcicon.png");
@@ -124,6 +141,7 @@ public class VentanaLocalidad extends JFrame
 
 
 		this.setVisible(true);
+		this.setDefaultCloseOperation(0);
 	}
 
 	public JTextField getTxtNombre()
