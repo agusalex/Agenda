@@ -3,24 +3,27 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteMail" pageWidth="1200" pageHeight="1400" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="net.sf.jasperreports.chart.pie.ignore.duplicated.key" value="true"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="647"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="353"/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
+		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
 	</field>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
-	</field>
-	<field name="calle" class="java.lang.String">
-		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
 	</field>
 	<field name="altura" class="java.lang.String">
 		<fieldDescription><![CDATA[altura]]></fieldDescription>
 	</field>
-	<field name="piso" class="java.lang.String">
-		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	<field name="fechaNacimmiento" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaNacimmiento]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
 	</field>
 	<field name="departamento" class="java.lang.String">
 		<fieldDescription><![CDATA[departamento]]></fieldDescription>
@@ -28,19 +31,15 @@
 	<field name="localidad" class="com.mycompany.app.dto.LocalidadDTO">
 		<fieldDescription><![CDATA[localidad]]></fieldDescription>
 	</field>
-	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
-		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[telefono]]></fieldDescription>
 	</field>
-	<field name="fechaNacimmiento" class="java.lang.String">
-		<fieldDescription><![CDATA[fechaNacimmiento]]></fieldDescription>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[email]]></fieldDescription>
 	</field>
-	<field name="mailServer" class="java.lang.String">
-		<fieldDescription><![CDATA[mailServer]]></fieldDescription>
-	</field>
-	<sortField name="mailServer" order="Descending"/>
 	<variable name="Variable_1" class="java.lang.String" resetType="Group" resetGroup="mailServer" calculation="Count">
 		<variableExpression><![CDATA[$F{mailServer}]]></variableExpression>
 	</variable>

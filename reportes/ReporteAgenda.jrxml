@@ -6,20 +6,20 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
+		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
 	</field>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
-	</field>
-	<field name="calle" class="java.lang.String">
-		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
 	</field>
 	<field name="altura" class="java.lang.String">
 		<fieldDescription><![CDATA[altura]]></fieldDescription>
 	</field>
-	<field name="piso" class="java.lang.String">
-		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	<field name="fechaNacimmiento" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaNacimmiento]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
 	</field>
 	<field name="departamento" class="java.lang.String">
 		<fieldDescription><![CDATA[departamento]]></fieldDescription>
@@ -27,11 +27,11 @@
 	<field name="localidad" class="com.mycompany.app.dto.LocalidadDTO">
 		<fieldDescription><![CDATA[localidad]]></fieldDescription>
 	</field>
-	<field name="etiqueta" class="com.mycompany.app.dto.EtiquetaDTO">
-		<fieldDescription><![CDATA[etiqueta]]></fieldDescription>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[telefono]]></fieldDescription>
 	</field>
-	<field name="fechaNacimmiento" class="java.lang.String">
-		<fieldDescription><![CDATA[fechaNacimmiento]]></fieldDescription>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
 	</field>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[email]]></fieldDescription>

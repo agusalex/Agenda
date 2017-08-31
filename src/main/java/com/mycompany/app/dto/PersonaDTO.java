@@ -15,6 +15,8 @@ public class PersonaDTO {
 	protected String fechaNacimmiento ;
 	protected LocalidadDTO localidad;
 	protected EtiquetaDTO etiqueta;
+	
+	
 
 
 

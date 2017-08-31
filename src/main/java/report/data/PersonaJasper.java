@@ -13,6 +13,7 @@ import com.mycompany.app.dto.PersonaDTO;
 public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJasper>{
 
 	private String mailServer;
+	
 	public PersonaJasper() {
 		super();
 	}
