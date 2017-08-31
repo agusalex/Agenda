@@ -28,6 +28,8 @@ public class PersonaJasper extends PersonaDTO implements Comparable<PersonaJaspe
 		 this.fechaNacimmiento = person.getFechaNacimmiento();
 		 this.localidad = person.getLocalidad();
 		 this.etiqueta = person.getEtiqueta();
+		 if(this.fechaNacimmiento == null)
+			 this.fechaNacimmiento = "";
 		 if(this.email.equals(""))
 			 this.mailServer = "Sin cuenta de correo electronico";
 		 else
