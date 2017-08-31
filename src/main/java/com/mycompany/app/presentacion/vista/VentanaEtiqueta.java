@@ -134,7 +134,7 @@ public class VentanaEtiqueta extends JFrame
 
 	public boolean checkNameField(){
 		this.restoreFieldsColor();
-		if(this.txtNombre.equals("")) {
+		if(this.txtNombre.getText().equals("")) {
 			this.showErrorMessage();
 			return false;
 		}

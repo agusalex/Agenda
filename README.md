@@ -9,8 +9,6 @@ Installer:
     5 Hacer Instalador
     7 Guardar una imagen de maquina virtual con el instalador y t/odo desinstalado
 
-Manejo de Excepciones:
-    6 Excepciones SQL mostrar mensaje por interfaz de manera desacoplada, preguntar rober/danilo
 
 
 

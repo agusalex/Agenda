@@ -93,15 +93,6 @@ public class ControladorEtiqueta implements ActionListener
 				}
 
 			}
-
-			else if (e.getSource() == this.ventanaEtiqueta.getBtnCerrar()){
-				this.vista.enable();
-				ventanaEtiqueta.dispose();
-
-
-			}
-
-
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
 				int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
@@ -113,9 +104,18 @@ public class ControladorEtiqueta implements ActionListener
 						this.vista.showError("Error al borrar la Etiqueta!\n Es probable que este en uso...");
 
 				}
-				
+
 				this.llenarTabla();
-				
+
+			}
+
+
+
+			else if (e.getSource() == this.ventanaEtiqueta.getBtnCerrar()){
+				this.vista.enable();
+				ventanaEtiqueta.dispose();
+
+
 			}
 
 
