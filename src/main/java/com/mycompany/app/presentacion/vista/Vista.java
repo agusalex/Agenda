@@ -5,9 +5,8 @@ import com.mycompany.app.presentacion.controlador.ControladorEtiqueta;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableColumn;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +16,7 @@ import java.util.Iterator;
 
 public class Vista
 {
+
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
@@ -71,6 +71,7 @@ public class Vista
 		return btnEditar;
 	}
 
+
 	private void initialize()
 	{
 		frame = new JFrame("Agenda");
@@ -88,13 +89,19 @@ public class Vista
 		spPersonas.setBounds(10, 11,  WIDTH-25, HEIGHT-75);
 		panel.add(spPersonas);
 		
-		modelPersonas = new DefaultTableModel(null,nombreColumnas);
+		modelPersonas = new DefaultTableModel(null,nombreColumnas){
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;//This causes all cells to be not editable
+			}
+		};
 		tablaPersonas = new JTable(modelPersonas);
 
 		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
 		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
 		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
+
 
 		spPersonas.setViewportView(tablaPersonas);
 
