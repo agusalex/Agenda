@@ -1,13 +1,24 @@
 Maven goals: clean package install exec:java
 //TODO :
-General:
-    8 Testear t/odo de arriba a bajo
-Installer:
-    2 Configuracion de la DB accesible desde interfaz nueva
-    3 Menu para lanzar configuracion de la DB
-    4 Interfaz de configuracion de DB + boolean en el properties para first Run
-    5 Hacer Instalador
-    7 Guardar una imagen de maquina virtual con el instalador y t/odo desinstalado
+
+    Prioridad:
+        1 Hacer Instalador(90%)
+        2 Interfaz de configuracion de DB + boolean en el properties para first Run (25%)
+        3 Cartel de conectando y conexion exitosa
+        
+   
+    
+    General:
+        1 Testear t/odo de arriba a bajo
+        2 Hacer un e.getSource del boton de salir y hacer que 
+            cuando cierre habilite la pantalla principal
+        3 Reporte poner (grupo de mail) mail debajo de casilla email
+    Bugfix:
+        1 Al abrir Agregar Localidad y Etiqueta y hacer click en cerrar hay que cerrarla 2 veces
+        
+
+        
+        
 
 
 

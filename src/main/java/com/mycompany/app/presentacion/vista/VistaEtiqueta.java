@@ -47,8 +47,13 @@ public class VistaEtiqueta
 		JScrollPane spEtiquetas = new JScrollPane();
 		spEtiquetas.setBounds(10, 11, 414, 182);
 		panel.add(spEtiquetas);
-		
-		modelEtiquetas = new DefaultTableModel(null,nombreColumnas);
+
+		modelEtiquetas = new DefaultTableModel(null,nombreColumnas){
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;//This causes all cells to be not editable
+			}
+		};
 		tablaEtiquetas = new JTable(modelEtiquetas);
 		
 

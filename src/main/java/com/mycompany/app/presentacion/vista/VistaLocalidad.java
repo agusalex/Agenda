@@ -46,8 +46,13 @@ public class VistaLocalidad
 		JScrollPane spLocalidades = new JScrollPane();
 		spLocalidades.setBounds(10, 11, 414, 182);
 		panel.add(spLocalidades);
-		
-		modelLocalidades = new DefaultTableModel(null,nombreColumnas);
+
+		modelLocalidades = new DefaultTableModel(null,nombreColumnas){
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;//This causes all cells to be not editable
+			}
+		};
 		tablaLocalidades = new JTable(modelLocalidades);
 
 
