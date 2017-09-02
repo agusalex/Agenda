@@ -2,6 +2,8 @@ package com.mycompany.app.presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import com.mycompany.app.presentacion.reportes.ReporteAgenda;
 import com.mycompany.app.presentacion.vista.*;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
@@ -145,10 +149,20 @@ public class Controlador implements ActionListener
 		else if(e.getSource() == this.vista.getBtnAgregar())
 			{
 				this.ventanaPersona = new VentanaPersona(this);
+				this.ventanaPersona.getCalendarCheckBox().addActionListener(this);
+				JCheckBox calendarBox = this.ventanaPersona.getCalendarCheckBox();
+				calendarBox.addItemListener(new ItemListener() {
+					@Override
+					public void itemStateChanged(ItemEvent itemEvent) {
+						if(calendarBox.isSelected()){
+							ventanaPersona.enableCalendar();
+						}
+						else{
+							ventanaPersona.disableCalendar();
+						}
+					}
+				});
 				this.vista.disable();
-
-
-
 
 			}
 
@@ -162,13 +176,26 @@ public class Controlador implements ActionListener
 					if(filas_seleccionadas.length>0) {
 						BKP = this.personas_en_tabla.get(filas_seleccionadas[0]);
 						this.ventanaPersona = new VentanaPersona(this, this.personas_en_tabla.get(filas_seleccionadas[0]));
+						this.ventanaPersona.getCalendarCheckBox().addActionListener(this);
+						JCheckBox calendarBox = this.ventanaPersona.getCalendarCheckBox();
+						calendarBox.addItemListener(new ItemListener() {
+							@Override
+							public void itemStateChanged(ItemEvent itemEvent) {
+								if(calendarBox.isSelected()){
+									ventanaPersona.enableCalendar();
+								}
+								else{
+									ventanaPersona.disableCalendar();
+								}
+							}
+						});
+
 						this.vista.disable();
 					}
 
 
-
-
 			}
+
 
 			else if(e.getSource() == this.vista.getBtnBorrar())
 			{
@@ -311,9 +338,11 @@ public class Controlador implements ActionListener
 			nuevaPersona.setEmail(email);
 
 
-			Date fecha=ventanaPersona.getCalendario().getDate();
-			if(!esHoy(Utils.stringfromDate(fecha))){
-				nuevaPersona.setFechaNacimmiento(Utils.stringfromDate(fecha)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
+			if(this.ventanaPersona.getCalendario().isEnabled()) {
+				Date fecha = ventanaPersona.getCalendario().getDate();
+				if (!esHoy(Utils.stringfromDate(fecha))) {
+					nuevaPersona.setFechaNacimmiento(Utils.stringfromDate(fecha)); //PARA QUE SE GUARDE LA FECHA NOMAS Y NO EL RESTO, SEGUNDOS ETC
+				}
 			}
 
 			String Localidad= (String)ventanaPersona.getLocalidad().getSelectedItem();
