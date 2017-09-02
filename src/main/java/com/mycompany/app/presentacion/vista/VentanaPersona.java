@@ -275,7 +275,7 @@ public class VentanaPersona extends JFrame
 		this.personaDTO=personaDTO;
 		this.controlador = controlador;
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -603,6 +603,7 @@ public class VentanaPersona extends JFrame
 	public void enableCalendar(){
 		calendario.setEnabled(true);
 	}
+
 
 }
 

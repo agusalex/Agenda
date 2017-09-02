@@ -18,7 +18,6 @@ public class VentanaLocalidad extends JFrame
 	private JTextField txtNombre;
 
 
-
     public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -98,7 +97,7 @@ public class VentanaLocalidad extends JFrame
 		super();
 		this.controlador = controlador;
 
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();

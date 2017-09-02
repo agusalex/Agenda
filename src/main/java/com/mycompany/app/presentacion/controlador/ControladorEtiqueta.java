@@ -10,6 +10,8 @@ import com.mycompany.app.presentacion.vista.VistaEtiqueta;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 
@@ -65,7 +67,17 @@ public class ControladorEtiqueta implements ActionListener
 			this.vista.getModelEtiquetas().setRowCount(0); //Para vaciar la tabla
 			this.vista.getModelEtiquetas().setColumnCount(0);
 			this.vista.getModelEtiquetas().setColumnIdentifiers(this.vista.getNombreColumnas());
-			
+
+			this.vista.getFrame().addWindowListener(new WindowAdapter(){
+				public void windowClosing(WindowEvent e) {
+					if(ventanaEtiqueta != null){
+						ventanaEtiqueta.dispose();
+						ventanaEtiqueta = null;
+					}
+					vista.getFrame().dispose();
+				}
+			});
+
 			this.Etiquetas_en_tabla = ABMEtiquetas.obtenerEtiquetas();
 			for (int i = 0; i < this.Etiquetas_en_tabla.size(); i ++)
 			{
@@ -83,12 +95,31 @@ public class ControladorEtiqueta implements ActionListener
 
 				if (e.getSource() == this.vista.getBtnAgregarEtiqueta()) {
 					this.ventanaEtiqueta = new VentanaEtiqueta(this);
+
+					this.ventanaEtiqueta.addWindowListener(new WindowAdapter(){
+						public void windowClosing(WindowEvent e) {
+							vista.enable();
+							ventanaEtiqueta.dispose();
+							ventanaEtiqueta = null;
+						}
+					});
+
 					this.vista.disable();
-				} else if (e.getSource() == this.vista.getBtnEditar()) {
+				}
+				else if (e.getSource() == this.vista.getBtnEditar()) {
 					int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
 					if (filas_seleccionadas.length > 0) {
 						BKP = this.Etiquetas_en_tabla.get(filas_seleccionadas[0]);
 						this.ventanaEtiqueta = new VentanaEtiqueta(this, this.Etiquetas_en_tabla.get(filas_seleccionadas[0]));
+
+						this.ventanaEtiqueta.addWindowListener(new WindowAdapter(){
+							public void windowClosing(WindowEvent e) {
+								vista.enable();
+								ventanaEtiqueta.dispose();
+								ventanaEtiqueta = null;
+							}
+						});
+
 						this.vista.disable();
 					}
 

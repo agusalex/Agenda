@@ -123,4 +123,6 @@ public class VistaEtiqueta
 	public void disable(){
 		frame.setEnabled(false);
 	}
+
+	public JFrame getFrame(){ return this.frame;}
 }

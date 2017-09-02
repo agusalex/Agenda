@@ -8,6 +8,8 @@ import com.mycompany.app.presentacion.vista.VistaLocalidad;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 
@@ -62,7 +64,17 @@ public class ControladorLocalidad implements ActionListener
 			this.vista.getModelLocalidades().setRowCount(0); //Para vaciar la tabla
 			this.vista.getModelLocalidades().setColumnCount(0);
 			this.vista.getModelLocalidades().setColumnIdentifiers(this.vista.getNombreColumnas());
-			
+
+			this.vista.getFrame().addWindowListener(new WindowAdapter(){
+				public void windowClosing(WindowEvent e) {
+					if(ventanaLocalidad != null){
+						ventanaLocalidad.dispose();
+					}
+					vista.getFrame().dispose();
+				}
+			});
+
+
 			this.Localidades_en_tabla = ABMLocalidades.obtenerLocalidades();
 			for (int i = 0; i < this.Localidades_en_tabla.size(); i ++)
 			{
@@ -78,6 +90,15 @@ public class ControladorLocalidad implements ActionListener
 					if(e.getSource() == this.vista.getBtnAgregarLocalidad())
 					{
 						this.ventanaLocalidad = new VentanaLocalidad(this);
+						this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
+							public void windowClosing(WindowEvent e) {
+								vista.enable();
+								ventanaLocalidad.dispose();
+								ventanaLocalidad = null;
+							}
+						});
+
+
 						this.vista.disable();
 					}
 
@@ -90,6 +111,15 @@ public class ControladorLocalidad implements ActionListener
 							if(filas_seleccionadas.length>0) {
 								BKP = this.Localidades_en_tabla.get(filas_seleccionadas[0]);
 								this.ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
+								this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
+									public void windowClosing(WindowEvent e) {
+										vista.enable();
+										ventanaLocalidad.dispose();
+										ventanaLocalidad = null;
+									}
+								});
+
+
 								this.vista.disable();
 							}
 

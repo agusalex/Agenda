@@ -125,4 +125,5 @@ public class VistaLocalidad
 		frame.setEnabled(false);
 	}
 
+	public JFrame getFrame(){ return this.frame;}
 }
