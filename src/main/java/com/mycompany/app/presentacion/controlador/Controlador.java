@@ -28,7 +28,7 @@ public class Controlador implements ActionListener
 {
 		private Vista vista;
 		private List<PersonaDTO> personas_en_tabla;
-		private VentanaPersona ventanaPersona;
+		private static VentanaPersona ventanaPersona;
 		private Agenda agenda;
 		private PersonaDTO BKP;
 		private VistaEtiqueta vistaEtiqueta;
