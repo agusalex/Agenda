@@ -51,6 +51,9 @@ public class Vista
 		return vista;
 	}
 
+	public static void setVista(Vista vista) {
+		Vista.vista = vista;
+	}
 
 	public void disable(){
 		frame.setEnabled(false);
@@ -150,6 +153,9 @@ public class Vista
 
 
 
+	}
+	public void close(){
+		frame.dispose();
 	}
 
 	public void addIcon(String location){

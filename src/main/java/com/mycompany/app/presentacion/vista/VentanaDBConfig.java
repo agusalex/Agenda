@@ -246,7 +246,8 @@ public class VentanaDBConfig  extends JFrame{
                         System.out.println("Conectando con defaults...");
                         Propiedades.setHarcodedDefaults();
                         VentanaDBConfig.getVentanaDBConfig().dispose();
-                        Main.getMain().iniciarVentanas();
+                        Main.getMain().cerrarVentanas();
+                        Main.getMain().inicializar();
 
 
                     }
@@ -256,7 +257,9 @@ public class VentanaDBConfig  extends JFrame{
                         Propiedades.setProperties(Propiedades.getCUSTOMPROP(),txtDriver.getText(),txtUrl.getText(),txtUser.getText(),txtPass.getText());
                         Propiedades.removeDefaults();
                         VentanaDBConfig.getVentanaDBConfig().dispose();
-                        Main.getMain().iniciarVentanas();
+                        Main.getMain().cerrarVentanas();
+                        Main.getMain().inicializar();
+
 
                     }
 

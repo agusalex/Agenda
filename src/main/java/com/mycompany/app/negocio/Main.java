@@ -40,20 +40,22 @@ public class Main
 		if(props==null) {
 			writeErrorLog("Error al crear las properties");
 			return;*/
-	private Main(){
+	public boolean itsFirstRun(){
 		String defaultProperty= Propiedades.getDEFAULTPROP();
 		String customProperty= Propiedades.getCUSTOMPROP();
+		return (!Propiedades.exists(defaultProperty)&&!Propiedades.exists(customProperty));
+
+	}
 
 
-		if((!Propiedades.exists(defaultProperty)&&!Propiedades.exists(customProperty))) {  //SI NO HAY NINGUN PROPERTY
-			firstRun();
-
-		}
+	private Main(){
+		if(itsFirstRun())   //SI NO HAY NINGUN PROPERTY
+			setup();
 
 		else {
 
 			try {
-				iniciarVentanas();
+				inicializar();
 			} catch (Exception e) {
 				VentanaDBConfig dbConfig=VentanaDBConfig.getVentanaDBConfig();
 				dbConfig.showMsg("Error al conectarse con la DB revise su configuracion");
@@ -66,7 +68,7 @@ public class Main
 
 
 
-	public void firstRun(){
+	public void setup(){
 		firstRun=true;
 		String defaultProperty= Propiedades.getDEFAULTPROP();
 		boolean success=Propiedades.setProperties(defaultProperty,
@@ -85,7 +87,7 @@ public class Main
 		}
 	}
 
-	public void iniciarVentanas(){
+	public void inicializar(){
 
 		if(Propiedades.exists(Propiedades.getDEFAULTPROP())){
 			Conexion.setInstancia(Propiedades.getProperties(
@@ -103,13 +105,20 @@ public class Main
 			Propiedades.writeErrorLog("Error desconocido");
 		}
 
-		Conexion.getInstancia().incializar(firstRun);
+		Conexion.getInstancia().incializar(firstRun); //Si es true crea las tablas, sino no las crea
 		vista = Vista.getVista();
 		modelo = Agenda.getAgenda();
 		controlador = new Controlador(vista, modelo);
 		controlador.inicializar();
 		firstRun=false;
 	}
+
+	public void cerrarVentanas(){
+		vista.close();
+		Vista.setVista(null);
+		controlador=null;
+	}
+
 
 	public static void main(String[] args)
 	{
