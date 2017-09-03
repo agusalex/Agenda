@@ -18,7 +18,6 @@ public class VentanaLocalidad extends JFrame
 	private JTextField txtNombre;
 
 
-
     public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -45,7 +44,7 @@ public class VentanaLocalidad extends JFrame
 
 		this.controlador = controlador;
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +87,7 @@ public class VentanaLocalidad extends JFrame
 			System.out.println("Error al cargar el icono:"+e.toString());
 		}
 
-		this.setDefaultCloseOperation(0);
+
 		
 	}
 	
@@ -99,6 +98,7 @@ public class VentanaLocalidad extends JFrame
 		this.controlador = controlador;
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -141,7 +141,7 @@ public class VentanaLocalidad extends JFrame
 
 
 		this.setVisible(true);
-		this.setDefaultCloseOperation(0);
+
 	}
 
 	public JTextField getTxtNombre()

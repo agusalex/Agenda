@@ -8,6 +8,8 @@ import com.mycompany.app.presentacion.vista.VistaLocalidad;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 
@@ -62,7 +64,17 @@ public class ControladorLocalidad implements ActionListener
 			this.vista.getModelLocalidades().setRowCount(0); //Para vaciar la tabla
 			this.vista.getModelLocalidades().setColumnCount(0);
 			this.vista.getModelLocalidades().setColumnIdentifiers(this.vista.getNombreColumnas());
-			
+
+			this.vista.getFrame().addWindowListener(new WindowAdapter(){
+				public void windowClosing(WindowEvent e) {
+					if(ventanaLocalidad != null){
+						ventanaLocalidad.dispose();
+					}
+					vista.getFrame().dispose();
+				}
+			});
+
+
 			this.Localidades_en_tabla = ABMLocalidades.obtenerLocalidades();
 			for (int i = 0; i < this.Localidades_en_tabla.size(); i ++)
 			{
@@ -74,87 +86,103 @@ public class ControladorLocalidad implements ActionListener
 		
 		public void actionPerformed(ActionEvent e) 
 		{
+			if(this.ventanaLocalidad==null){
+					if(e.getSource() == this.vista.getBtnAgregarLocalidad())
+					{
+						this.ventanaLocalidad = new VentanaLocalidad(this);
+						this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
+							public void windowClosing(WindowEvent e) {
+								vista.enable();
+								ventanaLocalidad.dispose();
+								ventanaLocalidad = null;
+							}
+						});
 
-			if(e.getSource() == this.vista.getBtnAgregarLocalidad())
-			{
-				this.ventanaLocalidad = new VentanaLocalidad(this);
-				this.vista.disable();
-			}
 
-			else if(e.getSource() == this.vista.getBtnEditar())
-			{
-
-
-				int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
-					if(filas_seleccionadas.length>0) {
-						BKP = this.Localidades_en_tabla.get(filas_seleccionadas[0]);
-						this.ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
 						this.vista.disable();
 					}
 
 
+					else if(e.getSource() == this.vista.getBtnEditar())
+					{
 
 
+						int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
+							if(filas_seleccionadas.length>0) {
+								BKP = this.Localidades_en_tabla.get(filas_seleccionadas[0]);
+								this.ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
+								this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
+									public void windowClosing(WindowEvent e) {
+										vista.enable();
+										ventanaLocalidad.dispose();
+										ventanaLocalidad = null;
+									}
+								});
+
+
+								this.vista.disable();
+							}
+
+
+
+
+					}
+
+
+					else if(e.getSource() == this.vista.getBtnBorrar())
+					{
+						int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
+						for (int fila:filas_seleccionadas)
+						{
+							boolean borrar=this.ABMLocalidades.borrarLocalidad(this.Localidades_en_tabla.get(fila));
+							if(!borrar)
+									this.vista.showError("Error al borrar la Localidad!\n Es probable que este en uso...");
+						}
+
+
+						this.llenarTabla();
+
+					}
 			}
+			//VENTANA LOCALIDAD
 
 
-			else if(e.getSource() == this.vista.getBtnBorrar())
-			{
-				int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
-				for (int fila:filas_seleccionadas)
+				else if (e.getSource() == this.ventanaLocalidad.getBtnCerrar()) {
+					this.vista.enable();
+					this.refresh();
+					ventanaLocalidad.dispose();
+					ventanaLocalidad=null;
+
+
+				} else if (e.getSource() == this.ventanaLocalidad.getBtnAgregarLocalidad()) {
+
+					if (this.ventanaLocalidad.checkNameField()) {
+						LocalidadDTO Localidad = new LocalidadDTO(0, this.ventanaLocalidad.getTxtNombre().getText());
+						boolean agregar = this.ABMLocalidades.agregarLocalidad(Localidad);
+						if (!agregar)
+							this.vista.showError("Error al agregar la Localidad!");
+						this.vista.enable();
+						this.llenarTabla();
+						this.ventanaLocalidad.dispose();
+						ventanaLocalidad=null;
+					}
+				} else if (e.getSource() == this.ventanaLocalidad.getBtnGuardarLocalidad())
+
 				{
-					boolean borrar=this.ABMLocalidades.borrarLocalidad(this.Localidades_en_tabla.get(fila));
-					if(!borrar)
-							this.vista.showError("Error al borrar la Localidad!\n Es probable que este en uso...");
+
+					if (this.ventanaLocalidad.checkNameField()) {
+
+						boolean editar = this.ABMLocalidades.editarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(), ventanaLocalidad.getTxtNombre().getText()));
+						if (!editar)
+							this.vista.showError("Error al editar la Localidad!");
+						BKP = null;
+						this.vista.enable();
+						this.llenarTabla();
+						this.ventanaLocalidad.dispose();
+						ventanaLocalidad=null;
+
+					}
 				}
-
-				
-				this.llenarTabla();
-				
-			}
-			else if (e.getSource() == this.ventanaLocalidad.getBtnCerrar()){
-				this.vista.enable();
-				this.refresh();
-				ventanaLocalidad.dispose();
-
-
-
-			}
-
-
-			else if(e.getSource() == this.ventanaLocalidad.getBtnAgregarLocalidad())
-			{
-
-				if(this.ventanaLocalidad.checkNameField()) {
-					LocalidadDTO Localidad = new LocalidadDTO(0, this.ventanaLocalidad.getTxtNombre().getText());
-					boolean agregar=this.ABMLocalidades.agregarLocalidad(Localidad);
-					if(!agregar)
-						this.vista.showError("Error al agregar la Localidad!");
-					this.vista.enable();
-					this.llenarTabla();
-					this.ventanaLocalidad.dispose();
-				}
-			}
-
-
-			
-			
-			else if(e.getSource() == this.ventanaLocalidad.getBtnGuardarLocalidad())
-
-			{
-
-				if(this.ventanaLocalidad.checkNameField()) {
-
-					boolean editar=this.ABMLocalidades.editarLocalidad(new LocalidadDTO(BKP.getIdLocalidad(), ventanaLocalidad.getTxtNombre().getText()));
-					if(!editar)
-						this.vista.showError("Error al editar la Localidad!");
-					BKP = null;
-					this.vista.enable();
-					this.llenarTabla();
-					this.ventanaLocalidad.dispose();
-
-				}
-			}
 
 
 

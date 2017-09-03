@@ -43,6 +43,8 @@ public class VentanaPersona extends JFrame
 
 	private JCalendar calendario;
 	private JDayChooser fechaNacimiento;
+	private JCheckBox calendarAvaiability;
+
 	private JComboBox<String> Localidad;
 
 	private JComboBox<String> Etiqueta;
@@ -91,9 +93,7 @@ public class VentanaPersona extends JFrame
 		return Etiqueta;
 	}
 
-
-
-
+	public JCheckBox getCalendarCheckBox(){ return calendarAvaiability; }
 
 
 
@@ -215,9 +215,16 @@ public class VentanaPersona extends JFrame
 	fechaNacimiento=calendario.getDayChooser();
 	fechaNacimiento.setBounds(0, 0, 200, 200);
 	panelFecha.add(fechaNacimiento);
+	calendario.setLocale(new Locale("es", "AR"));
+
+	calendarAvaiability = new JCheckBox("Vista calendario");
+	calendarAvaiability.setBounds(0,400,100,100);
+	calendarAvaiability.setSelected(true);
+	enableCalendar();
+	panelFecha.add(calendarAvaiability);
+
 	panel.add(panelFecha);
 
-	calendario.setLocale(new Locale("es", "AR"));
 
 
 	Localidad = new JComboBox<String>();
@@ -268,7 +275,7 @@ public class VentanaPersona extends JFrame
 		this.personaDTO=personaDTO;
 		this.controlador = controlador;
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -382,13 +389,24 @@ public class VentanaPersona extends JFrame
 		fechaNacimiento=calendario.getDayChooser();
 		fechaNacimiento.setBounds(0, 0, 200, 200);
 		panelFecha.add(fechaNacimiento);
+		calendarAvaiability = new JCheckBox("Vista calendario");
+
 
 		if(personaDTO.getFechaNacimmiento()!=null) {
 			Date date=Utils.datefromString(personaDTO.getFechaNacimmiento());
 			if ( date!= null) {
 				calendario.setDate(date);
+				calendarAvaiability.setBounds(0,400,100,100);
+				calendarAvaiability.setSelected(true);
+				enableCalendar();
+				panelFecha.add(calendarAvaiability);
 			}
-	}
+		}
+
+		else{
+			disableCalendar();
+			panelFecha.add(calendarAvaiability);
+		}
 
 		panel.add(panelFecha);
 
@@ -578,4 +596,15 @@ public class VentanaPersona extends JFrame
 		JOptionPane.showMessageDialog(contentPane,msj);
 	}
 
+	public void disableCalendar(){
+		calendario.setEnabled(false);
+	}
+
+	public void enableCalendar(){
+		calendario.setEnabled(true);
+	}
+
+
 }
+
+
