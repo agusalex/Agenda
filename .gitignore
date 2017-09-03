@@ -18,3 +18,4 @@ target/
 *db.properties
 *db.default
 db.properties
+*.properties

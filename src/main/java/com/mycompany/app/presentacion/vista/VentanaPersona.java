@@ -414,13 +414,34 @@ public class VentanaPersona extends JFrame
 	    Localidad = new JComboBox<String>();
 		Localidad.setBounds(133, base+350, 164, 20);
 	    cargarLocalidades();
-		Localidad.setSelectedItem(personaDTO.getLocalidad().toString());
+
+		if(personaDTO.getLocalidad().toString()==null){
+			Localidad.setSelectedItem(0);
+			
+		}
+		else{
+			Localidad.setSelectedItem(personaDTO.getLocalidad().toString());
+
+		}
+
+
+
+
+
 		panel.add(Localidad);
 
 	    Etiqueta = new JComboBox<String>();
 		Etiqueta.setBounds(133, base+400, 164, 20);
 	     cargarEtiquetas();
-		Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
+		if(personaDTO.getEtiqueta().toString()==null){
+			Etiqueta.setSelectedItem(0);
+
+		}
+		else{
+			Etiqueta.setSelectedItem(personaDTO.getEtiqueta().toString());
+
+		}
+
 		panel.add(Etiqueta);
 
 		btnGuardarPersona = new JButton("Guardar");
@@ -463,6 +484,7 @@ public class VentanaPersona extends JFrame
 		for(LocalidadDTO loc:controlador.cargarLocalidades())
 			if(loc!=null)
 				Localidad.addItem(loc.getNombre());
+
 	}
 
 
