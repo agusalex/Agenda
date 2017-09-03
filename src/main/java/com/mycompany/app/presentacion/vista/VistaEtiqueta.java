@@ -38,6 +38,7 @@ public class VistaEtiqueta
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 262);

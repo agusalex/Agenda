@@ -19,6 +19,7 @@ public class ControladorEtiqueta implements ActionListener
 {
 	
 
+
 	public List<EtiquetaDTO> getEtiquetas_en_tabla() {
 		return Etiquetas_en_tabla;
 	}
@@ -38,7 +39,7 @@ public class ControladorEtiqueta implements ActionListener
 		return vista;
 	}
 
-	private VentanaEtiqueta ventanaEtiqueta;
+	private static VentanaEtiqueta ventanaEtiqueta;
 		private ABMEtiquetas ABMEtiquetas;
 		private EtiquetaDTO BKP;
 		
@@ -68,16 +69,7 @@ public class ControladorEtiqueta implements ActionListener
 			this.vista.getModelEtiquetas().setColumnCount(0);
 			this.vista.getModelEtiquetas().setColumnIdentifiers(this.vista.getNombreColumnas());
 
-			this.vista.getFrame().addWindowListener(new WindowAdapter(){
-				public void windowClosing(WindowEvent e) {
-					if(ventanaEtiqueta != null){
-						ventanaEtiqueta.dispose();
-						ventanaEtiqueta = null;
-					}
-					vista.getFrame().dispose();
-				}
-			});
-
+	
 			this.Etiquetas_en_tabla = ABMEtiquetas.obtenerEtiquetas();
 			for (int i = 0; i < this.Etiquetas_en_tabla.size(); i ++)
 			{
@@ -94,33 +86,33 @@ public class ControladorEtiqueta implements ActionListener
 			if(this.ventanaEtiqueta==null) {
 
 				if (e.getSource() == this.vista.getBtnAgregarEtiqueta()) {
-					this.ventanaEtiqueta = new VentanaEtiqueta(this);
-
-					this.ventanaEtiqueta.addWindowListener(new WindowAdapter(){
-						public void windowClosing(WindowEvent e) {
-							vista.enable();
-							ventanaEtiqueta.dispose();
-							ventanaEtiqueta = null;
-						}
-					});
-
-					this.vista.disable();
-				}
-				else if (e.getSource() == this.vista.getBtnEditar()) {
-					int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
-					if (filas_seleccionadas.length > 0) {
-						BKP = this.Etiquetas_en_tabla.get(filas_seleccionadas[0]);
-						this.ventanaEtiqueta = new VentanaEtiqueta(this, this.Etiquetas_en_tabla.get(filas_seleccionadas[0]));
-
-						this.ventanaEtiqueta.addWindowListener(new WindowAdapter(){
+						ventanaEtiqueta = new VentanaEtiqueta(this);
+						ventanaEtiqueta.addWindowListener(new WindowAdapter(){
 							public void windowClosing(WindowEvent e) {
 								vista.enable();
 								ventanaEtiqueta.dispose();
 								ventanaEtiqueta = null;
 							}
 						});
-
 						this.vista.disable();
+					
+				}
+				else if (e.getSource() == this.vista.getBtnEditar()) {
+					int[] filas_seleccionadas = this.vista.getTablaEtiquetas().getSelectedRows();
+					if (filas_seleccionadas.length > 0) {
+						BKP = this.Etiquetas_en_tabla.get(filas_seleccionadas[0]);
+						
+							ventanaEtiqueta = new VentanaEtiqueta(this, this.Etiquetas_en_tabla.get(filas_seleccionadas[0]));
+							ventanaEtiqueta.addWindowListener(new WindowAdapter(){
+								public void windowClosing(WindowEvent e) {
+									vista.enable();
+									ventanaEtiqueta.dispose();
+									ventanaEtiqueta = null;
+				
+								}
+							});
+							this.vista.disable();
+						
 					}
 
 				} else if (e.getSource() == this.vista.getBtnBorrar()) {
@@ -130,24 +122,16 @@ public class ControladorEtiqueta implements ActionListener
 						boolean borrar = this.ABMEtiquetas.borrarEtiqueta(this.Etiquetas_en_tabla.get(fila));
 						if (!borrar)
 							this.vista.showError("Error al borrar la Etiqueta!\n Es probable que este en uso...");
-
 					}
-
 					this.llenarTabla();
-
 				}
-
 			}
-
 
 
 			else if (e.getSource() == this.ventanaEtiqueta.getBtnCerrar()){
 				this.vista.enable();
 				ventanaEtiqueta.dispose();
-				this.ventanaEtiqueta=null;
-
-
-
+				ventanaEtiqueta=null;
 			}
 
 
@@ -162,8 +146,8 @@ public class ControladorEtiqueta implements ActionListener
 						this.vista.showError("Error al agregar la etiqueta!");
 					this.vista.enable();
 					this.llenarTabla();
-					this.ventanaEtiqueta.dispose();
-					this.ventanaEtiqueta=null;
+					ventanaEtiqueta.dispose();
+					ventanaEtiqueta=null;
 				}
 
 			}
@@ -181,8 +165,8 @@ public class ControladorEtiqueta implements ActionListener
 					BKP = null;
 					this.vista.enable();
 					this.llenarTabla();
-					this.ventanaEtiqueta.dispose();
-					this.ventanaEtiqueta=null;
+					ventanaEtiqueta.dispose();
+					ventanaEtiqueta=null;
 				}
 			}
 

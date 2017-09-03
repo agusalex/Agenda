@@ -16,7 +16,7 @@ import java.util.List;
 public class ControladorLocalidad implements ActionListener
 {
 
-
+	
 	private LocalidadDTO BKP;
 
 	public List<LocalidadDTO> getLocalidades_en_tabla() {
@@ -38,7 +38,7 @@ public class ControladorLocalidad implements ActionListener
 		return vista;
 	}
 
-	private VentanaLocalidad ventanaLocalidad;
+	private static VentanaLocalidad ventanaLocalidad;
 		private ABMLocalidades ABMLocalidades;
 		
 		public ControladorLocalidad(VistaLocalidad vista, ABMLocalidades ABMLocalidades)
@@ -65,15 +65,6 @@ public class ControladorLocalidad implements ActionListener
 			this.vista.getModelLocalidades().setColumnCount(0);
 			this.vista.getModelLocalidades().setColumnIdentifiers(this.vista.getNombreColumnas());
 
-			this.vista.getFrame().addWindowListener(new WindowAdapter(){
-				public void windowClosing(WindowEvent e) {
-					if(ventanaLocalidad != null){
-						ventanaLocalidad.dispose();
-					}
-					vista.getFrame().dispose();
-				}
-			});
-
 
 			this.Localidades_en_tabla = ABMLocalidades.obtenerLocalidades();
 			for (int i = 0; i < this.Localidades_en_tabla.size(); i ++)
@@ -89,17 +80,21 @@ public class ControladorLocalidad implements ActionListener
 			if(this.ventanaLocalidad==null){
 					if(e.getSource() == this.vista.getBtnAgregarLocalidad())
 					{
-						this.ventanaLocalidad = new VentanaLocalidad(this);
-						this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
-							public void windowClosing(WindowEvent e) {
-								vista.enable();
-								ventanaLocalidad.dispose();
-								ventanaLocalidad = null;
-							}
-						});
+						
+
+							ventanaLocalidad = new VentanaLocalidad(this);
+							ventanaLocalidad.addWindowListener(new WindowAdapter(){
+								public void windowClosing(WindowEvent e) {
+									vista.enable();
+									ventanaLocalidad.dispose();
+									ventanaLocalidad = null;
+									
+								}
+							});
 
 
-						this.vista.disable();
+							this.vista.disable();
+						
 					}
 
 
@@ -110,22 +105,19 @@ public class ControladorLocalidad implements ActionListener
 						int[] filas_seleccionadas = this.vista.getTablaLocalidades().getSelectedRows();
 							if(filas_seleccionadas.length>0) {
 								BKP = this.Localidades_en_tabla.get(filas_seleccionadas[0]);
-								this.ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
-								this.ventanaLocalidad.addWindowListener(new WindowAdapter(){
-									public void windowClosing(WindowEvent e) {
-										vista.enable();
-										ventanaLocalidad.dispose();
-										ventanaLocalidad = null;
-									}
-								});
-
-
-								this.vista.disable();
+								
+									ventanaLocalidad = new VentanaLocalidad(this, this.Localidades_en_tabla.get(filas_seleccionadas[0]));
+									ventanaLocalidad.addWindowListener(new WindowAdapter(){
+										public void windowClosing(WindowEvent e) {
+											vista.enable();
+											ventanaLocalidad.dispose();
+											ventanaLocalidad = null;
+											
+										}
+									});
+									this.vista.disable();
+								
 							}
-
-
-
-
 					}
 
 
@@ -152,6 +144,7 @@ public class ControladorLocalidad implements ActionListener
 					this.refresh();
 					ventanaLocalidad.dispose();
 					ventanaLocalidad=null;
+				
 
 
 				} else if (e.getSource() == this.ventanaLocalidad.getBtnAgregarLocalidad()) {
@@ -163,8 +156,9 @@ public class ControladorLocalidad implements ActionListener
 							this.vista.showError("Error al agregar la Localidad!");
 						this.vista.enable();
 						this.llenarTabla();
-						this.ventanaLocalidad.dispose();
+						ventanaLocalidad.dispose();
 						ventanaLocalidad=null;
+						
 					}
 				} else if (e.getSource() == this.ventanaLocalidad.getBtnGuardarLocalidad())
 
@@ -178,8 +172,9 @@ public class ControladorLocalidad implements ActionListener
 						BKP = null;
 						this.vista.enable();
 						this.llenarTabla();
-						this.ventanaLocalidad.dispose();
+						ventanaLocalidad.dispose();
 						ventanaLocalidad=null;
+						
 
 					}
 				}

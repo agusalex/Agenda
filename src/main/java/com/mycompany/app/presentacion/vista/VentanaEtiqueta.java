@@ -30,7 +30,7 @@ public class VentanaEtiqueta extends JFrame
 	{
 		super();
 		this.controlador = controlador;
-
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();

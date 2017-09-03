@@ -114,9 +114,9 @@ public class VentanaDBConfig  extends JFrame{
         /////////////////////////////////////////
         y+=14+10;
 
-        JLabel lblContraseña = new JLabel("Contraseña:");
-        lblContraseña.setBounds(xBaseline, y, 113, 14);
-        panel.add(lblContraseña);
+        JLabel lblContrasenia = new JLabel("Contraseña:");
+        lblContrasenia.setBounds(xBaseline, y, 113, 14);
+        panel.add(lblContrasenia);
 
         txtPass = new JTextField();
         txtPass.setBounds(xBaseline+75, y-2, 164, 20);

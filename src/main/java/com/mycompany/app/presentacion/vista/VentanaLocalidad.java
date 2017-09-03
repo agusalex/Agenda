@@ -44,6 +44,7 @@ public class VentanaLocalidad extends JFrame
 
 		this.controlador = controlador;
 
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 343, 183);
 		contentPane = new JPanel();
