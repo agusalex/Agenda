@@ -288,6 +288,7 @@ public class Controlador implements ActionListener
 			}
 		}
 		catch (Exception f ){
+			f.printStackTrace();
 			this.vista.showError("Error de Conexion");
 
 		}

@@ -21,7 +21,7 @@ public class Conexion
 	{
 
 			try {
-				if(jdbcConnection.isClosed()){
+				if(jdbcConnection==null||jdbcConnection.isClosed()){
 					incializar(false);
 				}
 			} catch (SQLException e) {
