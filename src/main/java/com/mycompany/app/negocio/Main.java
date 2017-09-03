@@ -87,17 +87,18 @@ public class Main
 
 	public void iniciarVentanas(){
 
+		if(Propiedades.exists(Propiedades.getDEFAULTPROP())){
+			Conexion.setInstancia(Propiedades.getProperties(
+					Propiedades.getDEFAULTPROP()));
+		}
 
-		if(Propiedades.exists(Propiedades.getCUSTOMPROP())){
+		else if(Propiedades.exists(Propiedades.getCUSTOMPROP())){
 			Conexion.setInstancia(Propiedades.getProperties(
 					Propiedades.getCUSTOMPROP()));
 
 		}
 
-		else if(Propiedades.exists(Propiedades.getDEFAULTPROP())){
-			Conexion.setInstancia(Propiedades.getProperties(
-					Propiedades.getDEFAULTPROP()));
-		}
+
 		else{
 			Propiedades.writeErrorLog("Error desconocido");
 		}

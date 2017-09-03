@@ -65,6 +65,23 @@ public class Propiedades {
 
         }
     }
+    public static void removeCustom(){
+        try{
+
+            File file = new File(CUSTOMPROP);
+
+            if(file.delete()){
+                System.out.println(file.getName() + " is deleted!");
+            }else{
+                System.out.println("Delete operation is failed.");
+            }
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+    }
 
     public static boolean setHarcodedDefaults(){
 
