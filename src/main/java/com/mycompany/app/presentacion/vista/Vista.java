@@ -38,7 +38,7 @@ public class Vista
 	private static final int HEIGHT=600;
 	private JPanel panel;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"," Cumpleaños"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Teléfono","Calle", "Altura","Piso","Dpto.","Localidad","Etiqueta", "Mail"," Fecha de Nac."};
 	private static Vista vista;
 
 

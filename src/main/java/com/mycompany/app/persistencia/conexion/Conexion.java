@@ -149,6 +149,7 @@ public class Conexion
 		executeStatement(createLocalidades());
 		executeStatement(createEtiquetas());
 		executeStatement(createPersonas());
+		executeStatement(addExample());
 
 	}
 
@@ -189,6 +190,11 @@ public class Conexion
 				"  FOREIGN KEY (idEtiqueta) REFERENCES Etiquetas(idEtiqueta)" +
 				"" +
 				");";
+	}
+
+	private String addExample(){
+
+		return "INSERT INTO Personas(nombre, telefono,calle,altura,piso,departamento,email,fechaNacimiento) VALUES(\"Ejemplo\", \"1234567890\", \"Calle\", \"123\", \"1\", \"1\", \"mail@example.com\", \"2017-09-01\");";
 	}
 
 
