@@ -120,7 +120,8 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		}
 		finally //Se ejecuta siempre
 		{
-			conexion.cerrarConexion();
+			if(conexion!=null)
+				conexion.cerrarConexion();
 		}
 		return false;
 	}

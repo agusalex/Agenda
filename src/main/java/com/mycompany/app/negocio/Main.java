@@ -18,50 +18,48 @@ public class Main
 	private static Agenda modelo;
 	private static Main main;
 
-
-
-
 	private static boolean firstRun=false;
+	private VentanaDBConfig dbConfig;
 
 
 	public static Main getMain() {
 		return main;
 	}
+
+	public static boolean isFirstRun() {
+		return firstRun;
+	}
+
 	/*Propiedades props=Main.getProperties(Main.getDEFAULTPROP());  //inicializa con las default
 
 
-									if (props == null) {   //Si no la encuentra
-	props= Main.getProperties(Main.getCUSTOMPROP());  //Busca las Custom
-	if(props==null){
-		Main.setProperties(Main.getDEFAULTPROP(),     //Si no las encuentra crea las default
-				"jdbc:mysql://localhost:3306",
-				"root","root");
-		props=Main.getProperties(Main.getDEFAULTPROP());   //Intenta de nuevo
-		if(props==null) {
-			writeErrorLog("Error al crear las properties");
-			return;*/
-	public boolean itsFirstRun(){
+                                        if (props == null) {   //Si no la encuentra
+        props= Main.getProperties(Main.getCUSTOMPROP());  //Busca las Custom
+        if(props==null){
+            Main.setProperties(Main.getDEFAULTPROP(),     //Si no las encuentra crea las default
+                    "jdbc:mysql://localhost:3306",
+                    "root","root");
+            props=Main.getProperties(Main.getDEFAULTPROP());   //Intenta de nuevo
+            if(props==null) {
+                writeErrorLog("Error al crear las properties");
+                return;*/
+	public boolean checkFirstRun(){
 		String defaultProperty= Propiedades.getDEFAULTPROP();
 		String customProperty= Propiedades.getCUSTOMPROP();
-		return (!Propiedades.exists(defaultProperty)&&!Propiedades.exists(customProperty));
+		firstRun= (!Propiedades.exists(defaultProperty)&&!Propiedades.exists(customProperty));
+		return firstRun;
 
 	}
 
 
+
+
 	private Main(){
-		if(itsFirstRun())   //SI NO HAY NINGUN PROPERTY
+		if(checkFirstRun())   //SI NO HAY NINGUN PROPERTY
 			setup();
 
 		else {
-
-			try {
-				inicializar();
-			} catch (Exception e) {
-				VentanaDBConfig dbConfig=VentanaDBConfig.getVentanaDBConfig();
-				dbConfig.showMsg("Error al conectarse con la DB revise su configuracion");
-				System.out.println("Error al incializar la DB");
-			}
-
+			inicializar();
 		}
 	}
 
@@ -77,44 +75,60 @@ public class Main
 				"root",
 				"root");
 		if(success){
-			VentanaDBConfig dbConfig=VentanaDBConfig.getVentanaDBConfig();
+			dbConfig=VentanaDBConfig.getVentanaDBConfig();
 			Conexion.setInstancia(Propiedades.getProperties(defaultProperty));
 			dbConfig.showMsg("Bienvenido a Agenda!\n Para continuar elija una opcion, si no sabe de que se trata elija: \n \"Opciones por defecto\"");
 		}
 		else{
-			VentanaDBConfig dbConfig=VentanaDBConfig.getVentanaDBConfig();
+			dbConfig=VentanaDBConfig.getVentanaDBConfig();
 			dbConfig.showMsg("Error al inicializar las propiedades de conexión");
 		}
 	}
 
 	public void inicializar(){
 
-		if(Propiedades.exists(Propiedades.getDEFAULTPROP())){
-			Conexion.setInstancia(Propiedades.getProperties(
-					Propiedades.getDEFAULTPROP()));
+		try {
+
+
+			if (Propiedades.exists(Propiedades.getDEFAULTPROP())) {
+				Conexion.setInstancia(Propiedades.getProperties(
+						Propiedades.getDEFAULTPROP()));
+			} else if (Propiedades.exists(Propiedades.getCUSTOMPROP())) {
+				Conexion.setInstancia(Propiedades.getProperties(
+						Propiedades.getCUSTOMPROP()));
+
+			} else {
+				Propiedades.writeErrorLog("Error desconocido");
+			}
+
+
+			boolean success=Conexion.getInstancia().incializar(firstRun); //Si es true crea las tablas, sino no las crea
+			if(!success)
+				throw new Exception("Error de conexion");
+			vista = Vista.getVista();
+			modelo = Agenda.getAgenda();
+			controlador = new Controlador(vista, modelo);
+			controlador.inicializar();
+			firstRun = false;
+
+		}
+		catch (Exception e) {
+
+
+			dbConfig=VentanaDBConfig.getVentanaDBConfig();
+			//dbConfig.showMsg("Error al conectarse con la DB revise su configuracion");
+			//cerrarVentanas();
+			System.out.println("Error al incializar la DB!!!");
 		}
 
-		else if(Propiedades.exists(Propiedades.getCUSTOMPROP())){
-			Conexion.setInstancia(Propiedades.getProperties(
-					Propiedades.getCUSTOMPROP()));
 
-		}
-
-
-		else{
-			Propiedades.writeErrorLog("Error desconocido");
-		}
-
-		Conexion.getInstancia().incializar(firstRun); //Si es true crea las tablas, sino no las crea
-		vista = Vista.getVista();
-		modelo = Agenda.getAgenda();
-		controlador = new Controlador(vista, modelo);
-		controlador.inicializar();
-		firstRun=false;
 	}
 
+
+
 	public void cerrarVentanas(){
-		vista.close();
+		if(vista!=null)
+			vista.close();
 		Vista.setVista(null);
 		controlador=null;
 	}
