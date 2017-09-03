@@ -1,7 +1,6 @@
 package com.mycompany.app.persistencia.dao.mysql;
 
 import com.mycompany.app.dto.EtiquetaDTO;
-import com.mycompany.app.dto.LocalidadDTO;
 import com.mycompany.app.persistencia.conexion.Conexion;
 import com.mycompany.app.persistencia.dao.interfaz.DAO;
 
@@ -10,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
@@ -23,8 +21,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 	private static final String readall = "SELECT * FROM Etiquetas";
 
 
-	private static final Conexion conexion = Conexion.getConexion();
-
+	private static final Conexion conexion = Conexion.getInstancia();
 
 	public boolean update(EtiquetaDTO Etiqueta)
 	{
@@ -33,7 +30,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 		try
 		{
 
-			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement = conexion.getjdbcConnection().prepareStatement(update);
 
 			statement.setString(1, Etiqueta.getNombre());
 			statement.setInt(2, Etiqueta.getIdEtiqueta());
@@ -64,7 +61,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 		try 
 		{
 
-			statement = conexion.getSQLConexion().prepareStatement(insert);
+			statement = conexion.getjdbcConnection().prepareStatement(insert);
 			statement.setInt(1, Etiqueta.getIdEtiqueta());
 			statement.setString(2, Etiqueta.getNombre());
 
@@ -96,7 +93,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 		int chequeoUpdate=0;
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(delete);
+			statement = conexion.getjdbcConnection().prepareStatement(delete);
 			statement.setString(1, Integer.toString(Etiqueta_a_eliminar.getIdEtiqueta()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
@@ -122,7 +119,7 @@ public class EtiquetaDAOImpl implements DAO<EtiquetaDTO>
 		ArrayList<EtiquetaDTO> Etiquetas = new ArrayList<EtiquetaDTO>();
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(readall);
+			statement = conexion.getjdbcConnection().prepareStatement(readall);
 			resultSet = statement.executeQuery();
 			
 			while(resultSet.next())

@@ -19,7 +19,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 	private static final String readall = "SELECT * FROM Localidades";
 
 
-	private static final Conexion conexion = Conexion.getConexion();
+	private static final Conexion conexion = Conexion.getInstancia();
 
 
 	public boolean update(LocalidadDTO localidad)
@@ -29,7 +29,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 		try
 		{
 
-			statement = conexion.getSQLConexion().prepareStatement(update);
+			statement = conexion.getjdbcConnection().prepareStatement(update);
 			statement.setInt(2, localidad.getIdLocalidad());
 			statement.setString(1, localidad.getNombre());
 
@@ -59,7 +59,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 		try 
 		{
 
-			statement = conexion.getSQLConexion().prepareStatement(insert);
+			statement = conexion.getjdbcConnection().prepareStatement(insert);
 			statement.setInt(1, localidad.getIdLocalidad());
 			statement.setString(2, localidad.getNombre());
 
@@ -92,7 +92,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 		int chequeoUpdate=0;
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(delete);
+			statement = conexion.getjdbcConnection().prepareStatement(delete);
 			statement.setString(1, Integer.toString(localidad_a_eliminar.getIdLocalidad()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
@@ -116,7 +116,7 @@ public class LocalidadDAOImpl implements DAO<LocalidadDTO>
 		ArrayList<LocalidadDTO> localidads = new ArrayList<LocalidadDTO>();
 		try 
 		{
-			statement = conexion.getSQLConexion().prepareStatement(readall);
+			statement = conexion.getjdbcConnection().prepareStatement(readall);
 			resultSet = statement.executeQuery();
 			
 			while(resultSet.next())

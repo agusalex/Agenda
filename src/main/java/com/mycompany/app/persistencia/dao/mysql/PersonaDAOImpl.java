@@ -8,7 +8,6 @@ import com.mycompany.app.persistencia.dao.interfaz.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 
 
-	private static final Conexion conexion = Conexion.getConexion();
+	private static final Conexion conexion = Conexion.getInstancia();
 
 
 
@@ -52,23 +51,23 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 
 
 			if(Both) {
-				statement = conexion.getSQLConexion().prepareStatement(insert);
+				statement = conexion.getjdbcConnection().prepareStatement(insert);
 				statement.setInt(10, persona.getLocalidad().getIdLocalidad());
 				statement.setInt(11, persona.getEtiqueta().getIdEtiqueta());
 			}
 			else if(etiquetaOnly){
-				statement = conexion.getSQLConexion().prepareStatement(insert_etiqueta);
+				statement = conexion.getjdbcConnection().prepareStatement(insert_etiqueta);
 
 				statement.setInt(10,persona.getEtiqueta().getIdEtiqueta());
 
 			}
 			else if(localidadOnly){
-				statement = conexion.getSQLConexion().prepareStatement(insert_localidad);
+				statement = conexion.getjdbcConnection().prepareStatement(insert_localidad);
 				statement.setInt(10,persona.getLocalidad().getIdLocalidad());
 
 			}
 			else if(noForeignKey) {
-				statement = conexion.getSQLConexion().prepareStatement(insert_noFK);
+				statement = conexion.getjdbcConnection().prepareStatement(insert_noFK);
 			}
 
 			statement.setInt(1, persona.getIdPersona());
@@ -109,7 +108,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		int chequeoUpdate=0;
 		try
 		{
-			statement = conexion.getSQLConexion().prepareStatement(delete);
+			statement = conexion.getjdbcConnection().prepareStatement(delete);
 			statement.setString(1, Integer.toString(persona_a_eliminar.getIdPersona()));
 			chequeoUpdate = statement.executeUpdate();
 			if(chequeoUpdate > 0) //Si se ejecutó devuelvo true
@@ -166,7 +165,7 @@ public class PersonaDAOImpl implements DAO<PersonaDTO>
 		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
 		try
 		{
-			statement = conexion.getSQLConexion().prepareStatement(readall);
+			statement = conexion.getjdbcConnection().prepareStatement(readall);
 			resultSet = statement.executeQuery();
 
 			while(resultSet.next())
