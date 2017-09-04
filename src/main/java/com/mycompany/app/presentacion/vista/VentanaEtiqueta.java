@@ -8,6 +8,7 @@ import com.mycompany.app.presentacion.controlador.ControladorEtiqueta;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 
 public class VentanaEtiqueta extends JFrame
@@ -68,7 +69,7 @@ public class VentanaEtiqueta extends JFrame
 
 
 		this.setVisible(true);
-		try{ImageIcon img = new ImageIcon("addticon.png");
+		try{ImageIcon img = new ImageIcon("img"+File.separator+"addticon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
@@ -115,7 +116,7 @@ public class VentanaEtiqueta extends JFrame
 		panel.add(btnCerrar);
 
 		this.setVisible(true);
-		try{ImageIcon img = new ImageIcon("addpicon.png");
+		try{ImageIcon img = new ImageIcon("img"+ File.separator+"addpicon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());

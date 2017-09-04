@@ -15,7 +15,7 @@
 log/
 target/
 #TP
-*db.properties
-*db.default
-db.properties
 *.properties
+*.log
+
+Error timeLog

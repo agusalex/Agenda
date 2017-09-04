@@ -12,6 +12,7 @@ import com.toedter.calendar.JDayChooser;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -255,7 +256,7 @@ public class VentanaPersona extends JFrame
 
 
 
-	try{ImageIcon img = new ImageIcon("addpicon.png");
+	try{ImageIcon img = new ImageIcon("img"+ File.separator+"addpicon.png");
 		this.setIconImage(img.getImage());}
 	catch (Exception e){
 		System.out.println("Error al cargar el icono:"+e.toString());
@@ -458,7 +459,7 @@ public class VentanaPersona extends JFrame
 
 
 		this.setVisible(true);
-		try{ImageIcon img = new ImageIcon("addpicon.png");
+		try{ImageIcon img = new ImageIcon("img"+File.separator+"addpicon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());

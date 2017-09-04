@@ -97,7 +97,6 @@ public class Conexion
 	private Conexion(java.util.Properties props){
 
 		driver = props.getProperty("jdbc.driver");
-		System.out.println("Driver Ahora es:"+props.getProperty("jdbc.driver"));
 		url = props.getProperty("jdbc.url");
 		username = props.getProperty("jdbc.username");
 		password =props.getProperty("jdbc.password");

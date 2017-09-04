@@ -3,6 +3,7 @@ package com.mycompany.app.presentacion.vista;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
 
 public class VistaLocalidad
 {
@@ -73,7 +74,7 @@ public class VistaLocalidad
 		panel.add(btnBorrar);
 
 
-		try{ImageIcon img = new ImageIcon("addcicon.png");
+		try{ImageIcon img = new ImageIcon("img"+File.separator+"addcicon.png");
 			frame.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());

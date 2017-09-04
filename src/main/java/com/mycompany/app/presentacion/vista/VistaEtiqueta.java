@@ -2,6 +2,7 @@ package com.mycompany.app.presentacion.vista;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.io.File;
 
 public class VistaEtiqueta
 {
@@ -74,7 +75,7 @@ public class VistaEtiqueta
 		btnBorrar.setBounds(208, 228, 89, 23);
 		panel.add(btnBorrar);
 
-		try{ImageIcon img = new ImageIcon("ticon.png");
+		try{ImageIcon img = new ImageIcon("img"+ File.separator+"ticon.png");
 			frame.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());

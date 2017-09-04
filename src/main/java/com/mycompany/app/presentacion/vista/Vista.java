@@ -10,6 +10,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.Iterator;
@@ -149,7 +150,7 @@ public class Vista
 		btnDBConfig.setBounds(900, HEIGHT-60, 50, 23);
 		panel.add(btnDBConfig);
 
-		addIcon("icon.png");
+		addIcon("img"+ File.separator+"icon.png");
 
 
 

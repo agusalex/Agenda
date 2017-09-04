@@ -116,8 +116,8 @@ public class Main
 
 
 			dbConfig=VentanaDBConfig.getVentanaDBConfig();
-			//dbConfig.showMsg("Error al conectarse con la DB revise su configuracion");
-			//cerrarVentanas();
+			dbConfig.showMsg("Error al conectarse con la DB revise su configuracion");
+			cerrarVentanas();
 			System.out.println("Error al incializar la DB!!!");
 		}
 

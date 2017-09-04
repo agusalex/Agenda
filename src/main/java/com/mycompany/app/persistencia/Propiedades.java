@@ -51,7 +51,7 @@ public class Propiedades {
     public static void removeDefaults(){
         try{
 
-            File file = new File(DEFAULTPROP);
+            File file = new File("config"+File.separator+DEFAULTPROP);
 
             if(file.delete()){
                 System.out.println(file.getName() + " is deleted!");
@@ -68,7 +68,7 @@ public class Propiedades {
     public static void removeCustom(){
         try{
 
-            File file = new File(CUSTOMPROP);
+            File file = new File("config"+File.separator+CUSTOMPROP);
 
             if(file.delete()){
                 System.out.println(file.getName() + " is deleted!");
@@ -90,7 +90,7 @@ public class Propiedades {
 
         try {
 
-            output = new FileOutputStream(DEFAULTPROP);
+            output = new FileOutputStream("config"+File.separator+DEFAULTPROP);
 
             // set the properties value
             //prop.store(output,"#Defaults:");
@@ -137,7 +137,7 @@ public class Propiedades {
         java.util.Properties props = new java.util.Properties();
         FileInputStream in = null;
         try {
-            in = new FileInputStream(propsname);
+            in = new FileInputStream("config"+File.separator+propsname);
             props.load(in);
             in.close();
         } catch (FileNotFoundException e) {
@@ -163,7 +163,7 @@ public class Propiedades {
 
         try {
 
-            output = new FileOutputStream(filename);
+            output = new FileOutputStream("config"+File.separator+filename);
 
             // set the properties value
             //prop.store(output,"#Defaults:");
@@ -179,7 +179,15 @@ public class Propiedades {
 
         } catch (IOException io) {
             io.printStackTrace();
-            writeErrorLog("Error al escribir las Properties: \n"+io.toString());
+            try{
+                File dir = new File("config");
+                dir.mkdir();
+            }
+            catch (Exception f){
+                writeErrorLog("Error al escribir las Properties, asegurese que exista la carpeta config y este programa tenga los permisos adecaudos: \n"+io.toString());
+            }
+            writeErrorLog("Creando carpeta config...: \n"+io.toString());
+
         } finally {
             if (output != null) {
                 try {
@@ -200,7 +208,7 @@ public class Propiedades {
         try {
             //create a temporary file
             String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-            File logFile = new File("Error timeLog");
+            File logFile = new File("Error_"+timeLog+".log");
 
             // This will output the full path where the file will be written to...
 

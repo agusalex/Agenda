@@ -8,6 +8,7 @@ import com.mycompany.app.presentacion.controlador.ControladorLocalidad;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 
 
 public class VentanaLocalidad extends JFrame
@@ -82,7 +83,7 @@ public class VentanaLocalidad extends JFrame
 
 
 		this.setVisible(true);
-		try{ImageIcon img = new ImageIcon("addpicon.png");
+		try{ImageIcon img = new ImageIcon("img"+File.separator+"addpicon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
@@ -134,7 +135,7 @@ public class VentanaLocalidad extends JFrame
 
 
 		this.setVisible(true);
-		try{ImageIcon img = new ImageIcon("addcicon.png");
+		try{ImageIcon img = new ImageIcon("img"+ File.separator+"addcicon.png");
 			this.setIconImage(img.getImage());}
 		catch (Exception e){
 			System.out.println("Error al cargar el icono:"+e.toString());
