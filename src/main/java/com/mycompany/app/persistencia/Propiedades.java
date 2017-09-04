@@ -95,8 +95,8 @@ public class Propiedades {
             // set the properties value
             //prop.store(output,"#Defaults:");
             //"com.mysql.jdbc.Driver"
-            prop.setProperty("jdbc.driver","com.mysql.jdbc.Driver" );
-            prop.setProperty("jdbc.url", "jdbc:mysql://localhost:3306");
+            prop.setProperty("jdbc.driver","org.h2.Driver" );
+            prop.setProperty("jdbc.url", "jdbc:h2:~//agenda");
             prop.setProperty("jdbc.username","root");
             prop.setProperty("jdbc.password", "root");
 
@@ -124,8 +124,9 @@ public class Propiedades {
 
     public static Properties getHardcoded(){
         Properties prop=new Properties();
-        prop.setProperty("jdbc.driver","com.mysql.jdbc.Driver" );
-        prop.setProperty("jdbc.url", "jdbc:mysql://localhost:3306");
+
+        prop.setProperty("jdbc.driver","org.h2.Driver" );
+        prop.setProperty("jdbc.url", "jdbc:h2:~//agenda");
         prop.setProperty("jdbc.username","root");
         prop.setProperty("jdbc.password", "root");
         return prop;

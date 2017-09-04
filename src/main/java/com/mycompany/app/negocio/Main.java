@@ -70,8 +70,8 @@ public class Main
 		firstRun=true;
 		String defaultProperty= Propiedades.getDEFAULTPROP();
 		boolean success=Propiedades.setProperties(defaultProperty,
-				"com.mysql.jdbc.Driver",
-				"jdbc:mysql://localhost:3306",
+				"org.h2.Driver",
+				"jdbc:h2:~//agenda",
 				"root",
 				"root");
 		if(success){

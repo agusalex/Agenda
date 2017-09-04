@@ -121,11 +121,14 @@ public class Conexion
 		try {
 
 			if(!firstRun)
-				jdbcConnection = DriverManager.getConnection(url+"/"+ Propiedades.getDATABASENAME()+Propiedades.getDATABASEOPTIONS(), username, password);
+				jdbcConnection = DriverManager.getConnection(url+"/"+ Propiedades.getDATABASENAME(), username, password);
 			else{
-				jdbcConnection = DriverManager.getConnection(url, username, password);
-				executeStatement("CREATE DATABASE "+Propiedades.getDATABASENAME()+";");
-				jdbcConnection.close();
+
+				if(driver.equals("com.mysql.jdbc.Driver")){
+						System.out.println("Iniciando con MYSQL...");
+						jdbcConnection = DriverManager.getConnection(url, username, password);
+						executeStatement("CREATE DATABASE "+Propiedades.getDATABASENAME()+";");
+					}
 				jdbcConnection = DriverManager.getConnection(url+"/"+ Propiedades.getDATABASENAME(), username, password);
 				createTables();
 				
@@ -148,6 +151,7 @@ public class Conexion
 
 
 	private void createTables(){
+
 		executeStatement(createLocalidades());
 		executeStatement(createEtiquetas());
 		executeStatement(createPersonas());
