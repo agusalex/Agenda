@@ -81,7 +81,7 @@ public class Main
 		}
 		else{
 			dbConfig=VentanaDBConfig.getVentanaDBConfig();
-			dbConfig.showMsg("Error al inicializar las propiedades de conexión");
+			dbConfig.showMsg("Error al inicializar las propiedades de conexión...Intente nuevamente");
 		}
 	}
 
